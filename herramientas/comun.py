@@ -68,29 +68,40 @@ REDES_DE = {
 }
 
 
+ICONO = {'linkedin': 'linkedin', 'github': 'github', 'itch': 'itchdotio', 'youtube': 'youtube', 'tiktok': 'tiktok', 'instagram': 'instagram'}
+
+
+def icono(k):
+    # el logo de cada red (Simple Icons, en img/redes/), en línea y en blanco (fill = currentColor)
+    svg = io.open(os.path.join(RAIZ, 'img', 'redes', ICONO[k] + '.svg'), encoding='utf-8').read()
+    d = re.search(r'<path d="([^"]+)"', svg).group(1)
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="%s"/></svg>' % d
+
+
 def redes(activa):
-    return ''.join('      <a class="red" href="%s"><b>%s</b><small>%s</small><i aria-hidden="true">↗</i></a>\n' % RED[k] for k in REDES_DE[activa])
+    return ''.join('      <a class="red" href="%s">%s<span><b>%s</b><small>%s</small></span></a>\n'
+                   % (RED[k][0], icono(k), RED[k][1], RED[k][2]) for k in REDES_DE[activa])
 
 
-CORREOS = [('esteban.flores.dio@gmail.com', '<span lang="es">Trabajo y CV</span><span lang="en">Jobs and résumé</span>'),
+CORREOS = [('esteban.flores.dio@gmail.com', '<span lang="es">Trabajo y CV</span><span lang="en">Jobs and CV</span>'),
            ('bandioh.games@gmail.com', '<span lang="es">Juegos y prensa</span><span lang="en">Games and press</span>'),
            ('bandioh.pixelart@gmail.com', 'Pixel art')]
 
 
 def contacto(correo, activa):
-    # a la izquierda el correo (como una tarjeta postal, con su estampilla); a la derecha las redes, en tarjetas iguales
+    # el correo como un sobre del juego (papel, borde de correo aéreo, estampilla y la dirección a mano);
+    # las redes en tarjetas iguales, con su logo en blanco. La frase va arriba, así las dos columnas parten a la misma altura.
     lista = [c for c in CORREOS if c[0] == correo] if correo else CORREOS
     if correo:
-        lista = [(lista[0][0], '<span lang="es">Correo</span><span lang="en">Email</span>')]
-    correos = ''.join('      <a class="postal" href="mailto:%s"><small>%s</small><b>%s</b><span class="sello-postal" aria-hidden="true">✉</span></a>\n' % (c, et, c) for c, et in lista)
+        lista = [(lista[0][0], '<span lang="es">Escríbeme a</span><span lang="en">Email me at</span>')]
+    correos = ''.join('      <a class="sobre-correo" href="mailto:%s"><small>%s</small><b>%s</b><img class="estampilla" src="img/estampilla.webp" alt="" width="199" height="196"></a>\n'
+                      % (c, et, c) for c, et in lista)
     return ('<section id="contacto">\n'
             '  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>\n'
+            '  <p class="contacto-intro" lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
+            '  <p class="contacto-intro" lang="en">Have a project or a role in mind? Get in touch.</p>\n'
             '  <div class="contacto">\n'
-            '    <div class="correos">\n'
-            '      <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
-            '      <p lang="en">Have a project or a role in mind? Get in touch.</p>\n'
-            + correos +
-            '    </div>\n'
+            '    <div class="correos">\n' + correos + '    </div>\n'
             '    <div class="redes">\n' + redes(activa) + '    </div>\n'
             '  </div>\n</section>')
 

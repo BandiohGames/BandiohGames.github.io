@@ -92,26 +92,36 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 .habilidades b { display: inline-block; min-width: 120px; color: var(--texto-claro); }
 .habilidades span { color: var(--texto-tenue); }
 
-/* Contacto: el correo como tarjeta postal a la izquierda, las redes en tarjetas iguales a la derecha */
-.contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 28px; align-items: start; margin-top: 6px; }
-.correos p { color: var(--texto-tenue); margin-bottom: 14px; }
-.postal { position: relative; display: block; padding: 16px 64px 16px 18px; margin-bottom: 12px; border-radius: var(--radio); text-decoration: none;
-  background: var(--papel); color: var(--tinta); box-shadow: var(--sombra);
-  background-image: repeating-linear-gradient(135deg, var(--sello) 0 10px, transparent 10px 20px, #3b5f9a 20px 30px, transparent 30px 40px);
-  background-size: 100% 5px; background-repeat: no-repeat; background-position: 0 100%; transition: transform .15s; }
-.postal:hover { transform: translateY(-2px) rotate(-.4deg); }
-.postal small { display: block; font: 700 12px "Courier Prime", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--sello); }
-.postal b { display: block; font: 700 19px "Courier Prime", monospace; overflow-wrap: anywhere; margin-top: 2px; }
-.sello-postal { position: absolute; right: 14px; top: 50%; width: 38px; height: 44px; margin-top: -24px; display: grid; place-items: center; font-size: 20px; color: var(--sello);
-  border: 2px dashed rgba(181,52,43,.55); border-radius: 3px; transform: rotate(4deg); }
-.redes { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
-.red { position: relative; display: block; padding: 12px 34px 12px 14px; border: 1px solid var(--madera-3); border-radius: var(--radio); background: var(--madera-2);
-  color: var(--texto-claro); text-decoration: none; transition: border-color .15s, transform .15s, background .15s; }
+/* Contacto: cada correo es un sobre de REZAGO (papel con grano, borde de correo aéreo, estampilla, dirección a mano);
+   las redes, tarjetas iguales con su logo en blanco */
+.contacto-intro { color: var(--texto-tenue); margin: -6px 0 16px; }
+.contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: start; }
+.correos { display: grid; gap: 14px; }
+.sobre-correo { position: relative; display: block; min-height: 92px; padding: 20px 96px 18px 22px; text-decoration: none; color: #1f3a6e;
+  background-color: #dacbb3; background-image: url(img/grano_papel.png); border-radius: 3px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(110,85,45,.25); transform: rotate(-.5deg); transition: transform .18s, box-shadow .18s; }
+.sobre-correo:nth-child(2) { transform: rotate(.4deg); } .sobre-correo:nth-child(3) { transform: rotate(-.2deg); }
+/* el borde de correo aéreo, arriba y abajo, como en el juego */
+.sobre-correo::before, .sobre-correo::after { content: ""; position: absolute; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(-45deg, #c0453a 0 9px, #dacbb3 9px 13px, #4a6fa8 13px 22px, #dacbb3 22px 26px); }
+.sobre-correo::before { top: 0; } .sobre-correo::after { bottom: 0; }
+.sobre-correo:hover { transform: rotate(0) translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.5), inset 0 0 0 1px rgba(110,85,45,.25); }
+.sobre-correo small { display: block; font: 700 11px "Courier Prime", monospace; letter-spacing: .1em; text-transform: uppercase; color: #6b5a42; }
+.sobre-correo b { display: block; font: 400 23px/1.15 "Patrick Hand", cursive; margin-top: 4px; overflow-wrap: anywhere; }
+.sobre-correo .estampilla { position: absolute; right: 12px; top: 11px; width: 66px; height: auto; transform: rotate(3deg); }
+.redes { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.red { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; border: 1px solid var(--madera-3); border-radius: var(--radio);
+  background: var(--madera-2); color: #fff; text-decoration: none; transition: border-color .15s, transform .15s, background .15s; }
 .red:hover { border-color: var(--laton); background: #33241a; transform: translateY(-2px); }
-.red b { display: block; font-size: 16px; }
+.red svg { flex: 0 0 24px; width: 24px; height: 24px; }
+.red span { min-width: 0; }
+.red b { display: block; font-size: 16px; color: var(--texto-claro); }
 .red small { display: block; color: var(--texto-tenue); font-size: 13px; overflow-wrap: anywhere; }
-.red i { position: absolute; right: 12px; top: 12px; font-style: normal; color: var(--laton); opacity: .7; }
-@media (max-width: 820px) { .contacto { grid-template-columns: 1fr; } .postal { padding-right: 58px; } .postal b { font-size: 15px; } .redes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 820px) {
+  .contacto { grid-template-columns: 1fr; }
+  .redes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sobre-correo { padding-right: 76px; } .sobre-correo b { font-size: 19px; } .sobre-correo .estampilla { width: 52px; }
+}
 footer { border-top: 1px solid var(--madera-3); padding: 24px 0 40px; color: var(--texto-tenue); font-size: 14px; }
 
 /* Visor de capturas */
