@@ -4,8 +4,10 @@
   html.classList.add("js");
   var guardado = null;
   try { guardado = localStorage.getItem("idioma"); } catch (e) {}
-  var nav = (navigator.language || "es").slice(0, 2);
+  // el idioma preferido del navegador: cualquier español (es-CL, es-MX, es-ES…) en español; el resto, en inglés
+  var nav = ((navigator.languages && navigator.languages[0]) || navigator.language || "es").slice(0, 2).toLowerCase();
   html.setAttribute("data-l", guardado || (nav === "es" ? "es" : "en"));
+  html.lang = html.getAttribute("data-l");
 
   var tramo = function (p, a, b) { return Math.min(1, Math.max(0, (p - a) / (b - a))); };
   var suave = function (t) { return t * t * (3 - 2 * t); };
@@ -21,7 +23,7 @@
     var b = document.querySelector(".idioma");
     if (b) b.addEventListener("click", function () {
       var nuevo = html.getAttribute("data-l") === "es" ? "en" : "es";
-      html.setAttribute("data-l", nuevo);
+      html.setAttribute("data-l", nuevo); html.lang = nuevo;
       try { localStorage.setItem("idioma", nuevo); } catch (e) {}
       if (window.__rearmarPliego) window.__rearmarPliego();
     });
