@@ -19,7 +19,7 @@
 <body>
 
 <header><div class="ancho">
-  <a class="marca" href="#"><img class="logo" src="img/marca.svg" alt="bandioh games"></a>
+  <a class="marca" href="#"><img class="logo" src="img/marca.png" alt="bandioh games"></a>
   <nav>
     <a href="#juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
@@ -33,7 +33,6 @@
 <div class="portada">
   <div>
     <h1>Esteban Flores Pizarro</h1>
-    <span class="uv" style="right:4%;top:-14px;transform:rotate(4deg)"><span lang="es">hecho con calma, como las cartas</span><span lang="en">made slowly, like letters</span></span>
     <p class="bajada">
       <span lang="es">Desarrollador de videojuegos en Godot, desde Santiago de Chile. Diseño, programo y publico juegos narrativos donde observar con calma tiene recompensa.</span>
       <span lang="en">Game developer working in Godot, based in Santiago, Chile. I design, program and ship narrative games that reward patient observation.</span>
@@ -61,9 +60,21 @@
   <!-- REZAGO: llega en un sobre dibujado por el mismo código del juego (img/sobre/, 36 cuadros). Se abre solo al verlo
        o con clic; la carta sale y se despliega con todo el contenido. -->
   <div class="correo" id="correo-rezago">
-    <div class="sobre-juego" role="button" tabindex="0" aria-controls="hoja-rezago">
-      <img id="sobre-cuadro" src="img/sobre/00.webp" width="944" height="873" alt="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»">
-      <span class="pista-abrir"><span lang="es">Clic para abrir</span><span lang="en">Click to open</span></span>
+    <!-- La escena queda fija mientras bajas: el abrecartas corta el sobre (cuadros del juego), sale la carta y el sobre se va
+         por la izquierda. Todo sigue a la barra de desplazamiento y vuelve atrás al subir. -->
+    <div class="escena-sobre">
+      <div class="escena-fija">
+        <div class="sobre-mesa">
+          <div class="carta-doblada" aria-hidden="true">
+            <p class="saludo">A quien corresponda:</p>
+            <p class="linea-titulo">REZAGO</p>
+            <i class="renglon"></i><i class="renglon"></i><i class="renglon corto"></i>
+          </div>
+          <img class="sobre-img" id="sobre-cuadro" src="img/sobre/00.webp" width="944" height="700" alt="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»">
+          <img class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true">
+        </div>
+        <p class="pista-scroll"><span lang="es">Baja para abrir el sobre</span><span lang="en">Scroll to open the envelope</span><b aria-hidden="true">↓</b></p>
+      </div>
     </div>
 
     <article class="hoja" id="hoja-rezago">
@@ -83,7 +94,7 @@
         <figure class="foto-clip">
           <div class="medio"><iframe src="https://www.youtube-nocookie.com/embed/wJkrWOI4L6o" title="Tráiler de REZAGO" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
           <figcaption><span lang="es">Tráiler · octubre 2026</span><span lang="en">Trailer · October 2026</span></figcaption>
-          <i class="clip" aria-hidden="true"></i>
+          <i class="cinta a" aria-hidden="true"></i><i class="cinta b" aria-hidden="true"></i>
         </figure>
 
         <div class="dos">
@@ -136,8 +147,8 @@
             <a class="boton" href="rezago.html"><span lang="es">Cómo lo hice</span><span lang="en">How I made it</span></a>
           </div>
           <p class="firma"><span lang="es">Atentamente,</span><span lang="en">Sincerely,</span><br>Esteban</p>
+          <span class="secreto" aria-hidden="true">Kira estuvo aquí ♥</span>
         </div>
-        <span class="uv" style="left:6%;bottom:30px;transform:rotate(-4deg)"><span lang="es">código disponible a pedido</span><span lang="en">source code on request</span></span>
       </div>
     </article>
   </div>
@@ -245,9 +256,9 @@
 
 </main>
 
-<footer><div class="ancho" style="position:relative"><span class="uv" style="right:20px;top:20px"><span lang="es">gracias por mirar con calma</span><span lang="en">thanks for looking closely</span></span>© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<footer><div class="ancho" style="position:relative">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <div id="visor"><img alt=""></div>
-<button class="boton-uv" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa UV</span><span lang="en">UV lens</span></button>
-<div class="lente-uv" aria-hidden="true"></div>
+<button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span></button>
+<div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
 </body>
 </html>
