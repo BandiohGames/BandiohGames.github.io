@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="correo.css">
 <script src="sitio.js"></script>
 </head>
 <body>
@@ -32,6 +33,7 @@
 <div class="portada">
   <div>
     <h1>Esteban Flores Pizarro</h1>
+    <span class="uv" style="right:4%;top:-14px;transform:rotate(4deg)"><span lang="es">hecho con calma, como las cartas</span><span lang="en">made slowly, like letters</span></span>
     <p class="bajada">
       <span lang="es">Desarrollador de videojuegos en Godot, desde Santiago de Chile. Diseño, programo y publico juegos narrativos donde observar con calma tiene recompensa.</span>
       <span lang="en">Game developer working in Godot, based in Santiago, Chile. I design, program and ship narrative games that reward patient observation.</span>
@@ -56,8 +58,34 @@
 <section id="juegos">
   <h2 class="titulo"><span lang="es">Juegos</span><span lang="en">Games</span></h2>
 
-  <!-- REZAGO: proyecto principal -->
-  <article class="ficha destacado">
+  <!-- REZAGO: proyecto principal. Llega como sobre sellado; se abre solo al verlo (o con clic). -->
+  <div class="correo" id="correo-rezago">
+    <div class="sobre-env" role="button" tabindex="0" aria-controls="carta-rezago">
+      <div class="papel-sobre"></div>
+      <div class="solapa-sombra"></div>
+      <div class="solapa"></div>
+      <div class="lacre" aria-hidden="true"><i class="a"></i><i class="b"></i></div>
+      <div class="estampilla" aria-hidden="true">
+        <svg viewBox="0 0 60 60"><g fill="none" stroke="#3b3128" stroke-width="2.2" stroke-linecap="round"><circle cx="30" cy="24" r="8"/><path d="M30 9v5M30 34v5M15 24h5M40 24h5M19.5 13.5l3.5 3.5M37 31l3.5 3.5M40.5 13.5L37 17M23 31l-3.5 3.5"/></g><text x="30" y="54" text-anchor="middle" font-family="Courier Prime, monospace" font-size="13" font-weight="700" fill="#3b3128">$100</text></svg>
+      </div>
+      <svg class="matasellos" viewBox="0 0 150 70" aria-hidden="true"><g fill="none" stroke="#4b3f63" stroke-width="1.6" opacity=".75"><circle cx="40" cy="35" r="28"/><circle cx="40" cy="35" r="21"/><path d="M75 20q10-6 20 0t20 0t20 0M75 35q10-6 20 0t20 0t20 0M75 50q10-6 20 0t20 0t20 0"/></g><text x="40" y="32" text-anchor="middle" font-family="Courier Prime, monospace" font-size="7.5" fill="#4b3f63" opacity=".8">SANTIAGO</text><text x="40" y="42" text-anchor="middle" font-family="Courier Prime, monospace" font-size="7" fill="#4b3f63" opacity=".8">27 OCT 26</text></svg>
+      <div class="etiqueta-sobre">
+        <div class="para"><span lang="es">Para:</span><span lang="en">To:</span></div>
+        <div class="nombre">A quien corresponda</div>
+        <div class="linea"><b>REZAGO</b> · <span lang="es">aventura de deducción</span><span lang="en">deduction adventure</span></div>
+        <div class="remite"><span lang="es">Remite: bandioh games, Santiago de Chile</span><span lang="en">From: bandioh games, Santiago, Chile</span></div>
+      </div>
+      <div class="cifras-sobre">
+        <span><b>18.000+</b> <span lang="es">visualizaciones</span><span lang="en">views</span></span>
+        <span><b data-itch="rezago" data-campo="descargas">33</b> <span lang="es">descargas</span><span lang="en">downloads</span></span>
+        <span><b>★★★★★</b></span>
+      </div>
+      <div class="timbre-entregada" aria-hidden="true"><span lang="es">Entregada</span><span lang="en">Delivered</span></div>
+      <span class="uv" style="left:7%;top:12%;transform:rotate(-6deg)"><span lang="es">código disponible a pedido</span><span lang="en">source code on request</span></span>
+      <span class="pista-abrir"><span lang="es">Clic para abrir</span><span lang="en">Click to open</span></span>
+    </div>
+    <div class="despliegue" id="carta-rezago"><div class="despliegue-int">
+  <article class="ficha destacado carta">
     <div class="medio">
       <iframe src="https://www.youtube-nocookie.com/embed/wJkrWOI4L6o" title="Tráiler de REZAGO" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -115,6 +143,8 @@
       </div>
     </div>
   </article>
+    </div></div>
+  </div>
 
   <!-- Floor, Sir?: en desarrollo, se muestra poco -->
   <article class="ficha">
@@ -203,7 +233,9 @@
 
 </main>
 
-<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<footer><div class="ancho" style="position:relative"><span class="uv" style="right:20px;top:20px"><span lang="es">gracias por mirar con calma</span><span lang="en">thanks for looking closely</span></span>© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <div id="visor"><img alt=""></div>
+<button class="boton-uv" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa UV</span><span lang="en">UV lens</span></button>
+<div class="lente-uv" aria-hidden="true"></div>
 </body>
 </html>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="160 30 880 880" version="1.1"><title>bandioh Games — Icono, Sobre_Negro</title><desc>Logotipo vectorial con fondo transparente. Proporción de cabeza aprobada, letras convertidas en trazados.</desc><g fill="#ffffff"><g fill="#ffffff"><g id="half" fill-rule="evenodd">
+<g transform="translate(600 450) scale(0.92 0.95) translate(-600 -450)"><path d="M600 243 C550 243 509 257 471 251 C423 243 365 182 273 156 C259 152 253 157 253 171 C250 231 260 294 276 334 C284 354 281 365 273 383 C265 400 258 410 252 419 C237 456 246 464 274 458 C323 449 371 422 421 423 C484 423 540 451 577 490 C590 504 592 522 600 528 Z M288 197 C332 212 376 242 411 276 C374 279 336 300 308 333 C292 293 284 240 288 197 Z" />
+<path d="M426 478 Q455 483 486 501 C489 522 477 540 458 541 C437 542 421 528 422 510 Q422 490 426 478 Z" />
+</g><path d="M600 557 C535 557 480 575 412 580 C342 585 292 572 260 565 C239 560 219 573 211 589 C207 599 235 604 266 619 C272 623 268 626 257 631 C245 636 243 641 256 645 C309 658 366 682 423 714 C490 750 532 777 600 777 L600 695 C583 688 562 668 557 651 C552 633 582 636 600 636 Z" />
+</g><use xlink:href="#half" transform="translate(1200 0) scale(-1 1)" /></g></g></svg>
