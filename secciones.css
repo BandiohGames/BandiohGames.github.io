@@ -66,12 +66,12 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .evolucion figure { margin: 0; }
 .evolucion figcaption { text-align: center; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; }
 .evolucion .lamina { aspect-ratio: 1; }
-.evolucion .lamina img { max-width: 100%; height: auto; }
+.evolucion .lamina img { max-width: 100%; height: auto; cursor: zoom-in; }
 
 .assets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
 .assets figure { margin: 0; }
 .assets .lamina { min-height: 200px; }
-.assets .lamina img { max-width: 100%; height: auto; }
+.assets .lamina img { max-width: 100%; height: auto; cursor: zoom-in; }
 .assets figcaption { font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; text-align: center; }
 .assets .ancho2 { grid-column: span 2; }
 

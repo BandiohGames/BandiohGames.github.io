@@ -164,3 +164,9 @@ html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
   .pista-scroll { display: none; }
   .ascensor * { transition: none !important; }
 }
+
+/* el ascensor se puede abrir en grande */
+.ascensor.ampliable { cursor: zoom-in; position: relative; }
+.ascensor.ampliable::after { content: "⤢"; position: absolute; right: 10px; bottom: 8px; width: 28px; height: 28px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(0,0,0,.45); color: #e9cf8e; font-size: 16px; opacity: .75; transition: opacity .15s; }
+.ascensor.ampliable:hover::after { opacity: 1; }

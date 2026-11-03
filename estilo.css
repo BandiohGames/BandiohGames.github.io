@@ -177,3 +177,9 @@ h1, h3 { overflow-wrap: anywhere; }
   .botones .boton { padding: 9px 14px; }
 }
 .rejilla .ficha + .ficha { margin-top: 0; }
+
+/* PhotoSwipe: el pixel art sin suavizar, y el clip centrado */
+.pswp-px .pswp__img { image-rendering: pixelated; background: #373951; }
+.pswp-video { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.pswp-video video { max-width: 94vw; max-height: 86vh; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
+.pswp__counter { font-family: "Courier Prime", monospace; }

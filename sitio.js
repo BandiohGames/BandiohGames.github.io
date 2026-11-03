@@ -54,16 +54,58 @@
       pj.addEventListener("mouseleave", salir); pj.addEventListener("blur", salir);
     });
 
-    // Visor de capturas
-    var visor = document.getElementById("visor");
-    if (visor) {
-      document.querySelectorAll(".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img").forEach(function (img) {
-        img.addEventListener("click", function () {
-          if (html.classList.contains("lupa")) return;
-          visor.querySelector("img").src = img.src; visor.classList.add("abierto");
-        });
+    // =====================================================================================================
+    // VISOR DE CAPTURAS: PhotoSwipe 5 (galería libre: flechas, teclado, deslizar en el celular, zoom y contador).
+    // Cada sección es su propia galería. Se descarga recién al primer clic; si no carga, queda el visor simple.
+    // El pixel art se agranda a escala entera (pixelado nítido) y el clip del ascensor se abre en grande.
+    // =====================================================================================================
+    var CAPTURAS = ".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img, .evolucion .lamina img, .assets .lamina img";
+    var visor = document.getElementById("visor"), PS = null, PSV = "5.4.4";
+    var cargarPS = function () {
+      if (PS) return PS;
+      var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://cdn.jsdelivr.net/npm/photoswipe@" + PSV + "/dist/photoswipe.css";
+      document.head.appendChild(l);
+      PS = import("https://cdn.jsdelivr.net/npm/photoswipe@" + PSV + "/dist/photoswipe.esm.min.js").then(function (m) { return m.default; });
+      return PS;
+    };
+    var en = function () { return html.getAttribute("data-l") === "en"; };
+    var abrirVisor = function (items, i, clase) {
+      cargarPS().then(function (PhotoSwipe) {
+        var p = new PhotoSwipe({ dataSource: items, index: i, bgOpacity: 0.92, mainClass: clase || "", showHideAnimationType: "fade",
+          closeTitle: en() ? "Close (Esc)" : "Cerrar (Esc)", zoomTitle: en() ? "Zoom" : "Acercar",
+          arrowPrevTitle: en() ? "Previous" : "Anterior", arrowNextTitle: en() ? "Next" : "Siguiente", errorMsg: en() ? "The image could not be loaded" : "No se pudo cargar la imagen" });
+        p.init();
+      }).catch(function () {   // sin conexión a la librería: el visor de siempre, con la imagen sola
+        var it = items[i]; if (!visor || !it.src) return;
+        visor.querySelector("img").src = it.src; visor.classList.add("abierto");
       });
-      visor.addEventListener("click", function () { visor.classList.remove("abierto"); });
+    };
+    if (visor) visor.addEventListener("click", function () { visor.classList.remove("abierto"); });
+    document.querySelectorAll(CAPTURAS).forEach(function (img) {
+      img.addEventListener("click", function () {
+        if (html.classList.contains("lupa")) return;
+        var grupo = img.closest(".hoja, section, article") || document.body;
+        var imgs = Array.prototype.filter.call(grupo.querySelectorAll(CAPTURAS), function (x) { return x.offsetParent !== null; });
+        var px = !!img.closest(".pagina-pixel");
+        var items = imgs.map(function (x) {
+          var w = x.naturalWidth || +x.getAttribute("width") || 1600, h = x.naturalHeight || +x.getAttribute("height") || 900;
+          if (px) { var k = Math.max(1, Math.floor(Math.min(innerWidth * 0.86 / w, innerHeight * 0.82 / h))); w *= k; h *= k; }   // escala entera
+          return { src: x.currentSrc || x.src, width: w, height: h, alt: x.alt };
+        });
+        abrirVisor(items, Math.max(0, imgs.indexOf(img)), px ? "pswp-px" : "");
+      });
+    });
+    // el clip de Floor, Sir?: clic en el ascensor y se ve en grande
+    var asc = document.getElementById("ascensor-floor"), clipG = asc && asc.querySelector("video");
+    if (asc && clipG) {
+      asc.classList.add("ampliable"); asc.setAttribute("role", "button"); asc.setAttribute("tabindex", "0"); asc.removeAttribute("aria-hidden");
+      asc.setAttribute("aria-label", en() ? "Play the Floor, Sir? clip full size" : "Ver en grande el clip de Floor, Sir?");
+      var verClip = function () {
+        if (html.classList.contains("lupa")) return;
+        abrirVisor([{ html: '<div class="pswp-video"><video src="' + clipG.getAttribute("src") + '" poster="' + clipG.getAttribute("poster") + '" autoplay muted loop playsinline controls></video></div>' }], 0, "pswp-clip");
+      };
+      asc.addEventListener("click", verClip);
+      asc.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); verClip(); } });
     }
 
     // =====================================================================================================
