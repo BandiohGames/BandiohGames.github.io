@@ -5,17 +5,26 @@ html, body { overflow-x: clip; }
 .escena-sobre { height: 560vh; position: relative; }
 /* a todo el ancho de la ventana (no de la columna): así el sobre sale de verdad por el borde de la pantalla */
 .escena-fija { position: sticky; top: 0; height: 100vh; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; perspective: 2200px; }
-.sobre-mesa { position: absolute; left: 50%; top: 50%; width: min(700px, 92vw); aspect-ratio: 944 / 707; transform: translate(-50%, -50%); z-index: 2; }
+.sobre-mesa { position: absolute; left: 50%; top: 50%; width: min(700px, 92vw); aspect-ratio: 944 / 873; transform: translate(-50%, -50%); z-index: 2; }
 .sobre-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; will-change: transform; }
 .abrecartas { position: absolute; z-index: 3; left: 0; top: 0; width: 34%; height: auto; max-width: none; transform-origin: 0 50%; opacity: 0;
   filter: drop-shadow(2px 5px 4px rgba(0,0,0,.4)); will-change: transform, opacity; pointer-events: none; }
-/* la carta doblada en tres: tres copias de la hoja, cada una muestra su tercio y gira por su doblez */
+/* La carta doblada en tres, como se dobla para meterla al sobre: el tercio de abajo sube sobre el del medio y el de
+   arriba baja encima de los dos. Por fuera solo se ve el revés del papel (la tinta apenas se transparenta). Cada tercio
+   es una copia de la hoja que muestra su parte, y gira por su doblez. */
 .pliego { position: absolute; left: 0; top: 0; z-index: 1; transform-origin: 50% 0; transform-style: preserve-3d; opacity: 0; will-change: transform; pointer-events: none; }
-.pliego .panel, .pliego .bisagra { position: absolute; left: 0; width: 100%; transform-style: preserve-3d; transform-origin: 50% 0; }
+.pliego .panel, .pliego .bisagra { position: absolute; left: 0; width: 100%; transform-style: preserve-3d; }
+.pliego .bisagra.arriba { transform-origin: 50% 100%; }
+.pliego .bisagra.abajo { transform-origin: 50% 0; }
 .pliego .cara, .pliego .reves { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.pliego .reves { transform: rotateX(180deg); background-color: #e6dcbd; background-image: url(img/grano_papel.png); box-shadow: inset 0 0 40px rgba(90,65,30,.18); }
+.pliego .reves { transform: rotateX(180deg); background-color: #ece3c6; background-image: url(img/grano_papel.png); }
 .pliego .cara .hoja { position: absolute; left: 0; top: 0; margin: 0; transform: none !important; box-shadow: none; visibility: visible !important; }
-.pliego .sombra { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(50,32,10,.05), rgba(50,32,10,.4)); opacity: 0; }
+.pliego .sombra { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(50,32,10,.04), rgba(50,32,10,.32)); opacity: 0; }
+/* por fuera: lo escrito que se transparenta, el doblez y la sombra de la boca del sobre (como `_carta_asomada`) */
+.pliego .tras { position: absolute; left: 10%; height: 1.5px; background: rgba(51,51,77,.08); }
+.pliego .boca { position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0) 0%, rgba(55,38,12,.2) 46%, rgba(55,38,12,.3) 100%); }
+.pliego .luz-canto { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: rgba(255,255,255,.35); }
+
 /* la hoja de verdad ocupa el último tramo de la escena: aparece justo donde termina de desplegarse la copia */
 html.js .escena-sobre + .hoja { margin-top: calc(-100vh + 96px); visibility: hidden; }
 html.js .escena-sobre + .hoja.lista { visibility: visible; }
@@ -56,6 +65,12 @@ html.js .escena-sobre + .hoja.lista { visibility: visible; }
 .foto-clip { position: relative; margin: 10px 0 26px; background: #f7f1e2; padding: 12px 12px 8px; box-shadow: 0 6px 14px rgba(0,0,0,.28); transform: rotate(-.6deg); }
 .foto-clip .medio { position: relative; aspect-ratio: 16/9; background: #111; }
 .foto-clip iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: #111; cursor: pointer; display: block; }
+.yt img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.yt-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; margin: -24px 0 0 -34px; border-radius: 12px; background: rgba(181,52,43,.92);
+  box-shadow: 0 4px 14px rgba(0,0,0,.4); transition: transform .15s, background .15s; }
+.yt-play::after { content: ""; position: absolute; left: 27px; top: 14px; border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff; }
+.yt:hover .yt-play { transform: scale(1.08); background: #c63a30; }
 .foto-clip figcaption { font: 18px "Patrick Hand", cursive; color: #1f3a6e; padding-top: 6px; }
 .cinta { position: absolute; top: -12px; width: 116px; height: 30px; background: rgba(237, 224, 189, .92); z-index: 2;
   clip-path: polygon(0 0, 4% 30%, 1% 60%, 3% 100%, 100% 100%, 97% 66%, 100% 40%, 96% 0);
@@ -76,12 +91,23 @@ html.js .escena-sobre + .hoja.lista { visibility: visible; }
 html.lupa .lupa-mano { display: block; }
 html.lupa .lupa-mano.fuera { opacity: 0; }
 .lupa-mano .vidrio { position: absolute; left: -110px; top: -110px; width: 220px; height: 220px; border-radius: 50%; overflow: hidden;
-  background: var(--madera); filter: url(#ojo-de-pez); }
+  background: var(--madera); filter: url(#vidrio-lupa); }
+/* lo que el shader del juego suma encima: se apaga hacia el aro, los dos reflejos de la lámpara, la franja del grosor
+   del cristal y el hilo de luz del canto (más vivo arriba a la izquierda, del lado de la lámpara) */
 .lupa-mano .brillo { position: absolute; left: -110px; top: -110px; width: 220px; height: 220px; border-radius: 50%;
-  background: radial-gradient(circle at 33% 27%, rgba(255,255,255,.34), rgba(255,255,255,0) 30%),
-              radial-gradient(circle at 70% 78%, rgba(255,240,210,.10), rgba(255,255,255,0) 26%),
-              radial-gradient(circle, rgba(0,0,0,0) 62%, rgba(40,25,10,.38) 100%);
-  box-shadow: inset 0 0 14px rgba(0,0,0,.45); }
+  background:
+    radial-gradient(circle 24px at 33% 30%, rgba(255,245,224,.17), rgba(255,245,224,0)),
+    radial-gradient(circle 62px at 33% 30%, rgba(255,245,224,.05), rgba(255,245,224,0)),
+    radial-gradient(circle 12px at 72% 75%, rgba(255,242,217,.07), rgba(255,242,217,0)),
+    radial-gradient(circle closest-side, rgba(0,0,0,0) 76%, rgba(0,0,0,.1) 86%, rgba(0,0,0,0) 93%),
+    radial-gradient(circle closest-side, rgba(20,12,4,0) 62%, rgba(20,12,4,.3) 100%); }
+.lupa-mano .brillo::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle closest-side, rgba(255,245,220,0) 88%, rgba(255,245,220,.24) 95%, rgba(255,245,220,0) 99%);
+  -webkit-mask: linear-gradient(135deg, #000 15%, rgba(0,0,0,.4) 60%); mask: linear-gradient(135deg, #000 15%, rgba(0,0,0,.4) 60%); }
+/* el aro se calienta cuando hay algo bajo el cristal (como en el juego: dorado que respira, sin aros de luz) */
+.lupa-mano.caliente .marco { animation: calienta 1.3s ease-in-out infinite; }
+@keyframes calienta { 0%, 100% { filter: drop-shadow(3px 6px 4px rgba(0,0,0,.35)) drop-shadow(0 0 3px rgba(255,204,115,.55)); }
+  50% { filter: drop-shadow(3px 6px 4px rgba(0,0,0,.35)) drop-shadow(0 0 9px rgba(255,214,130,.95)); } }
 .lupa-mano .mundo { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
 /* el aro: su hueco mide 89,25 px de radio y está centrado en (103,5 ; 103) de la imagen de 277 × 249 */
 .lupa-mano .marco { position: absolute; max-width: none; width: calc(277px * 110 / 89.25); height: auto;

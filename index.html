@@ -65,7 +65,7 @@
     <div class="escena-sobre">
       <div class="escena-fija">
         <div class="sobre-mesa">
-          <canvas class="sobre-lienzo" id="sobre-lienzo" width="944" height="707" data-anim aria-label="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»"></canvas>
+          <canvas class="sobre-lienzo" id="sobre-lienzo" width="944" height="873" data-anim aria-label="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»"></canvas>
           <img class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true" data-anim>
         </div>
         <div class="pliego" aria-hidden="true" data-anim></div>
@@ -88,7 +88,9 @@
         </div>
 
         <figure class="foto-clip">
-          <div class="medio"><iframe src="https://www.youtube-nocookie.com/embed/wJkrWOI4L6o" title="Tráiler de REZAGO" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="medio"><button class="yt" type="button" data-yt="wJkrWOI4L6o" aria-label="Ver el tráiler de REZAGO">
+            <img src="https://i.ytimg.com/vi/wJkrWOI4L6o/maxresdefault.jpg" alt="" width="1280" height="720" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wJkrWOI4L6o/hqdefault.jpg'">
+            <span class="yt-play" aria-hidden="true"></span></button></div>
           <figcaption><span lang="es">Tráiler · octubre 2026</span><span lang="en">Trailer · October 2026</span></figcaption>
           <i class="cinta a" aria-hidden="true"></i><i class="cinta b" aria-hidden="true"></i>
         </figure>
@@ -143,7 +145,7 @@
             <a class="boton" href="rezago.html"><span lang="es">Cómo lo hice</span><span lang="en">How I made it</span></a>
           </div>
           <p class="firma"><span lang="es">Atentamente,</span><span lang="en">Sincerely,</span><br>Esteban</p>
-          <span class="secreto" aria-hidden="true">Kira estuvo aquí ♥</span>
+          <span class="secreto" aria-hidden="true" data-lupa>Kira estuvo aquí ♥</span>
         </div>
       </div>
     </article>
@@ -255,9 +257,21 @@
 <footer><div class="ancho" style="position:relative">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <div id="visor"><img alt=""></div>
 <button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span><small><span lang="es">soltar: clic derecho o Esc</span><span lang="en">drop: right-click or Esc</span></small></button>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ojo-de-pez" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-  <feImage href="img/ojo_de_pez.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="mapa"/>
-  <feDisplacementMap in="SourceGraphic" in2="mapa" scale=".34" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="vidrio-lupa" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+    <feGaussianBlur id="enfoque-lupa" in="SourceGraphic" stdDeviation="0" result="vista"/>
+    <feImage href="img/vidrio_r.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="mr"/>
+    <feImage href="img/vidrio_g.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="mg"/>
+    <feImage href="img/vidrio_b.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="mb"/>
+    <feDisplacementMap in="vista" in2="mr" scale=".2" xChannelSelector="R" yChannelSelector="G" result="dr"/>
+    <feDisplacementMap in="vista" in2="mg" scale=".2" xChannelSelector="R" yChannelSelector="G" result="dg"/>
+    <feDisplacementMap in="vista" in2="mb" scale=".2" xChannelSelector="R" yChannelSelector="G" result="db"/>
+    <feColorMatrix in="dr" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"/>
+    <feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>
+    <feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>
+    <feComposite in="r" in2="g" operator="arithmetic" k2="1" k3="1" result="rg"/>
+    <feComposite in="rg" in2="b" operator="arithmetic" k2="1" k3="1"/>
+  </filter></svg>
 <div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><div class="brillo"></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
 </body>
 </html>
