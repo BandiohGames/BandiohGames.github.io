@@ -1,6 +1,29 @@
 {
   "actualizado": "03-11-2026",
   "juegos": {
-    "rezago": {"titulo": "Rezago", "url": "https://bandioh.itch.io/rezago", "vistas": 130, "descargas": 33}
+    "ascensorista": {
+      "titulo": "Ascensorista",
+      "url": "https://bandioh.itch.io/ascensorista",
+      "portada": null,
+      "publicado": true,
+      "vistas": 0,
+      "descargas": 0
+    },
+    "en-vivo": {
+      "titulo": "en-vivo",
+      "url": "https://bandioh.itch.io/en-vivo",
+      "portada": null,
+      "publicado": true,
+      "vistas": 0,
+      "descargas": 5
+    },
+    "rezago": {
+      "titulo": "Rezago",
+      "url": "https://bandioh.itch.io/rezago",
+      "portada": "https://img.itch.zone/aW1nLzMxMzgwNTk3LnBuZw==/315x250%23c/A0lmDD.png",
+      "publicado": true,
+      "vistas": 131,
+      "descargas": 33
+    }
   }
 }
