@@ -1,23 +1,26 @@
 /* ===================== LA ESCENA DEL SOBRE (sigue al scroll) ===================== */
+html, body { overflow-x: clip; }
 .portada > div:first-child { position: relative; }
 .correo { position: relative; margin-bottom: 110px; }
-.escena-sobre { height: 300vh; position: relative; }
-.escena-fija { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
-.sobre-mesa { position: relative; width: min(700px, 92vw); aspect-ratio: 944 / 700; }
-.sobre-img { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; will-change: transform; }
-/* el abrecartas del juego: la punta va en la ranura del borde de arriba (y = 11,7 % del cuadro) */
-.abrecartas { position: absolute; z-index: 3; left: 0; top: 0; width: 34%; height: auto; transform-origin: 0 50%; opacity: 0;
+.escena-sobre { height: 560vh; position: relative; }
+/* a todo el ancho de la ventana (no de la columna): así el sobre sale de verdad por el borde de la pantalla */
+.escena-fija { position: sticky; top: 0; height: 100vh; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; perspective: 2200px; }
+.sobre-mesa { position: absolute; left: 50%; top: 50%; width: min(700px, 92vw); aspect-ratio: 944 / 707; transform: translate(-50%, -50%); z-index: 2; }
+.sobre-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; will-change: transform; }
+.abrecartas { position: absolute; z-index: 3; left: 0; top: 0; width: 34%; height: auto; max-width: none; transform-origin: 0 50%; opacity: 0;
   filter: drop-shadow(2px 5px 4px rgba(0,0,0,.4)); will-change: transform, opacity; pointer-events: none; }
-/* la carta doblada, adentro del sobre hasta que se la saca */
-.carta-doblada { position: absolute; z-index: 1; left: 13%; width: 74%; top: 16%; height: 46%; padding: 4% 5%;
-  background-color: #ece3c6; background-image: url(img/grano_papel.png), linear-gradient(rgba(0,0,0,0) 62%, rgba(70,50,20,.10) 64%, rgba(255,255,255,.2) 66%, rgba(0,0,0,0) 68%);
-  box-shadow: 0 6px 14px rgba(0,0,0,.35); will-change: transform; }
-.carta-doblada .saludo { font: clamp(14px, 2.6vw, 22px) "Patrick Hand", cursive; color: #1f3a6e; }
-.carta-doblada .linea-titulo { font: clamp(16px, 3.4vw, 30px) "Special Elite", monospace; color: #24201b; margin: 2% 0 4%; }
-.carta-doblada .renglon { display: block; height: 2px; background: rgba(40,40,60,.12); margin: 3.2% 0; width: 88%; }
-.carta-doblada .renglon.corto { width: 55%; }
+/* la carta doblada en tres: tres copias de la hoja, cada una muestra su tercio y gira por su doblez */
+.pliego { position: absolute; left: 0; top: 0; z-index: 1; transform-origin: 50% 0; transform-style: preserve-3d; opacity: 0; will-change: transform; pointer-events: none; }
+.pliego .panel, .pliego .bisagra { position: absolute; left: 0; width: 100%; transform-style: preserve-3d; transform-origin: 50% 0; }
+.pliego .cara, .pliego .reves { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pliego .reves { transform: rotateX(180deg); background-color: #e6dcbd; background-image: url(img/grano_papel.png); box-shadow: inset 0 0 40px rgba(90,65,30,.18); }
+.pliego .cara .hoja { position: absolute; left: 0; top: 0; margin: 0; transform: none !important; box-shadow: none; visibility: visible !important; }
+.pliego .sombra { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(50,32,10,.05), rgba(50,32,10,.4)); opacity: 0; }
+/* la hoja de verdad ocupa el último tramo de la escena: aparece justo donde termina de desplegarse la copia */
+html.js .escena-sobre + .hoja { margin-top: calc(-100vh + 96px); visibility: hidden; }
+html.js .escena-sobre + .hoja.lista { visibility: visible; }
 .pista-scroll { position: absolute; bottom: 7vh; left: 0; right: 0; text-align: center; font: 700 12px "Courier Prime", monospace;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--texto-tenue); transition: opacity .3s; }
+  letter-spacing: .14em; text-transform: uppercase; color: var(--texto-tenue); }
 .pista-scroll b { display: block; font-size: 18px; animation: baja 1.6s ease-in-out infinite; }
 @keyframes baja { 50% { transform: translateY(5px); } }
 
@@ -45,7 +48,7 @@
 .hoja-pie { position: relative; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-top: 26px; }
 .firma { font: 30px/1.05 "Patrick Hand", cursive; color: #1f3a6e; text-align: right; margin: 0; }
 /* el detalle que solo se lee con la lupa */
-.secreto { position: absolute; right: 4px; bottom: -22px; font: 4px "Patrick Hand", cursive; color: rgba(31,58,110,.42); letter-spacing: .02em; transform: rotate(-3deg); }
+.secreto { position: absolute; right: 4px; bottom: -22px; font: 4.5px "Patrick Hand", cursive; color: rgba(31,58,110,.42); letter-spacing: .02em; transform: rotate(-3deg); }
 .boleta { background: #fbf7ea; box-shadow: 0 2px 4px rgba(0,0,0,.18); transform: rotate(1.2deg); font-family: "Courier Prime", monospace; }
 .boleta .boleta-titulo { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 12px; color: var(--sello); border-bottom: 1px solid #d9cba8; }
 
@@ -61,23 +64,30 @@
 .cinta.b { right: -26px; transform: rotate(31deg); }
 .hoja .galeria img { box-shadow: 0 3px 8px rgba(0,0,0,.25); border: 5px solid #f7f1e2; border-radius: 1px; }
 
-/* ===================== LA LUPA (la del juego: aro y mango pintados, el vidrio aumenta de verdad) ===================== */
+/* ===================== LA LUPA (la del juego: aro y mango pintados, vidrio abombado que aumenta de verdad) ===================== */
 .boton-lupa { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; align-items: center; gap: 8px; cursor: pointer;
   background: var(--madera-2); color: var(--laton); border: 1px solid var(--laton); border-radius: 24px; padding: 8px 14px;
   font: 600 14px "Source Sans 3", sans-serif; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
 .boton-lupa svg { width: 18px; height: 18px; }
+.boton-lupa small { display: none; font-weight: 400; opacity: .8; }
 .boton-lupa[aria-pressed="true"] { background: #4a3417; color: #ffe3a6; border-color: #e0b765; box-shadow: 0 0 16px rgba(224,183,101,.45); }
-.lupa-mano { position: fixed; left: 0; top: 0; z-index: 35; pointer-events: none; display: none; width: 0; height: 0; }
+.boton-lupa[aria-pressed="true"] small { display: inline; }
+.lupa-mano { position: fixed; left: 0; top: 0; z-index: 35; pointer-events: none; display: none; width: 0; height: 0; transition: opacity .15s; }
 html.lupa .lupa-mano { display: block; }
-.lupa-mano .vidrio { position: absolute; left: -96px; top: -96px; width: 192px; height: 192px; border-radius: 50%; overflow: hidden;
-  background: var(--madera); box-shadow: inset 0 0 18px rgba(0,0,0,.35); }
-.lupa-mano .vidrio::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
-  background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.28), rgba(255,255,255,0) 32%), radial-gradient(circle, rgba(0,0,0,0) 70%, rgba(0,0,0,.22) 100%); }
+html.lupa .lupa-mano.fuera { opacity: 0; }
+.lupa-mano .vidrio { position: absolute; left: -110px; top: -110px; width: 220px; height: 220px; border-radius: 50%; overflow: hidden;
+  background: var(--madera); filter: url(#ojo-de-pez); }
+.lupa-mano .brillo { position: absolute; left: -110px; top: -110px; width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle at 33% 27%, rgba(255,255,255,.34), rgba(255,255,255,0) 30%),
+              radial-gradient(circle at 70% 78%, rgba(255,240,210,.10), rgba(255,255,255,0) 26%),
+              radial-gradient(circle, rgba(0,0,0,0) 62%, rgba(40,25,10,.38) 100%);
+  box-shadow: inset 0 0 14px rgba(0,0,0,.45); }
 .lupa-mano .mundo { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
 /* el aro: su hueco mide 89,25 px de radio y está centrado en (103,5 ; 103) de la imagen de 277 × 249 */
-.lupa-mano .marco { position: absolute; width: calc(277px * 96 / 89.25); height: auto; left: calc(-103.5px * 96 / 89.25); top: calc(-103px * 96 / 89.25);
-  max-width: none; filter: drop-shadow(3px 6px 4px rgba(0,0,0,.35)); }
+.lupa-mano .marco { position: absolute; max-width: none; width: calc(277px * 110 / 89.25); height: auto;
+  left: calc(-103.5px * 110 / 89.25); top: calc(-103px * 110 / 89.25); filter: drop-shadow(3px 6px 4px rgba(0,0,0,.35)); }
 html.lupa, html.lupa * { cursor: none !important; }
+html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
 @media (hover: none), (pointer: coarse) { .boton-lupa, .lupa-mano { display: none !important; } }
 
 /* ===================== EL ASCENSOR DE FLOOR, SIR? ===================== */
@@ -110,11 +120,11 @@ html.lupa, html.lupa * { cursor: none !important; }
   .hoja h3 { font-size: 26px; }
   .hoja .dos { grid-template-columns: 1fr; }
   .cinta { width: 86px; height: 24px; }
-  .escena-sobre { height: 240vh; }
+  .escena-sobre { height: 460vh; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .escena-sobre { height: auto; }
-  .escena-fija { position: relative; height: auto; padding: 30px 0; }
+  .escena-sobre { display: none; }
+  html.js .escena-sobre + .hoja { margin-top: 0; visibility: visible; }
   .pista-scroll { display: none; }
   .ascensor * { transition: none !important; }
 }

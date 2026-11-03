@@ -65,19 +65,15 @@
     <div class="escena-sobre">
       <div class="escena-fija">
         <div class="sobre-mesa">
-          <div class="carta-doblada" aria-hidden="true">
-            <p class="saludo">A quien corresponda:</p>
-            <p class="linea-titulo">REZAGO</p>
-            <i class="renglon"></i><i class="renglon"></i><i class="renglon corto"></i>
-          </div>
-          <img class="sobre-img" id="sobre-cuadro" src="img/sobre/00.webp" width="944" height="700" alt="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»">
-          <img class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true">
+          <canvas class="sobre-lienzo" id="sobre-lienzo" width="944" height="707" data-anim aria-label="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»"></canvas>
+          <img class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true" data-anim>
         </div>
+        <div class="pliego" aria-hidden="true" data-anim></div>
         <p class="pista-scroll"><span lang="es">Baja para abrir el sobre</span><span lang="en">Scroll to open the envelope</span><b aria-hidden="true">↓</b></p>
       </div>
     </div>
 
-    <article class="hoja" id="hoja-rezago">
+    <article class="hoja" id="hoja-rezago" data-anim>
       <div class="hoja-int">
         <p class="saludo"><span lang="es">A quien corresponda:</span><span lang="en">To whom it may concern:</span></p>
         <div class="hoja-cabeza">
@@ -176,7 +172,7 @@
       </div>
       <!-- El ascensor: la aguja recorre los pisos, suena el timbre y se abren las puertas.
            Para mostrar el GIF: dentro de .cabina-interior, cambiar el <span> por <img src="img/floor_cabina.webp" alt=""> -->
-      <div class="ascensor" id="ascensor-floor" aria-hidden="true">
+      <div class="ascensor" id="ascensor-floor" aria-hidden="true" data-anim>
         <div class="indicador">
           <svg viewBox="0 0 200 104">
             <path d="M18 96 A82 82 0 0 1 182 96" fill="none" stroke="#7a5a2a" stroke-width="3"/>
@@ -258,7 +254,10 @@
 
 <footer><div class="ancho" style="position:relative">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <div id="visor"><img alt=""></div>
-<button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span></button>
-<div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
+<button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span><small><span lang="es">soltar: clic derecho o Esc</span><span lang="en">drop: right-click or Esc</span></small></button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ojo-de-pez" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+  <feImage href="img/ojo_de_pez.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="mapa"/>
+  <feDisplacementMap in="SourceGraphic" in2="mapa" scale=".34" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+<div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><div class="brillo"></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
 </body>
 </html>
