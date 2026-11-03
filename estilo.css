@@ -18,9 +18,9 @@ html[data-l="es"] [lang="en"], html[data-l="en"] [lang="es"] { display: none !im
 
 /* Cabecera */
 header { position: sticky; top: 0; z-index: 10; background: rgba(28,19,13,.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--madera-3); }
-header .ancho { display: flex; align-items: center; gap: 18px; height: 60px; }
+header .ancho { display: flex; align-items: center; gap: 18px; height: 70px; }
 .marca { display: flex; align-items: center; gap: 10px; color: var(--texto-claro); text-decoration: none; font-weight: 700; letter-spacing: .02em; }
-.marca img { width: 34px; height: 34px; }
+.marca img.logo { height: 50px; width: auto; }
 nav { margin-left: auto; display: flex; gap: 18px; }
 nav a { color: var(--texto-tenue); text-decoration: none; font-size: 15px; }
 nav a:hover { color: var(--texto-claro); }
