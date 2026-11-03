@@ -170,3 +170,8 @@ html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
 .ascensor.ampliable::after { content: "⤢"; position: absolute; right: 10px; bottom: 8px; width: 28px; height: 28px; display: grid; place-items: center;
   border-radius: 50%; background: rgba(0,0,0,.45); color: #e9cf8e; font-size: 16px; opacity: .75; transition: opacity .15s; }
 .ascensor.ampliable:hover::after { opacity: 1; }
+
+/* dentro de la lupa nada queda "congelado" como imagen: todo se vuelve a dibujar nítido al aumento */
+.lupa-mano .mundo, .lupa-mano .mundo * { will-change: auto !important; }
+/* lo que va inclinado (tráiler, boleta, cinta): borde suavizado en vez de dientes de sierra */
+.foto-clip, .boleta, .cinta, .hoja .galeria img { outline: 1px solid transparent; -webkit-backface-visibility: hidden; backface-visibility: hidden; }

@@ -183,3 +183,6 @@ h1, h3 { overflow-wrap: anywhere; }
 .pswp-video { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 .pswp-video video { max-width: 94vw; max-height: 86vh; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
 .pswp__counter { font-family: "Courier Prime", monospace; }
+
+/* bordes suaves en lo inclinado */
+.sobre-correo, .portada .foto, .estampa { outline: 1px solid transparent; -webkit-backface-visibility: hidden; backface-visibility: hidden; }

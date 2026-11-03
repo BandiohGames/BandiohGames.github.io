@@ -12,10 +12,10 @@
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=cc3b78df">
-<link rel="stylesheet" href="correo.css?v=a95c604a">
+<link rel="stylesheet" href="estilo.css?v=2dea7343">
+<link rel="stylesheet" href="correo.css?v=d893e4fb">
 <link rel="stylesheet" href="secciones.css?v=ed3deba9">
-<script src="sitio.js?v=4151af59"></script>
+<script src="sitio.js?v=8ec93e86"></script>
 </head>
 <body>
 
@@ -263,7 +263,9 @@
     <feColorMatrix in="dg" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"/>
     <feColorMatrix in="db" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"/>
     <feComposite in="r" in2="g" operator="arithmetic" k2="1" k3="1" result="rg"/>
-    <feComposite in="rg" in2="b" operator="arithmetic" k2="1" k3="1"/>
+    <feComposite in="rg" in2="b" operator="arithmetic" k2="1" k3="1" result="lente"/>
+    <!-- un suavizado mínimo (0,3 px): el desplazamiento toma pixeles enteros y deja escalones en los bordes -->
+    <feGaussianBlur in="lente" stdDeviation=".0013"/>
   </filter></svg>
 <div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><div class="brillo"></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
 </body>

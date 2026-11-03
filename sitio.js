@@ -146,6 +146,7 @@
         ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
         ctx.clearRect(0, 0, lienzo.width, lienzo.height);
         ctx.drawImage(cuadros[q], 0, 0, lienzo.width, lienzo.height);
+        window.__cuadroSobre = cuadros[q];   // (la lupa lo redibuja desde aquí, aumentado)
         var d = lienzo.width / Math.max(1, mesa.offsetWidth);
         motas.forEach(function (m) {
           ctx.fillStyle = "rgba(245,235,205," + m[3].toFixed(3) + ")";
@@ -367,8 +368,15 @@
           fijaC.style.top = (fijaO.getBoundingClientRect().top - fijaO.parentNode.getBoundingClientRect().top) + "px";
         }
         lienzosC.forEach(function (par) {
-          if (par[1].width !== par[0].width) { par[1].width = par[0].width; par[1].height = par[0].height; }
-          var cc = par[1].getContext("2d"); cc.clearRect(0, 0, par[1].width, par[1].height); cc.drawImage(par[0], 0, 0);
+          // el sobre, bajo la lupa, se redibuja desde su cuadro original al tamaño aumentado (si se copiara el lienzo de la
+          // página, que ya está a tamaño normal, el aumento lo estira y quedan bordes de sierra)
+          var fuente = par[0].id === "sobre-lienzo" && window.__cuadroSobre;
+          var d = Math.min(2, window.devicePixelRatio || 1);
+          var w = fuente ? Math.round(par[0].offsetWidth * Z * d) : par[0].width, h = fuente ? Math.round(par[0].offsetHeight * Z * d) : par[0].height;
+          if (par[1].width !== w || par[1].height !== h) { par[1].width = w; par[1].height = h; }
+          var cc = par[1].getContext("2d"); cc.clearRect(0, 0, w, h);
+          cc.imageSmoothingEnabled = true; cc.imageSmoothingQuality = "high";
+          if (fuente) cc.drawImage(fuente, 0, 0, w, h); else cc.drawImage(par[0], 0, 0);
         });
         mover();
       };
