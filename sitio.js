@@ -59,7 +59,7 @@
     // Cada sección es su propia galería. Se descarga recién al primer clic; si no carga, queda el visor simple.
     // El pixel art se agranda a escala entera (pixelado nítido) y el clip del ascensor se abre en grande.
     // =====================================================================================================
-    var CAPTURAS = ".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img, .evolucion .lamina img, .assets .lamina img, .manos img";
+    var CAPTURAS = ".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img, .evolucion .lamina img, .assets .lamina img, .manos img, .revisiones .lamina img, .emotes img";
     var visor = document.getElementById("visor"), PS = null, PSV = "5.4.4";
     var cargarPS = function () {
       if (PS) return PS;
@@ -71,7 +71,12 @@
     var en = function () { return html.getAttribute("data-l") === "en"; };
     var abrirVisor = function (items, i, clase) {
       cargarPS().then(function (PhotoSwipe) {
+        // zoom para ver de cerca: rueda o doble toque/clic, y arrastrar para moverse dentro de la imagen.
+        // En el pixel art llega a 8x (siempre pixelado nítido); en las capturas, hasta 3x.
+        var px = clase === "pswp-px";
         var p = new PhotoSwipe({ dataSource: items, index: i, bgOpacity: 0.92, mainClass: clase || "", showHideAnimationType: "fade",
+          initialZoomLevel: "fit", secondaryZoomLevel: px ? 3 : 1.6, maxZoomLevel: px ? 8 : 3, wheelToZoom: true,
+          imageClickAction: "zoom-or-close", tapAction: "toggle-controls", doubleTapAction: "zoom",
           closeTitle: en() ? "Close (Esc)" : "Cerrar (Esc)", zoomTitle: en() ? "Zoom" : "Acercar",
           arrowPrevTitle: en() ? "Previous" : "Anterior", arrowNextTitle: en() ? "Next" : "Siguiente", errorMsg: en() ? "The image could not be loaded" : "No se pudo cargar la imagen" });
         p.init();
@@ -296,6 +301,13 @@
 
       var objetivo = 0, mostrado = 0, ultimo = 0, corriendo = false, fijo = -1;
       // saltar la animación: baja de una al final de la escena (la carta ya abierta, en su lugar)
+      // y al final de la carta, el camino de vuelta: sube suave hasta el principio y la escena se repite al revés
+      // (la carta se dobla, entra y el sobre queda cerrado). Delegado: la copia de la hoja en el pliego también lo tiene.
+      document.querySelectorAll(".resellar").forEach(function (b) { b.hidden = false; });
+      document.addEventListener("click", function (ev) {
+        if (!ev.target.closest || !ev.target.closest(".resellar")) return;
+        window.scrollTo({ top: escena.getBoundingClientRect().top + scrollY, behavior: "smooth" });
+      });
       var saltar = escena.querySelector(".saltar");
       if (saltar) {
         saltar.hidden = false;

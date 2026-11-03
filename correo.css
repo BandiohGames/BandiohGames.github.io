@@ -177,10 +177,17 @@ html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
 .foto-clip, .boleta, .cinta, .hoja .galeria img { outline: 1px solid transparent; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 
 /* botón para saltar la animación del sobre (abajo a la derecha mientras dura la escena) */
-.saltar { position: absolute; right: max(16px, calc(50vw - 560px)); bottom: 22px; z-index: 6; pointer-events: auto; cursor: pointer;
+.saltar { position: absolute; left: max(16px, calc(50vw - 560px)); bottom: 22px;   /* a la izquierda: a la derecha está la lupa */ z-index: 6; pointer-events: auto; cursor: pointer;
   font: 600 14px "Courier Prime", monospace; letter-spacing: .04em; color: var(--texto-claro, #f1e6d2);
   background: rgba(30,20,14,.78); border: 1px solid var(--laton, #c9a25a); border-radius: 999px; padding: 8px 16px;
   transition: opacity .25s, background .15s, transform .15s; }
 .saltar:hover { background: #3a2a1c; transform: translateY(-1px); }
 .saltar.fuera { opacity: 0; pointer-events: none; }
 .saltar b { font-weight: 400; }
+
+/* al final de la carta: volver a sellar el sobre (sube y la escena se repite al revés) */
+.resellar { display: inline-flex; align-items: center; gap: 6px; margin: 14px 0 0; padding: 6px 12px; cursor: pointer;
+  font: 600 13px "Courier Prime", monospace; color: #6b5a42; background: transparent; border: 1px dashed rgba(107,90,66,.45); border-radius: 999px;
+  transition: background .15s, color .15s; }
+.resellar:hover { background: rgba(107,90,66,.1); color: #3f3324; }
+.resellar b { font-weight: 400; }

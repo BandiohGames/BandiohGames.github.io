@@ -173,3 +173,13 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
   .manos .lamina { width: calc((100% - 28px) / 3); height: auto; aspect-ratio: 1; padding: 10px; }
   .manos .lamina img { max-width: 100%; }
 }
+
+/* emotes de Twitch: láminas iguales, a escala entera (28 px x4) */
+.emotes { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }   /* los 9 en una fila, a x3 (escala entera) */
+.emotes figure { margin: 0; }
+.emotes .lamina { aspect-ratio: 1; padding: 0; }
+.emotes .lamina img { width: 84px; height: auto; cursor: zoom-in; }
+.revisiones .lamina img { cursor: zoom-in; }
+@media (max-width: 900px) { .emotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }   /* 3 filas de 3 en pantallas angostas */
+/* el visor: con zoom, el cursor indica que se puede arrastrar */
+.pswp--zoomed-in .pswp__img { cursor: grab; }
