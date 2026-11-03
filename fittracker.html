@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es" data-l="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FitTracker · cómo lo hice</title>
+<meta name="description" content="Caso de estudio de FitTracker: una app web de entrenamiento y nutrición hecha en solitario con Google Apps Script, JavaScript y Google Sheets.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/web/ft_hist.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
+<link rel="apple-touch-icon" href="img/icono_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="secciones.css">
+<script src="sitio.js"></script>
+</head>
+<body>
+
+<!--comun:cabecera-->
+<header><div class="ancho">
+  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <nav>
+    <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web.html" class="activo" aria-current="page">Web</a>
+    <a href="pixel.html">Pixel art</a>
+    <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+    <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+<!--/comun:cabecera-->
+
+<main class="ancho caso" style="padding-top:44px">
+
+<span class="estampa" style="color:var(--sello-claro);border-color:var(--sello-claro)"><span lang="es">Caso de estudio</span><span lang="en">Case study</span></span>
+<h1 class="mono" style="font-size:40px;line-height:1.1">FitTracker</h1>
+<p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
+  <span lang="es">Una app web de entrenamiento y nutrición, hecha en solitario sobre Google Apps Script y una planilla de Google.</span>
+  <span lang="en">A training and nutrition web app, built solo on Google Apps Script and a Google spreadsheet.</span>
+</p>
+<div class="franja-datos" style="margin-bottom:26px">
+  <div><b>~7.400</b><span lang="es">líneas de código</span><span lang="en">lines of code</span></div>
+  <div><b>43</b><span lang="es">funciones de servidor</span><span lang="en">server functions</span></div>
+  <div><b>9</b><span lang="es">hojas como base de datos</span><span lang="en">sheets as a database</span></div>
+  <div><b>0 $</b><span lang="es">en servidores</span><span lang="en">in hosting</span></div>
+</div>
+
+<div class="telefonos">
+  <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_intro.webp" alt="Pantalla de inicio" loading="lazy"></div><figcaption lang="es">Inicio</figcaption><figcaption lang="en">Intro</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_plan_lun.webp" alt="Plan semanal" loading="lazy"></div><figcaption lang="es">Plan semanal</figcaption><figcaption lang="en">Weekly plan</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_entreno_mie.webp" alt="Calentamiento" loading="lazy"></div><figcaption lang="es">Calentamiento</figcaption><figcaption lang="en">Warm-up</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_nutri.webp" alt="Nutrición" loading="lazy"></div><figcaption lang="es">Nutrición</figcaption><figcaption lang="en">Nutrition</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_hist.webp" alt="Progreso" loading="lazy"></div><figcaption lang="es">Progreso</figcaption><figcaption lang="en">Progress</figcaption></figure>
+</div>
+
+<h2><span lang="es">El objetivo</span><span lang="en">The goal</span></h2>
+<p lang="es">Quería una app para entrenar en casa que hiciera lo que una planilla no hace: decirme qué toca hoy, cuánto peso o cuántas repeticiones intentar y si de verdad estoy avanzando. Tenía que abrir rápido en el celular, no costar nada y dejar mis datos en un lugar que pudiera revisar a mano.</p>
+<p lang="en">I wanted a home-training app that does what a spreadsheet can't: tell me what today's session is, how much weight or how many reps to try, and whether I'm actually progressing. It had to open fast on a phone, cost nothing and keep my data somewhere I could check by hand.</p>
+
+<h2><span lang="es">Mi rol</span><span lang="en">My role</span></h2>
+<p lang="es">Todo, en solitario: modelo de datos, servidor, interfaz, gráficos, animaciones y sonido. Programé con asistencia de IA; las reglas de entrenamiento, el diseño y las pruebas en uso real los decidí yo.</p>
+<p lang="en">Everything, solo: data model, server, interface, charts, animations and sound. I programmed with AI assistance; I set the training rules, the design and the real-use testing.</p>
+
+<h2><span lang="es">Decisiones técnicas</span><span lang="en">Technical decisions</span></h2>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">1. Una planilla de Google como base de datos</span><span lang="en">1. A Google spreadsheet as the database</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Un servidor y una base de datos de verdad cuestan dinero y mantención, para una app de una sola persona.</span><span lang="en">A real server and database cost money and upkeep, for a one-person app.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Apps Script sirve la app gratis y 9 hojas guardan rutinas, historial, nutrición, peso, calendario, equipamiento, logros, ajustes y el estado del coach. Las hojas se crean y se migran solas al cambiar de versión.</span><span lang="en">Apps Script serves the app for free, and 9 sheets store routines, history, nutrition, weight, calendar, equipment, achievements, settings and coach state. Sheets are created and migrated automatically on each version change.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">2. Que abra al instante aunque Apps Script sea lento</span><span lang="en">2. Opening instantly even though Apps Script is slow</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Cada llamada al servidor tarda segundos, y revisar las hojas en cada llamada lo hacía peor.</span><span lang="en">Every server call takes seconds, and checking the sheets on every call made it worse.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Caché en dos niveles. El servidor recuerda por 6 horas que las hojas están listas, con una clave por versión. El celular muestra al tiro la semana guardada y la actualiza por detrás; sin conexión, sigue mostrándola con un aviso.</span><span lang="en">Two-level caching. The server remembers for 6 hours that the sheets are ready, keyed by version. The phone shows the saved week right away and refreshes it in the background; offline, it keeps showing it with a notice.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">3. Un coach que sube la carga con reglas claras</span><span lang="en">3. A coach that raises the load with clear rules</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Decidir cuándo subir peso o repeticiones a ojo hace que te estanques o que te lesiones.</span><span lang="en">Deciding by feel when to add weight or reps leads to plateaus or injuries.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Cada ejercicio tiene un tipo (con peso, peso corporal o isométrico) y un rango objetivo. Cuando llegas al techo dos sesiones seguidas, o lo pasas por 4 o más, la app propone subir: la mancuerna siguiente o un rango más alto. Propone y espera tu confirmación, y los récords se guardan siempre.</span><span lang="en">Each exercise has a type (weighted, bodyweight or isometric) and a target range. When you hit the top of the range two sessions in a row, or beat it by 4 or more, the app suggests a step up: the next dumbbell or a higher range. It suggests and waits for your confirmation, and records are always saved.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">4. Que den ganas de volver</span><span lang="en">4. Making you want to come back</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Una app de registro aburrida se deja de usar a las pocas semanas.</span><span lang="en">A dull logging app gets abandoned within a few weeks.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Rachas, logros con celebración, descanso guiado con consejos según el músculo, gráficos propios en canvas, animaciones, sonidos y cuatro temas de color, todo pensado primero para el celular.</span><span lang="en">Streaks, celebrated achievements, guided rest with tips for each muscle group, custom canvas charts, animations, sounds and four color themes, all designed mobile-first.</span></div>
+</div>
+
+<h2><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
+<ul lang="es">
+  <li>Con un servidor lento, lo que más se nota es hacer menos viajes y mostrar algo de inmediato, más que optimizar el código.</li>
+  <li>Separar sugerir de decidir: la app propone la subida, pero la persona confirma, y eso le da confianza en el coach.</li>
+  <li>Versionar el esquema de datos desde el principio permitió agregar hojas y columnas sin romper el historial ya guardado.</li>
+</ul>
+<ul lang="en">
+  <li>With a slow server, what you notice most is making fewer round trips and showing something right away, more than optimizing code.</li>
+  <li>Separating suggesting from deciding: the app proposes the step up but the person confirms it, which builds trust in the coach.</li>
+  <li>Versioning the data schema from the start let me add sheets and columns without breaking the saved history.</li>
+</ul>
+<div class="etiquetas"><span>JavaScript</span><span>HTML/CSS</span><span>Google Apps Script</span><span>Google Sheets</span><span>Canvas</span><span>Lottie</span></div>
+<p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado, pero lo comparto en procesos de selección.</p>
+<p class="nota" lang="en">Screenshots of the real app with sample data. The code is private, but I share it in hiring processes.</p>
+
+<p style="margin:40px 0 10px" lang="es"><a href="web.html">← Volver a desarrollo web</a></p>
+<p style="margin:40px 0 10px" lang="en"><a href="web.html">← Back to web development</a></p>
+</main>
+<div class="ancho">
+<!--comun:sobre-->
+<section id="sobre">
+  <h2 class="titulo"><span lang="es">Sobre mí</span><span lang="en">About me</span></h2>
+  <div class="sobre">
+    <div>
+      <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
+      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
+      <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
+    </div>
+    <div class="habilidades">
+      <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
+      <div><b>Web</b><span>JavaScript · HTML/CSS · Google Apps Script · Bootstrap</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL · Git · C#</span></div>
+      <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
+      <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
+    </div>
+  </div>
+</section>
+<!--/comun:sobre-->
+
+<!--comun:contacto-->
+<section id="contacto">
+  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>
+  <p lang="en">Have a project or a role in mind? Get in touch.</p>
+  <div class="contacto">
+    <a class="boton lleno" href="mailto:esteban.flores.dio@gmail.com">esteban.flores.dio@gmail.com</a>
+    <a class="boton" href="https://linkedin.com/in/esteban-flores-pizarro">LinkedIn</a>
+    <a class="boton" href="https://bandioh.itch.io">itch.io</a>
+    <a class="boton" href="https://github.com/BandiohGames">GitHub</a>
+    <a class="boton" href="https://www.youtube.com/@Bandiohgames">YouTube</a>
+    <a class="boton" href="https://www.tiktok.com/@bandioh.games">TikTok</a>
+    <a class="boton" href="https://www.instagram.com/bandioh.games">Instagram</a>
+  </div>
+</section>
+<!--/comun:contacto-->
+</div>
+<!--comun:pie-->
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<!--/comun:pie-->
+<div id="visor"><img alt=""></div>
+</body>
+</html>

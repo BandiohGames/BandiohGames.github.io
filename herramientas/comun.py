@@ -11,6 +11,7 @@ PAGINAS = {
     'juegos.html': ('juegos', 'bandioh.games@gmail.com'),
     'rezago.html': ('juegos', 'bandioh.games@gmail.com'),
     'web.html': ('web', 'esteban.flores.dio@gmail.com'),
+    'fittracker.html': ('web', 'esteban.flores.dio@gmail.com'),
     'pixel.html': ('pixel', 'bandioh.pixelart@gmail.com'),
 }
 
