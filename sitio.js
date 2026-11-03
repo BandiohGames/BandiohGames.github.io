@@ -27,28 +27,51 @@
     }
 
 
-    // Sobre de REZAGO: se abre solo cuando aparece en pantalla, o con clic / Enter.
+    // Al aparecer en pantalla: corre `fn` una vez (o enseguida si el sistema pide menos movimiento)
+    var quieto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var alVer = function (el, fn, umbral) {
+      if (quieto || !("IntersectionObserver" in window)) { fn(); return; }
+      var obs = new IntersectionObserver(function (ent) {
+        if (ent[0].isIntersecting) { obs.disconnect(); fn(); }
+      }, { threshold: umbral || 0.5 });
+      obs.observe(el);
+    };
+
+    // Sobre de REZAGO: 36 cuadros dibujados por el mismo código del juego (img/sobre/00..35.webp).
+    // 0 frente · 1-12 se da vuelta · 13 dorso con lacre · 14-25 se parte el lacre y se alza la solapa · 26-35 asoma la carta.
     var correo = document.getElementById("correo-rezago");
     if (correo) {
-      var sobre = correo.querySelector(".sobre-env");
+      var sobre = correo.querySelector(".sobre-juego"), cuadro = document.getElementById("sobre-cuadro");
+      var cuadros = [];
+      for (var q = 0; q < 36; q++) { var im = new Image(); im.src = "img/sobre/" + (q < 10 ? "0" : "") + q + ".webp"; cuadros.push(im); }
+      // cuánto dura cada cuadro (ms): la vuelta rápida, una pausa con el lacre a la vista, y la carta que sube
+      var dur = function (q) { return q === 0 ? 350 : q <= 12 ? 34 : q === 13 ? 520 : q <= 25 ? 46 : 42; };
+      var empezado = false;
       var abrir = function () {
-        if (correo.classList.contains("abierto")) return;
-        correo.classList.add("abierto");
+        if (empezado) return;
+        empezado = true;
+        sobre.classList.add("abriendo");
         sobre.setAttribute("aria-expanded", "true");
+        if (quieto) { cuadro.src = cuadros[25].src; correo.classList.add("abierto"); return; }
+        var q = 0;
+        var paso = function () {
+          q++;
+          if (q > 35) { setTimeout(function () { cuadro.src = cuadros[25].src; correo.classList.add("abierto"); }, 150); return; }
+          cuadro.src = cuadros[q].src;
+          setTimeout(paso, dur(q));
+        };
+        setTimeout(paso, dur(0));
       };
       sobre.setAttribute("aria-expanded", "false");
       sobre.addEventListener("click", abrir);
       sobre.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
-      var quieto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (quieto || !("IntersectionObserver" in window)) abrir();
-      else {
-        var obs = new IntersectionObserver(function (ent) {
-          if (ent[0].isIntersecting) { setTimeout(abrir, 700); obs.disconnect(); }
-        }, { threshold: 0.6 });
-        obs.observe(sobre);
-      }
+      alVer(sobre, function () { setTimeout(abrir, 500); }, 0.7);
       if (location.hash === "#juegos") abrir();
     }
+
+    // Ascensor de Floor, Sir?: la aguja recorre los pisos, se enciende el timbre y se abren las puertas.
+    var ascensor = document.getElementById("ascensor-floor");
+    if (ascensor) alVer(ascensor, function () { ascensor.classList.add("llega"); }, 0.6);
 
     // Lupa UV: revela los textos .uv que quedan dentro del círculo.
     var boton = document.querySelector(".boton-uv"), lente = document.querySelector(".lente-uv");
