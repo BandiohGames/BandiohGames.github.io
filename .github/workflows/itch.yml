@@ -1,0 +1,29 @@
+name: Cifras de itch.io
+
+on:
+  schedule:
+    - cron: "0 9 * * *"   # todos los días, 06:00 de Chile
+  workflow_dispatch:       # botón para correrla a mano en la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Traer cifras
+        env:
+          ITCH_API_KEY: ${{ secrets.ITCH_API_KEY }}
+        run: python herramientas/actualizar_itch.py
+      - name: Guardar si cambiaron
+        run: |
+          git config user.name "bandioh-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add datos/itch.json
+          git diff --cached --quiet || git commit -m "Cifras de itch.io al día"
+          git push

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es" data-l="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REZAGO · cómo lo hice</title>
+<meta name="description" content="Caso de estudio de REZAGO: diseño, sistemas, playtests y lanzamiento de un juego de deducción hecho en solitario en Godot.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/rezago_fundamento.webp">
+<link rel="icon" href="img/mapache.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<script src="sitio.js"></script>
+</head>
+<body>
+
+<header><div class="ancho">
+  <a class="marca" href="index.html"><img src="img/mapache.png" alt=""> bandioh games</a>
+  <nav>
+    <a href="index.html#juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="index.html#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+
+<main class="ancho caso" style="padding-top:44px">
+
+<span class="estampa" style="color:var(--sello-claro);border-color:var(--sello-claro)"><span lang="es">Caso de estudio</span><span lang="en">Case study</span></span>
+<h1 class="mono" style="font-size:40px;line-height:1.1">REZAGO: a quien corresponda</h1>
+<p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
+  <span lang="es">Un juego de deducción sobre cartas perdidas, hecho en solitario en Godot 4, de la idea al lanzamiento en poco más de un mes.</span>
+  <span lang="en">A deduction game about lost letters, made solo in Godot 4, from idea to release in just over a month.</span>
+</p>
+<div class="botones">
+  <a class="boton lleno" href="https://bandioh.itch.io/rezago"><span lang="es">Jugar gratis</span><span lang="en">Play for free</span></a>
+  <a class="boton" href="https://www.youtube.com/watch?v=wJkrWOI4L6o"><span lang="es">Ver tráiler</span><span lang="en">Watch trailer</span></a>
+</div>
+
+<h2><span lang="es">El objetivo</span><span lang="en">The goal</span></h2>
+<p lang="es">Quería un juego de escritorio en la línea de los juegos de papeleo, pero cálido: en vez de rechazar gente, ayudas a que las cartas lleguen. El reto de diseño era que deducir se sintiera propio. El juego no podía decirte la respuesta, pero tampoco podía dejarte adivinando.</p>
+<p lang="en">I wanted a desk game in the spirit of paperwork games, but warm: instead of turning people away, you help letters reach them. The design challenge was making deduction feel like your own. The game couldn't tell you the answer, but it couldn't leave you guessing either.</p>
+
+<h2><span lang="es">Mi rol</span><span lang="en">My role</span></h2>
+<p lang="es">Todo, en solitario: diseño, guion de más de 20 cartas y 3 finales, programación, arte, sonido, localización a 8 idiomas, marketing y publicación. Programé con Claude Code como asistente: yo decidía el diseño, revisaba cada cambio y lo probaba jugando. ChatGPT me ayudó a planear la difusión.</p>
+<p lang="en">Everything, solo: design, writing 20+ letters and 3 endings, programming, art, sound, localization into 8 languages, marketing and release. I programmed with Claude Code as an assistant: I made the design calls, reviewed every change and tested it by playing. ChatGPT helped me plan the marketing.</p>
+
+<h2><span lang="es">Sistemas destacados</span><span lang="en">Key systems</span></h2>
+<figure class="figura"><img src="img/rezago_fundamento.webp" alt=""><figcaption lang="es">El fundamento: un hilo rojo une un dato de la carta con la libreta o el mapa.</figcaption><figcaption lang="en">Grounds: a red thread links a fact in the letter to the notebook or the map.</figcaption></figure>
+<ul lang="es">
+  <li><b>Fundamento con hilo rojo.</b> Entregar no basta: tienes que justificar. Cada dato que lees en la carta se ata a una casa del mapa o a una página de la libreta, y cada hilo bien puesto paga extra.</li>
+  <li><b>Lupa en tiempo real.</b> Un SubViewport vuelve a dibujar la mesa aumentada, así el texto se ve nítido y no pixelado. Lo escondido (tinta UV, marcas finas) vive en una capa de render propia que solo ve la lupa.</li>
+  <li><b>Contenido en datos.</b> Cartas, noches, barrio y textos de interfaz están en archivos de datos, no en el código. Eso permitió traducir a 8 idiomas y que un script de Python audite cada carta (por ejemplo, pistas sin origen en el mapa o la libreta).</li>
+  <li><b>Arte hecho por código.</b> Los objetos están pintados con scripts propios de Python (relieve, luz y textura) sobre texturas libres, para lograr un acabado cálido sin artista.</li>
+  <li><b>Publicación automatizada.</b> Un script exporta y empaqueta las builds de Windows y Mac, y butler las sube a itch.io.</li>
+</ul>
+<ul lang="en">
+  <li><b>Red-thread grounds.</b> Delivering isn't enough: you have to justify it. Each fact you read in a letter is tied to a house on the map or a page in the notebook, and every correct thread pays extra.</li>
+  <li><b>Real-time magnifier.</b> A SubViewport redraws the desk magnified, so text stays sharp instead of pixelated. Hidden content (UV ink, fine marks) lives on its own render layer that only the magnifier sees.</li>
+  <li><b>Data-driven content.</b> Letters, nights, the neighborhood and UI text live in data files, not code. That made translating into 8 languages possible and lets a Python script audit every letter (for example, clues with no source on the map or in the notebook).</li>
+  <li><b>Art made with code.</b> Objects are painted by my own Python scripts (relief, lighting and texture) over free textures, for a warm look without an artist.</li>
+  <li><b>Automated release.</b> A script exports and packages the Windows and Mac builds, and butler uploads them to itch.io.</li>
+</ul>
+<div class="galeria">
+  <img src="img/rezago_uv.webp" alt="" loading="lazy"><img src="img/rezago_mapa.webp" alt="" loading="lazy"><img src="img/rezago_sellos.webp" alt="" loading="lazy">
+</div>
+
+<h2><span lang="es">Qué cambió con los playtests</span><span lang="en">What playtesting changed</span></h2>
+<p lang="es">Hice 5 rondas de playtest de partidas completas. Después de cada una ordené lo observado en bugs, mejoras y decisiones de diseño antes de tocar código. Cuatro ejemplos:</p>
+<p lang="en">I ran 5 rounds of full-playthrough playtests. After each one I sorted what I observed into bugs, improvements and design decisions before touching any code. Four examples:</p>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">1. La regla del fundamento frustraba</span><span lang="en">1. The grounds rule was frustrating</span></div>
+  <div><h4><span lang="es">Antes</span><span lang="en">Before</span></h4><span lang="es">Solo valía el dato exacto que yo había previsto. Hilos razonables se rechazaban y el jugador sentía que el juego le leía la mente mal.</span><span lang="en">Only the exact fact I had planned counted. Reasonable threads were rejected, and players felt the game was misreading their minds.</span></div>
+  <div><h4><span lang="es">Después</span><span lang="en">After</span></h4><span lang="es">Vale cualquier dato de la carta unido a la casa correcta. Se premia el razonamiento, no adivinar mi intención.</span><span lang="en">Any fact from the letter tied to the right house counts. It rewards reasoning instead of guessing my intent.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">2. La lupa no se leía bien</span><span lang="en">2. The magnifier was hard to read</span></div>
+  <div><h4><span lang="es">Antes</span><span lang="en">Before</span></h4><span lang="es">Ampliaba la imagen de la pantalla, así que la letra chica se veía borrosa justo donde estaban las pistas.</span><span lang="en">It scaled up the screen image, so small text blurred right where the clues were.</span></div>
+  <div><h4><span lang="es">Después</span><span lang="en">After</span></h4><span lang="es">La rehice para que dibuje la mesa de nuevo a mayor resolución, con vidrio abombado y revelado de la tinta UV letra por letra.</span><span lang="en">I rebuilt it to redraw the desk at higher resolution, with a curved lens and UV ink revealed letter by letter.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">3. Había que memorizar las llamadas</span><span lang="en">3. Phone calls had to be memorized</span></div>
+  <div><h4><span lang="es">Antes</span><span lang="en">Before</span></h4><span lang="es">Lo que decía un vecino por teléfono se perdía al colgar, y había que volver a llamar.</span><span lang="en">What a neighbor said on the phone was lost when you hung up, so you had to call again.</span></div>
+  <div><h4><span lang="es">Después</span><span lang="en">After</span></h4><span lang="es">La última llamada queda anotada en un papelito junto al teléfono, y también se puede atar con hilo como prueba.</span><span lang="en">The last call is jotted down on a slip next to the phone, and it can also be tied with thread as evidence.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">4. El sobre y la carta competían</span><span lang="en">4. Envelope and letter competed for space</span></div>
+  <div><h4><span lang="es">Antes</span><span lang="en">Before</span></h4><span lang="es">Para revisar el sobre había que cerrar la carta, y muchas pistas exigen mirar los dos a la vez.</span><span lang="en">To check the envelope you had to close the letter, and many clues require looking at both at once.</span></div>
+  <div><h4><span lang="es">Después</span><span lang="en">After</span></h4><span lang="es">Un clic trae el sobre al centro, al lado de la carta abierta, y vuelve solo a su lugar.</span><span lang="en">One click brings the envelope to the center, next to the open letter, and it returns to its place on its own.</span></div>
+</div>
+
+<h2><span lang="es">Lanzamiento</span><span lang="en">Launch</span></h2>
+<p lang="es">Sin presupuesto: tráilers, videos cortos en TikTok, Reels y Shorts, y un post en r/chilegames. Resultado del primer mes:</p>
+<p lang="en">No budget: trailers, short videos on TikTok, Reels and Shorts, and a post on r/chilegames. First-month results:</p>
+<div class="cifras" style="margin:14px 0 0">
+  <div class="cifra"><b>18.000+</b><span lang="es">visualizaciones en redes</span><span lang="en">social media views</span></div>
+  <div class="cifra"><b>8.800</b><span lang="es">en el post de Reddit (95 votos)</span><span lang="en">on the Reddit post (95 upvotes)</span></div>
+  <div class="cifra"><b data-itch="rezago" data-campo="descargas">33</b><span lang="es">descargas</span><span lang="en">downloads</span></div>
+  <div class="cifra"><b>5 ★</b><span lang="es">única reseña: «muy weno»</span><span lang="en">only rating so far</span></div>
+</div>
+
+<h2><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
+<ul lang="es">
+  <li>Probar una partida completa enseña más que diez pruebas de una pantalla: los problemas de ritmo solo aparecen al final.</li>
+  <li>Guardar el contenido como datos desde el día uno ahorra semanas al traducir y al corregir.</li>
+  <li>Con IA, el trabajo se mueve a decidir y verificar: escribir buenas reglas de diseño y comprobar cada cambio jugando.</li>
+  <li>Los videos cortos que muestran una carta concreta funcionaron mucho mejor que el tráiler: 7.300 visualizaciones en TikTok contra 121 en YouTube.</li>
+</ul>
+<ul lang="en">
+  <li>A full playthrough teaches more than ten single-screen tests: pacing problems only show up at the end.</li>
+  <li>Storing content as data from day one saves weeks when translating and fixing.</li>
+  <li>With AI, the work shifts to deciding and verifying: writing clear design rules and checking every change by playing.</li>
+  <li>Short videos showing one specific letter worked far better than the trailer: 7,300 views on TikTok versus 121 on YouTube.</li>
+</ul>
+
+<p style="margin:40px 0 10px" lang="es"><a href="index.html">← Volver al portafolio</a></p>
+<p style="margin:40px 0 10px" lang="en"><a href="index.html">← Back to portfolio</a></p>
+</main>
+
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<div id="visor"><img alt=""></div>
+</body>
+</html>
