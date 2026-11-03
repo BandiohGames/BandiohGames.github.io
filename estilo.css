@@ -86,6 +86,7 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 
 /* Sobre mí */
 .sobre { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.sobre p { margin-bottom: 12px; }
 .sobre h3 { font-family: "Courier Prime", monospace; color: var(--laton); margin-bottom: 8px; }
 .habilidades div { padding: 6px 0; border-bottom: 1px solid var(--madera-3); }
 .habilidades b { display: inline-block; min-width: 120px; color: var(--texto-claro); }
@@ -115,7 +116,12 @@ footer { border-top: 1px solid var(--madera-3); padding: 24px 0 40px; color: var
 .figura figcaption { color: var(--texto-tenue); font-size: 14px; margin-top: 6px; }
 
 @media (max-width: 820px) {
-  nav { display: none; }
+  /* en celular el menú pasa a una segunda fila que se desliza de lado */
+  header .ancho { flex-wrap: wrap; height: auto; padding-top: 8px; row-gap: 0; }
+  .marca img.logo { height: 42px; }
+  .idioma { margin-left: auto; }
+  nav { order: 3; width: 100%; margin: 0; gap: 18px; overflow-x: auto; scrollbar-width: none; padding: 4px 0 10px; white-space: nowrap; }
+  nav::-webkit-scrollbar { display: none; }
   .portada { grid-template-columns: 1fr; padding-top: 40px; }
   .portada h1 { font-size: 34px; }
   .cifras { grid-template-columns: repeat(2, 1fr); }

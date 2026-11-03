@@ -16,16 +16,19 @@
 </head>
 <body>
 
+<!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games"></a>
+  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
   <nav>
-    <a href="index.html#juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
-    <a href="web.html" class="activo">Web</a>
+    <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web.html" class="activo" aria-current="page">Web</a>
     <a href="pixel.html">Pixel art</a>
+    <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
+<!--/comun:cabecera-->
 
 <main class="ancho">
 
@@ -35,15 +38,14 @@
   <p lang="es">Construyo aplicaciones web completas con Google Apps Script, JavaScript y hojas de cálculo como base de datos: del modelo de datos y el servidor a una interfaz cuidada que funciona en el celular.</p>
   <p lang="en">I build complete web apps with Google Apps Script, JavaScript and spreadsheets as a database: from the data model and server code to a polished interface that works on a phone.</p>
   <div class="franja-datos">
-    <span><b>2</b> <span lang="es">apps en uso real</span><span lang="en">apps in real use</span></span>
-    <span><b>~7.400</b> <span lang="es">líneas en FitTracker</span><span lang="en">lines in FitTracker</span></span>
-    <span><b>43</b> <span lang="es">funciones de servidor</span><span lang="en">server functions</span></span>
-    <span><b>9</b> <span lang="es">hojas como base de datos</span><span lang="en">sheets as a database</span></span>
+    <div><b>2</b><span lang="es">aplicaciones en uso real</span><span lang="en">apps in real use</span></div>
+    <div><b>~7.400</b><span lang="es">líneas en FitTracker</span><span lang="en">lines in FitTracker</span></div>
+    <div><b>~13.000</b><span lang="es">líneas en el módulo de minutas</span><span lang="en">lines in the minutes module</span></div>
+    <div><b>99</b><span lang="es">funciones de servidor entre las dos</span><span lang="en">server functions across both</span></div>
   </div>
   <div class="botones">
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Web.pdf" lang="es">Descargar CV web</a>
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Web.pdf" lang="en">Download web résumé (ES)</a>
-    <a class="boton" href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </div>
 </div>
 
@@ -84,8 +86,8 @@
         <li>Mobile-first design, installable as an app.</li>
       </ul>
       <div class="etiquetas"><span>JavaScript</span><span>HTML/CSS</span><span>Google Apps Script</span><span>Google Sheets</span><span>Canvas</span></div>
-      <p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado; lo comparto a pedido.</p>
-      <p class="nota" lang="en">Screenshots of the real app with sample data. The code is private; available on request.</p>
+      <p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado, pero lo comparto en procesos de selección.</p>
+      <p class="nota" lang="en">Screenshots of the real app with sample data. The code is private, but I share it in hiring processes.</p>
     </div>
   </div>
 </section>
@@ -94,28 +96,61 @@
 <section class="proyecto">
   <h2><span lang="es">Minutas de reuniones · HubLab</span><span lang="en">Meeting minutes · HubLab</span></h2>
   <div class="sub"><span lang="es">Práctica profesional · laboratorio de proyectos de empresa · mar–may 2026</span><span lang="en">Professional internship · company project lab · Mar–May 2026</span></div>
-  <div class="dos-col">
+  <div class="dos-col texto">
     <div>
-      <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_celula.webp" alt="Minuta de una célula con su tablero de temas" loading="lazy"></div>
-      <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_asistencia.webp" alt="Acuerdos y asistencia del equipo" loading="lazy"></div>
+      <div class="rol"><span lang="es"><b>Mi rol:</b> desarrollé el módulo de minutas del ecosistema HubLab y, cuando terminó la práctica de mis compañeros, lideré el equipo de Data Control.</span><span lang="en"><b>My role:</b> I built the meeting-minutes module of the HubLab ecosystem and, when my teammates&#39; internships ended, I led the Data Control team.</span></div>
+      <p lang="es">Cada célula de HubLab se reúne cada semana. El módulo reemplazó las minutas sueltas por un solo lugar donde la reunión queda registrada: quién vino, qué temas avanzaron y qué se acordó.</p>
+      <p lang="en">Every HubLab team meets weekly. The module replaced scattered notes with a single place where each meeting is recorded: who came, which topics moved forward and what was agreed.</p>
     </div>
-    <div class="texto">
-      <div class="rol"><span lang="es"><b>Mi rol:</b> desarrollé el módulo de minutas del ecosistema HubLab y, al terminar la práctica de mis compañeros, lideré el equipo de Data Control.</span><span lang="en"><b>My role:</b> I built the meeting-minutes module of the HubLab ecosystem and, when my teammates' internships ended, I led the Data Control team.</span></div>
+    <div>
       <ul lang="es">
-        <li>Servidor en Apps Script conectado a Google Sheets: un ID único por registro e historial agrupado por célula.</li>
-        <li>Búsqueda de integrantes desde la base de RRHH, acceso por RUT y por PIN de cada célula.</li>
-        <li>Tablero de temas por estado, acuerdos y asistencia del equipo, con interfaz responsive en Bootstrap y JavaScript.</li>
-        <li>Resolví incidencias del resto del ecosistema, documenté los módulos y capacité a integrantes nuevos.</li>
+        <li><b>Acceso:</b> identificación por RUT contra la base de RRHH, PIN por célula y modo lectura para visitas.</li>
+        <li><b>Equipo:</b> roles de líder y colíder, altas y bajas desde RRHH y postulaciones a una célula.</li>
+        <li><b>Historial:</b> cada minuta guarda asistencia, acuerdos y una foto del tablero, con filtros por célula, autor, integrante, estado y fecha.</li>
+        <li><b>Avisos:</b> notificaciones, registro de actividad, tutorial guiado y tema claro u oscuro.</li>
       </ul>
       <ul lang="en">
-        <li>Apps Script server connected to Google Sheets: a unique ID per record and history grouped by team.</li>
-        <li>Member lookup from the HR database, access by national ID and per-team PIN.</li>
-        <li>Topic board by status, agreements and team attendance, with a responsive Bootstrap and JavaScript UI.</li>
-        <li>I fixed issues across the ecosystem, documented the modules and onboarded new members.</li>
+        <li><b>Access:</b> national ID check against the HR database, per-team PIN and read-only mode for visitors.</li>
+        <li><b>Team:</b> leader and co-leader roles, adding and removing members from HR, and requests to join a team.</li>
+        <li><b>History:</b> each record keeps attendance, agreements and a snapshot of the board, filterable by team, author, member, status and date.</li>
+        <li><b>Alerts:</b> notifications, activity log, guided tutorial and light or dark theme.</li>
       </ul>
-      <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
-      <p class="nota" lang="es">Capturas con personas y datos inventados. El código pertenece a HubLab y no es público.</p>
-      <p class="nota" lang="en">Screenshots with made-up people and data. The code belongs to HubLab and is not public.</p>
+    </div>
+  </div>
+
+  <figure class="captura">
+    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_tablero.webp" alt="Tablero de temas de una célula, con columnas pendiente, en progreso y completado" width="1280" height="800" loading="lazy"></div>
+    <figcaption lang="es"><b>Tablero de temas.</b> Columnas y etiquetas propias de cada célula; tarjetas y columnas se arrastran, y cada tarjeta tiene prioridad, responsables, fecha y checklist.</figcaption>
+    <figcaption lang="en"><b>Topic board.</b> Each team has its own columns and tags; cards and columns can be dragged, and every card has priority, owners, a due date and a checklist.</figcaption>
+  </figure>
+
+  <div class="dos-col">
+    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_tarjeta.webp" alt="Detalle de una tarjeta con checklist y comentarios con menciones" width="840" height="810" loading="lazy"></div>
+      <figcaption lang="es"><b>Detalle de un tema:</b> checklist con avance, responsables y comentarios con @menciones que avisan a la persona.</figcaption>
+      <figcaption lang="en"><b>Topic detail:</b> checklist with progress, owners and comments with @mentions that notify the person.</figcaption></figure>
+    <div>
+      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_asistencia.webp" alt="Acuerdos y asistencia del equipo" loading="lazy"></div>
+        <figcaption lang="es"><b>Acuerdos y asistencia</b> de cada reunión, con el rol de cada integrante.</figcaption>
+        <figcaption lang="en"><b>Agreements and attendance</b> for each meeting, with each member&#39;s role.</figcaption></figure>
+      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_historial.webp" alt="Historial de minutas con filtros" width="1280" height="600" loading="lazy"></div>
+        <figcaption lang="es"><b>Historial</b> con filtros que se combinan.</figcaption>
+        <figcaption lang="en"><b>History</b> with combinable filters.</figcaption></figure>
+    </div>
+  </div>
+
+  <h3 class="subtitulo"><span lang="es">Cómo creció</span><span lang="en">How it grew</span></h3>
+  <div class="dos-col">
+    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span lang="es">Primera versión</span><span lang="en">First version</span></div><img src="img/web/minuta_v1.webp" alt="Primera versión de la minuta: un formulario" width="1280" height="617" loading="lazy"></div>
+      <figcaption lang="es"><b>Primera versión · ~1.100 líneas.</b> Un formulario: fecha, líder, asistencia, temas y acuerdos en texto libre.</figcaption>
+      <figcaption lang="en"><b>First version · ~1,100 lines.</b> A form: date, leader, attendance, topics and agreements as free text.</figcaption></figure>
+    <div class="texto">
+      <p lang="es"><b>Versión actual · ~13.000 líneas y 56 funciones de servidor.</b> Los temas dejaron de ser texto: ahora son tarjetas que siguen vivas de una reunión a la otra, y cada minuta guarda una foto del tablero para ver cómo avanzó cada tema.</p>
+      <p lang="en"><b>Current version · ~13,000 lines and 56 server functions.</b> Topics stopped being free text: they are now cards that live on from one meeting to the next, and each record stores a snapshot of the board to show how every topic progressed.</p>
+      <p lang="es">Además, el historial alimenta un panel en Looker Studio para la coordinación.</p>
+      <p lang="en">The history also feeds a Looker Studio dashboard for coordinators.</p>
+      <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span>Looker Studio</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
+      <p class="nota" lang="es">Capturas de la app real corriendo con personas y datos inventados. El código pertenece a HubLab y no es público.</p>
+      <p class="nota" lang="en">Screenshots of the real app running with made-up people and data. The code belongs to HubLab and is not public.</p>
     </div>
   </div>
 </section>
@@ -146,17 +181,48 @@
   </div>
 </section>
 
-<section id="contacto" style="padding-top:0">
+<!--comun:sobre-->
+<section id="sobre">
+  <h2 class="titulo"><span lang="es">Sobre mí</span><span lang="en">About me</span></h2>
+  <div class="sobre">
+    <div>
+      <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
+      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
+      <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
+    </div>
+    <div class="habilidades">
+      <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
+      <div><b>Web</b><span>JavaScript · HTML/CSS · Google Apps Script · Bootstrap</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL · Git · C#</span></div>
+      <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
+      <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
+    </div>
+  </div>
+</section>
+<!--/comun:sobre-->
+
+<!--comun:contacto-->
+<section id="contacto">
   <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>
+  <p lang="en">Have a project or a role in mind? Get in touch.</p>
   <div class="contacto">
     <a class="boton lleno" href="mailto:esteban.flores.dio@gmail.com">esteban.flores.dio@gmail.com</a>
     <a class="boton" href="https://linkedin.com/in/esteban-flores-pizarro">LinkedIn</a>
+    <a class="boton" href="https://bandioh.itch.io">itch.io</a>
     <a class="boton" href="https://github.com/BandiohGames">GitHub</a>
+    <a class="boton" href="https://www.youtube.com/@Bandiohgames">YouTube</a>
+    <a class="boton" href="https://www.tiktok.com/@bandioh.games">TikTok</a>
+    <a class="boton" href="https://www.instagram.com/bandioh.games">Instagram</a>
   </div>
 </section>
+<!--/comun:contacto-->
 
 </main>
+<!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<!--/comun:pie-->
 <div id="visor"><img alt=""></div>
 </body>
 </html>

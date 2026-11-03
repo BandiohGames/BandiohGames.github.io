@@ -3,12 +3,15 @@ html, body { overflow-x: clip; }
 .portada > div:first-child { position: relative; }
 .correo { position: relative; margin-bottom: 110px; }
 .escena-sobre { height: 560vh; position: relative; }
+/* el sobre aparece pegado a lo de arriba (no centrado en una pantalla vacía): la escena sube lo que sobra */
+.escena-sobre { margin-top: min(0px, calc((min(700px, 92vw) * 0.9248 - 100vh) / 2 + 14px)); }
+.escena-fija { pointer-events: none; }
 /* a todo el ancho de la ventana (no de la columna): así el sobre sale de verdad por el borde de la pantalla */
-.escena-fija { position: sticky; top: 0; height: 100vh; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; perspective: 2200px; }
+.escena-fija { position: sticky; top: 0; height: 100vh; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; perspective: 12000px; }
 .sobre-mesa { position: absolute; left: 50%; top: 50%; width: min(700px, 92vw); aspect-ratio: 944 / 873; transform: translate(-50%, -50%); z-index: 2; }
 .sobre-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; will-change: transform; }
-.abrecartas { position: absolute; z-index: 3; left: 0; top: 0; width: 34%; height: auto; max-width: none; transform-origin: 0 50%; opacity: 0;
-  filter: drop-shadow(2px 5px 4px rgba(0,0,0,.4)); will-change: transform, opacity; pointer-events: none; }
+.abrecartas { position: absolute; z-index: 3; left: 0; top: 0; width: 29.7%; height: auto; max-width: none; transform-origin: 1.4% 50%; opacity: 0;
+  will-change: transform, opacity; pointer-events: none; }
 /* La carta doblada en tres, como se dobla para meterla al sobre: el tercio de abajo sube sobre el del medio y el de
    arriba baja encima de los dos. Por fuera solo se ve el revés del papel (la tinta apenas se transparenta). Cada tercio
    es una copia de la hoja que muestra su parte, y gira por su doblez. */
@@ -19,6 +22,11 @@ html, body { overflow-x: clip; }
 .pliego .cara, .pliego .reves { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .pliego .reves { transform: rotateX(180deg); background-color: #ece3c6; background-image: url(img/grano_papel.png); }
 .pliego .cara .hoja { position: absolute; left: 0; top: 0; margin: 0; transform: none !important; box-shadow: none; visibility: visible !important; }
+.pliego .panel { box-shadow: 3px 5px 12px rgba(0,0,0,.26); }
+.pliego .tinte { position: absolute; inset: 0; pointer-events: none; background: #2a1c0c; opacity: 0; }
+.pliego .proy { position: absolute; left: 0; right: 0; height: 34%; pointer-events: none; opacity: 0; }
+.pliego .proy.arriba { top: 0; background: linear-gradient(rgba(40,26,8,.34), rgba(40,26,8,.12) 35%, rgba(40,26,8,0)); }
+.pliego .proy.abajo { bottom: 0; background: linear-gradient(0deg, rgba(40,26,8,.34), rgba(40,26,8,.12) 35%, rgba(40,26,8,0)); }
 .pliego .sombra { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(50,32,10,.04), rgba(50,32,10,.32)); opacity: 0; }
 /* por fuera: lo escrito que se transparenta, el doblez y la sombra de la boca del sobre (como `_carta_asomada`) */
 .pliego .tras { position: absolute; left: 10%; height: 1.5px; background: rgba(51,51,77,.08); }

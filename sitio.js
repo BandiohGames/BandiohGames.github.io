@@ -77,15 +77,24 @@
         var w = Math.round(mesa.offsetWidth * d), h = Math.round(mesa.offsetHeight * d);
         if (lienzo.width !== w || lienzo.height !== h) { lienzo.width = w; lienzo.height = h; dibujado = -1; }
       };
+      // el polvillo de papel (como las partículas del juego): `motas` son [x, y, radio, alfa] en px del sobre
+      var motas = [], habiaMotas = false;
       var dibujar = function (q) {
         quiero = q;
         while (q > 0 && !cuadros[q]) q--;          // (si aún no llega, el anterior)
-        if (q === dibujado || !cuadros[q]) return;
+        if (!cuadros[q] || (q === dibujado && !motas.length && !habiaMotas)) return;
         ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
         ctx.clearRect(0, 0, lienzo.width, lienzo.height);
         ctx.drawImage(cuadros[q], 0, 0, lienzo.width, lienzo.height);
+        var d = lienzo.width / Math.max(1, mesa.offsetWidth);
+        motas.forEach(function (m) {
+          ctx.fillStyle = "rgba(245,235,205," + m[3].toFixed(3) + ")";
+          ctx.beginPath(); ctx.arc(m[0] * d, m[1] * d, m[2] * d, 0, 6.2832); ctx.fill();
+        });
+        habiaMotas = motas.length > 0;
         dibujado = q;
       };
+      var azar = function (n) { var x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
 
       // ---- el pliego: tres tercios de una copia de la hoja. Abajo sube sobre el medio, arriba baja encima de los dos ----
       var P = { h: 0, w: 0 };
@@ -110,11 +119,16 @@
         // el del medio, fijo
         var medio = div("panel", "top:" + P.h + "px;" + alto);
         var cMedio = cara(1); P.sMedio = div("sombra"); cMedio.appendChild(P.sMedio);
+        // la sombra que echa cada tercio sobre el del medio mientras está levantado
+        P.proyA = div("proy arriba"); P.proyB = div("proy abajo"); cMedio.appendChild(P.proyA); cMedio.appendChild(P.proyB);
         medio.appendChild(cMedio); medio.appendChild(div("reves"));
         // el de abajo: gira por su borde de arriba
         P.bAbajo = div("bisagra abajo", "top:" + (2 * P.h) + "px;" + alto);
         var cAbajo = cara(2); P.sAbajo = div("sombra"); cAbajo.appendChild(P.sAbajo);
-        var pAbajo = div("panel", "top:0;" + alto); pAbajo.appendChild(cAbajo); pAbajo.appendChild(div("reves"));
+        // el tinte: el papel se oscurece al quedar de canto a la luz (como `_cara` de plegada.gd)
+        P.tAbajoC = div("tinte"); cAbajo.appendChild(P.tAbajoC);
+        var rAbajo = div("reves"); P.tAbajoR = div("tinte"); rAbajo.appendChild(P.tAbajoR);
+        var pAbajo = div("panel", "top:0;" + alto); pAbajo.appendChild(cAbajo); pAbajo.appendChild(rAbajo);
         P.bAbajo.appendChild(pAbajo);
         // el de arriba: gira por su borde de abajo; su revés es lo que se ve por fuera
         P.bArriba = div("bisagra arriba", "top:0;" + alto);
@@ -123,10 +137,12 @@
         revesFuera.appendChild(div("tras", "top:28.5%;left:0;width:100%;background:rgba(0,0,0,.07)"));   // el doblez
         revesFuera.appendChild(div("luz-canto"));
         P.boca = div("boca"); revesFuera.appendChild(P.boca);
-        var pArriba = div("panel", "top:0;" + alto); pArriba.appendChild(cara(0)); pArriba.appendChild(revesFuera);
+        P.tArribaR = div("tinte"); revesFuera.appendChild(P.tArribaR);
+        var cArriba = cara(0); P.tArribaC = div("tinte"); cArriba.appendChild(P.tArribaC);
+        var pArriba = div("panel", "top:0;" + alto); pArriba.appendChild(cArriba); pArriba.appendChild(revesFuera);
         P.bArriba.appendChild(pArriba);
         pliego.appendChild(medio); pliego.appendChild(P.bAbajo); pliego.appendChild(P.bArriba);
-        [P.bAbajo, P.bArriba, P.sMedio, P.sAbajo, P.boca].forEach(function (e) { e.setAttribute("data-anim", ""); });
+        [P.bAbajo, P.bArriba, P.sMedio, P.sAbajo, P.boca, P.tAbajoC, P.tAbajoR, P.tArribaC, P.tArribaR, P.proyA, P.proyB].forEach(function (e) { e.setAttribute("data-anim", ""); });
       };
       window.__rearmarPliego = function () { medir(); armarPliego(); fijo = -1; pedir(); };
 
@@ -134,37 +150,78 @@
         var vw = fija.offsetWidth, vh = fija.offsetHeight;
         var mw = mesa.offsetWidth, mh = mesa.offsetHeight;
         var mx = (vw - mw) / 2, my = (vh - mh) / 2;          // dónde está el sobre en la escena
-        // 1) se da vuelta; 2) llega el abrecartas y corta de izquierda a derecha; 3) el chas; 4) la carta asoma
-        var gira = tramo(p, 0.03, 0.17), llega = salida(tramo(p, 0.18, 0.23)), corte = tramo(p, 0.23, 0.43);
-        var chas = tramo(p, 0.43, 0.46), asoma = tramo(p, 0.47, 0.55);
+        // 1) se da vuelta; 2) llega el abrecartas y se encaja en la esquina; 3) corta de izquierda a derecha;
+        // 4) sale de la ranura; 5) una pausa y el chas (la tira salta, el sobre se aplasta y rebota); 6) la carta asoma
+        var gira = tramo(p, 0.03, 0.17), llega = suave(tramo(p, 0.175, 0.225)), encaje = tramo(p, 0.225, 0.24), corte = tramo(p, 0.24, 0.42);
+        var saca = tramo(p, 0.42, 0.445), chas = tramo(p, 0.45, 0.47), asoma = tramo(p, 0.475, 0.55);
         var cambio = p >= 0.55;                              // desde aquí la carta es la copia de la hoja
         var q = cambio ? 102 : asoma > 0 ? 102 + Math.max(1, Math.round(asoma * 24)) : chas > 0 ? 96 + Math.max(1, Math.round(chas * 6))
           : corte > 0 ? 48 + Math.max(1, Math.round(corte * 48)) : gira > 0 ? Math.round(gira * 48) : 0;
-        dibujar(q);
         var x0 = G.sx0 * mw, x1 = G.sx1 * mw, yc = G.corte * mh;
-        var cx = corte > 0 ? mezcla(x0, x1, corte) : x0 + (1 - llega) * 0.3 * mw;
-        var cy = yc - (1 - llega) * 0.22 * mh - suave(chas) * 0.3 * mh;
-        cuchillo.style.opacity = (llega * (1 - chas)).toFixed(3);
-        cuchillo.style.transform = "translate(" + (cx - 0.012 * mw).toFixed(1) + "px," + (cy - cuchillo.offsetHeight / 2).toFixed(1) + "px) rotate(" + (-16 - (1 - llega) * 12 - chas * 25).toFixed(2) + "deg)";
+        var k = (x1 - x0) / 216;                             // px por unidad del juego (el sobre mide 216 de ancho)
+        // el polvillo: la punta suelta fibras mientras corta, y al saltar la tira, un soplo por todo el borde
+        motas = [];
+        var corteL = (p - 0.24) / 0.18;                    // (sin tope: las últimas fibras terminan de caer)
+        if (corteL > 0 && corteL < 1.12) for (var n = 0; n < 70; n++) {
+          var nace = n / 70, edad = (corteL - nace) / 0.12;
+          if (edad <= 0 || edad >= 1) continue;
+          var tt = edad * 0.5;
+          motas.push([x0 + nace * (x1 - x0) + (azar(n) - 0.5) * 16 * k * tt, yc - (8 + azar(n + 9) * 14) * k * tt + 45 * k * tt * tt, (0.35 + azar(n + 3) * 0.4) * k, 0.8 * (1 - edad)]);
+        }
+        var polvo = tramo(p, 0.45, 0.56);
+        if (polvo > 0 && polvo < 1) for (var m = 0; m < 26; m++) {
+          var T = polvo * 0.6, ang = -Math.PI / 2 + (azar(m + 40) - 0.5) * 1.4, v = (10 + azar(m + 70) * 20) * k;
+          motas.push([x0 + azar(m + 20) * (x1 - x0) + Math.cos(ang) * v * T, yc + Math.sin(ang) * v * T + 45 * k * T * T, (0.5 + azar(m + 5) * 0.5) * k, 0.8 * (1 - polvo)]);
+        }
+        dibujar(q);
+        // el abrecartas: la punta en la ranura, el mango atrás y arriba (ANG_CORTE = π + 0,42 del juego)
+        var ang0 = -20, angC = -156, punx, puny, angulo, alza;
+        if (corte <= 0) {
+          punx = mezcla(x0 - 0.22 * mw, x0, llega); puny = mezcla(yc + 0.42 * mh, yc, llega);
+          angulo = mezcla(ang0, angC, suave(tramo(llega, 0.25, 1))); alza = 0.6 * (1 - encaje) + 0.4 * (1 - llega);
+        } else {
+          punx = mezcla(x0, x1, corte) + saca * 10 * k; puny = yc + Math.sin(p * 9000) * 0.35 * k * (corte < 1 ? 1 : 0) - saca * 14 * k;
+          angulo = angC - (corte < 1 ? 3.4 : 0); alza = saca;
+        }
+        var abL = 0.297 * mw, abH = abL * 29 / 280, esc = 1 + 0.12 * alza;
+        cuchillo.style.width = abL.toFixed(1) + "px";
+        cuchillo.style.opacity = (llega * (1 - saca)).toFixed(3);
+        cuchillo.style.transform = "translate(" + (punx - 0.014 * abL).toFixed(1) + "px," + (puny - abH / 2).toFixed(1) + "px) rotate(" + angulo.toFixed(2) + "deg) scale(" + esc.toFixed(3) + ")";
+        // su sombra es su misma silueta, más lejos y blanda en el aire (el filtro gira con la imagen: se compensa)
+        var th = angulo * Math.PI / 180, ox = (1.5 + 7 * alza) * k, oy = (2 + 10 * alza) * k;
+        var lx = Math.cos(th) * ox + Math.sin(th) * oy, ly = -Math.sin(th) * ox + Math.cos(th) * oy;
+        cuchillo.style.filter = "drop-shadow(" + (lx / esc).toFixed(1) + "px " + (ly / esc).toFixed(1) + "px " + ((0.4 + alza) * k).toFixed(1) + "px rgba(0,0,0," + (0.3 - 0.1 * alza).toFixed(2) + "))";
+        // mientras corta, la punta va dentro del sobre (tapada por el papel de la tira)
+        var dentro = corte > 0 && corte < 1 && saca === 0 ? "linear-gradient(90deg, rgba(0,0,0,.3) 0, rgba(0,0,0,.3) 11%, #000 12%)" : "none";
+        cuchillo.style.webkitMaskImage = dentro; cuchillo.style.maskImage = dentro;
+        // el chas: el sobre se aplasta un instante y rebota (escala 1,025 × 0,975 y vuelta con sobrepaso)
+        var aplasta = tramo(p, 0.45, 0.455), rebota = tramo(p, 0.455, 0.485), atras = function (t) { var c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+        var golpe = rebota > 0 ? 1 - atras(rebota) : aplasta;
+        var aplastado = golpe !== 0 ? " scale(" + (1 + 0.025 * golpe).toFixed(4) + "," + (1 - 0.025 * golpe).toFixed(4) + ")" : "";
         // 5) la carta termina de salir; 6) el sobre se va por la izquierda; 7) se abre arriba, luego abajo; 8) crece a su lugar
         var sube = salida(tramo(p, 0.55, 0.62)), sale = suave(tramo(p, 0.62, 0.71));
         var abreArriba = suave(tramo(p, 0.71, 0.80)), abreAbajo = suave(tramo(p, 0.79, 0.88)), crece = suave(tramo(p, 0.74, 0.99));
-        lienzo.style.transform = sale > 0 ? "translate(" + (-sale * (vw / 2 + mw * 1.1)).toFixed(1) + "px," + (sale * 40).toFixed(1) + "px) rotate(" + (-14 * sale).toFixed(2) + "deg)" : "";
+        lienzo.style.transform = sale > 0 ? "translate(" + (-sale * (vw / 2 + mw * 1.1)).toFixed(1) + "px," + (sale * 40).toFixed(1) + "px) rotate(" + (-14 * sale).toFixed(2) + "deg)" : aplastado;
         // tamaños: la carta que asoma mide lo mismo que la del juego (del 13 al 87 % del cuadro)
-        var sf = ((G.cx1 - G.cx0) * mw) / P.w, s2 = Math.min(1, (vw * 0.86) / P.w, (vh * 0.42) / P.h);
+        var sf = ((G.cx1 - G.cx0) * mw) / P.w, s2 = Math.min(1, (vw * 0.86) / P.w, (vh - 120) / (3 * P.h));   // abierta entera cabe bajo la cabecera
         var s = sale < 1 ? mezcla(sf, s2, sale) : mezcla(s2, 1, crece);
         // dónde va el borde de arriba de lo que se ve (el tercio del medio, tapado por el de arriba)
-        var asomaY = my + G.cy0 * mh, afuera = my + G.sy0 * mh - P.h * sf - 0.03 * mh;
-        var centroY = vh * 0.5 - P.h * s2 / 2, finalY = 96 + P.h;
+        var asomaY = my + G.cy0 * mh, afuera = Math.max(84, my + G.sy0 * mh - P.h * sf - 0.03 * mh);
+        var centroY = 70 + (vh - 70) / 2 - P.h * s2 / 2, finalY = 96 + P.h;
         var Y = !cambio ? asomaY : sale <= 0 ? mezcla(asomaY, afuera, sube) : crece <= 0 ? mezcla(afuera, centroY, sale) : mezcla(centroY, finalY, crece);
         var fr = fija.getBoundingClientRect(), cxFinal = hoja.getBoundingClientRect().left - fr.left + P.w / 2;
         var cxCarta = mezcla(mx + (G.cx0 + G.cx1) / 2 * mw, cxFinal, crece);
         pliego.style.opacity = cambio ? 1 : 0;
         pliego.style.zIndex = sale > 0.08 ? 3 : 1;
-        pliego.style.transform = "translate(" + (cxCarta - P.w / 2).toFixed(1) + "px," + (Y - P.h * s).toFixed(1) + "px) scale(" + s.toFixed(4) + ")";
+        pliego.style.transform = "translate(" + (cxCarta - P.w / 2).toFixed(1) + "px," + (Y - P.h * s).toFixed(1) + "px) scale3d(" + s.toFixed(4) + "," + s.toFixed(4) + "," + s.toFixed(4) + ")";
         // los dobleces (un poquito separados mientras están cerrados, para que no se pisen)
         P.bArriba.style.transform = "translateZ(" + (3 * (1 - abreArriba)).toFixed(2) + "px) rotateX(" + (-179.4 * (1 - abreArriba)).toFixed(2) + "deg)";
         P.bAbajo.style.transform = "translateZ(" + (1.5 * (1 - abreAbajo)).toFixed(2) + "px) rotateX(" + (179.6 * (1 - abreAbajo)).toFixed(2) + "deg)";
+        var sinA = Math.sin(Math.PI * abreArriba), sinB = Math.sin(Math.PI * abreAbajo);
+        var tA = (0.16 * (1 - Math.abs(Math.cos(Math.PI * abreArriba)))).toFixed(3), tB = (0.16 * (1 - Math.abs(Math.cos(Math.PI * abreAbajo)))).toFixed(3);
+        P.tArribaC.style.opacity = tA; P.tArribaR.style.opacity = tA; P.tAbajoC.style.opacity = tB; P.tAbajoR.style.opacity = tB;
+        P.proyA.style.opacity = (abreArriba > 0 && abreArriba < 1 ? 0.9 * sinA : 0).toFixed(3);
+        P.proyB.style.opacity = (abreAbajo > 0 && abreAbajo < 1 ? 0.9 * sinB : 0).toFixed(3);
         P.sMedio.style.opacity = (0.8 * (1 - abreAbajo)).toFixed(3);
         P.sAbajo.style.opacity = (0.6 * (1 - abreAbajo)).toFixed(3);
         P.boca.style.opacity = (1 - sube).toFixed(3);
