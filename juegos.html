@@ -12,10 +12,10 @@
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
-<link rel="stylesheet" href="correo.css">
-<link rel="stylesheet" href="secciones.css">
-<script src="sitio.js"></script>
+<link rel="stylesheet" href="estilo.css?v=d05cc750">
+<link rel="stylesheet" href="correo.css?v=b12a88f3">
+<link rel="stylesheet" href="secciones.css?v=43026fdb">
+<script src="sitio.js?v=9d8251a2"></script>
 </head>
 <body>
 
@@ -157,7 +157,9 @@
         <h3>Floor, Sir?</h3>
         <div class="tipo"><span lang="es">3D en primera persona · estética PS1 · Godot 4.6</span><span lang="en">First-person 3D · PS1 look · Godot 4.6</span></div>
         <p lang="es">Eres el ascensorista de un hotel en 1928. Con una palanca manual llevas a los huéspedes a su piso, escuchas lo que no deberías y decides a quién ayudar. Siete turnos, una historia ramificada y varios finales.</p>
+        <p class="nota" lang="es">El video del ascensor es del prototipo actual, grabado jugando: el arte y los textos todavía están en desarrollo.</p>
         <p lang="en">You run the elevator of a hotel in 1928. With a manual lever you take guests to their floor, overhear what you shouldn't and decide who to help. Seven shifts, a branching story and multiple endings.</p>
+        <p class="nota" lang="en">The elevator clip is from the current prototype, recorded while playing: art and text are still in progress.</p>
         <ul lang="es">
           <li>Lógica separada de las escenas y cubierta con 219 pruebas automatizadas.</li>
           <li>Diálogos y turnos escritos en datos, con condiciones y marcas que cambian el mundo.</li>
@@ -171,7 +173,7 @@
         <div class="etiquetas"><span>Godot 4.6</span><span>3D</span><span lang="es">Pruebas automatizadas</span><span lang="en">Automated testing</span><span lang="es">Narrativa ramificada</span><span lang="en">Branching narrative</span></div>
       </div>
       <!-- El ascensor: la aguja recorre los pisos, suena el timbre y se abren las puertas.
-           Para mostrar el GIF: dentro de .cabina-interior, cambiar el <span> por <img src="img/floor_cabina.webp" alt=""> -->
+           Detrás de las puertas, un clip del prototipo (img/floor_cabina.mp4): parte cuando las puertas se abren. -->
       <div class="ascensor" id="ascensor-floor" aria-hidden="true" data-anim>
         <div class="indicador">
           <svg viewBox="0 0 200 104">
@@ -183,7 +185,7 @@
           </svg>
         </div>
         <div class="vano">
-          <div class="cabina-interior"><span lang="es">GIF de la cabina<br>próximamente</span><span lang="en">Cabin GIF<br>coming soon</span></div>
+          <div class="cabina-interior"><video src="img/floor_cabina.mp4" poster="img/floor_cabina.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
           <div class="puerta izq"></div><div class="puerta der"></div>
         </div>
         <div class="timbre"></div>

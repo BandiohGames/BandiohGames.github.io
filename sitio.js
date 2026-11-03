@@ -279,7 +279,9 @@
     // ---------- El ascensor de Floor, Sir?: aguja, timbre y puertas al aparecer ----------
     var ascensor = document.getElementById("ascensor-floor");
     if (ascensor) {
-      var llegar = function () { ascensor.classList.add("llega"); avisar(); };
+      var clip = ascensor.querySelector("video");
+      // el clip parte justo cuando las puertas empiezan a abrirse (3 s después de que llega la aguja)
+      var llegar = function () { ascensor.classList.add("llega"); avisar(); if (clip) setTimeout(function () { var r = clip.play(); if (r && r.catch) r.catch(function () {}); }, quieto ? 0 : 2900); };
       if (quieto || !("IntersectionObserver" in window)) llegar();
       else {
         var obs = new IntersectionObserver(function (ent) { if (ent[0].isIntersecting) { obs.disconnect(); llegar(); } }, { threshold: 0.6 });

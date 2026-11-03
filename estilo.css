@@ -59,6 +59,7 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 .ficha a { color: var(--sello); }
 .ficha .boton { color: var(--sello); border-color: var(--sello); }
 .ficha .boton.lleno { color: #fff; }
+.ficha .nota { color: var(--tinta-suave); font-size: 13px; }
 .estampa { display: inline-block; font-family: "Courier Prime", monospace; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
   color: var(--sello); border: 2px solid var(--sello); padding: 1px 8px; border-radius: 3px; transform: rotate(-3deg); margin-bottom: 10px; }
 .estampa.gris { color: var(--tinta-suave); border-color: var(--tinta-suave); }

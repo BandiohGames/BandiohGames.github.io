@@ -119,6 +119,17 @@ def poner(html, nombre, bloque):
     return patron.sub(lambda m: '<!--comun:%s-->\n%s\n<!--/comun:%s-->' % (nombre, bloque, nombre), html)
 
 
+import hashlib
+
+
+def versionar(html):
+    def marca(m):
+        archivo = m.group(2)
+        v = hashlib.md5(open(os.path.join(RAIZ, archivo), 'rb').read()).hexdigest()[:8]
+        return '%s="%s?v=%s"' % (m.group(1), archivo, v)
+    return re.sub(r'(href|src)="((?:estilo|correo|secciones)\.css|sitio\.js)(?:\?v=[0-9a-f]+)?"', marca, html)
+
+
 for pagina, (activa, correo) in PAGINAS.items():
     ruta = os.path.join(RAIZ, pagina)
     html = io.open(ruta, encoding='utf-8').read()
@@ -126,5 +137,6 @@ for pagina, (activa, correo) in PAGINAS.items():
     html = poner(html, 'sobre', SOBRE)
     html = poner(html, 'contacto', contacto(correo, activa))
     html = poner(html, 'pie', PIE)
+    html = versionar(html)
     io.open(ruta, 'w', encoding='utf-8', newline='\n').write(html)
     print('ok', pagina)
