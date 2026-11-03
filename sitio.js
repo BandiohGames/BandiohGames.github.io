@@ -38,6 +38,22 @@
       });
     });
 
+    // Pixel art: al pasar el mouse la animación parte DESDE SU PRIMER CUADRO (que es la imagen quieta), así no
+    // parpadea. Cada vez se le da una URL nueva del mismo archivo ya descargado, y recién cargada se muestra.
+    document.querySelectorAll(".personaje.con-anim").forEach(function (pj) {
+      var an = pj.querySelector(".anim"), base = an.getAttribute("data-src"), blob = null, url = null;
+      if (window.fetch) fetch(base).then(function (r) { return r.ok ? r.blob() : null; }).then(function (b) { blob = b; }).catch(function () {});
+      var entrar = function () {
+        an.onload = function () { pj.classList.add("anima"); };
+        if (url) URL.revokeObjectURL(url);
+        url = blob ? URL.createObjectURL(blob) : null;
+        an.src = url || base + "?r=" + Date.now();
+      };
+      var salir = function () { an.onload = null; pj.classList.remove("anima"); };
+      pj.addEventListener("mouseenter", entrar); pj.addEventListener("focus", entrar);
+      pj.addEventListener("mouseleave", salir); pj.addEventListener("blur", salir);
+    });
+
     // Visor de capturas
     var visor = document.getElementById("visor");
     if (visor) {

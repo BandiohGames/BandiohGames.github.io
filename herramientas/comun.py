@@ -63,27 +63,36 @@ RED = {
 REDES_DE = {
     'inicio': ['linkedin', 'github', 'itch', 'youtube', 'tiktok', 'instagram'],
     'juegos': ['itch', 'youtube', 'tiktok', 'instagram', 'linkedin'],
-    'web': ['linkedin', 'github'],
+    'web': ['linkedin'],
     'pixel': ['linkedin'],
 }
 
 
 def redes(activa):
-    return ''.join('    <a class="boton red" href="%s">%s <small>%s</small></a>\n' % RED[k] for k in REDES_DE[activa])
+    return ''.join('      <a class="red" href="%s"><b>%s</b><small>%s</small><i aria-hidden="true">↗</i></a>\n' % RED[k] for k in REDES_DE[activa])
+
+
+CORREOS = [('esteban.flores.dio@gmail.com', '<span lang="es">Trabajo y CV</span><span lang="en">Jobs and résumé</span>'),
+           ('bandioh.games@gmail.com', '<span lang="es">Juegos y prensa</span><span lang="en">Games and press</span>'),
+           ('bandioh.pixelart@gmail.com', 'Pixel art')]
 
 
 def contacto(correo, activa):
-    if correo:   # en cada sección, el correo de esa área
-        correos = '    <a class="boton lleno" href="mailto:%s">%s</a>\n' % (correo, correo)
-    else:        # en el inicio, los tres
-        correos = ('    <a class="correo-area" href="mailto:esteban.flores.dio@gmail.com"><small><span lang="es">Trabajo y CV</span><span lang="en">Jobs and résumé</span></small>esteban.flores.dio@gmail.com</a>\n'
-                   '    <a class="correo-area" href="mailto:bandioh.games@gmail.com"><small><span lang="es">Juegos y prensa</span><span lang="en">Games and press</span></small>bandioh.games@gmail.com</a>\n'
-                   '    <a class="correo-area" href="mailto:bandioh.pixelart@gmail.com"><small>Pixel art</small>bandioh.pixelart@gmail.com</a>\n')
+    # a la izquierda el correo (como una tarjeta postal, con su estampilla); a la derecha las redes, en tarjetas iguales
+    lista = [c for c in CORREOS if c[0] == correo] if correo else CORREOS
+    if correo:
+        lista = [(lista[0][0], '<span lang="es">Correo</span><span lang="en">Email</span>')]
+    correos = ''.join('      <a class="postal" href="mailto:%s"><small>%s</small><b>%s</b><span class="sello-postal" aria-hidden="true">✉</span></a>\n' % (c, et, c) for c, et in lista)
     return ('<section id="contacto">\n'
             '  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>\n'
-            '  <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
-            '  <p lang="en">Have a project or a role in mind? Get in touch.</p>\n'
-            '  <div class="contacto">\n' + correos + redes(activa) + '  </div>\n</section>')
+            '  <div class="contacto">\n'
+            '    <div class="correos">\n'
+            '      <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
+            '      <p lang="en">Have a project or a role in mind? Get in touch.</p>\n'
+            + correos +
+            '    </div>\n'
+            '    <div class="redes">\n' + redes(activa) + '    </div>\n'
+            '  </div>\n</section>')
 
 
 PIE = '<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>'
