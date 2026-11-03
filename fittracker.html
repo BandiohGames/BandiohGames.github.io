@@ -35,8 +35,8 @@
 <span class="estampa" style="color:var(--sello-claro);border-color:var(--sello-claro)"><span lang="es">Caso de estudio</span><span lang="en">Case study</span></span>
 <h1 class="mono" style="font-size:40px;line-height:1.1">FitTracker</h1>
 <p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
-  <span lang="es">Una app web de entrenamiento y nutrición, hecha en solitario sobre Google Apps Script y una planilla de Google.</span>
-  <span lang="en">A training and nutrition web app, built solo on Google Apps Script and a Google spreadsheet.</span>
+  <span lang="es">Una app web de entrenamiento y nutrición, hecha en solitario: primero sobre Google Apps Script y una planilla, y después migrada a React, Node y PostgreSQL.</span>
+  <span lang="en">A training and nutrition web app, built solo: first on Google Apps Script and a spreadsheet, then migrated to React, Node and PostgreSQL.</span>
 </p>
 <div class="franja-datos" style="margin-bottom:26px">
   <div><b>~7.400</b><span lang="es">líneas de código</span><span lang="en">lines of code</span></div>
@@ -117,20 +117,74 @@
   <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Rachas, logros con celebración, descanso guiado con consejos según el músculo, gráficos propios en canvas, animaciones, sonidos y cuatro temas de color, todo pensado primero para el celular.</span><span lang="en">Streaks, celebrated achievements, guided rest with tips for each muscle group, custom canvas charts, animations, sounds and four color themes, all designed mobile-first.</span></div>
 </div>
 
+<h2><span lang="es">La migración: de Apps Script a React, Node y PostgreSQL</span><span lang="en">The migration: from Apps Script to React, Node and PostgreSQL</span></h2>
+<p lang="es">Apps Script me sirvió para empezar gratis, pero me ataba a Google y a un stack que casi ninguna oferta pide. Así que pasé la app completa a un stack estándar, sin perder nada: mis datos reales, el diseño original y todas las funciones. La versión nueva es la que uso hoy.</p>
+<p lang="en">Apps Script let me start for free, but it tied me to Google and to a stack almost no job asks for. So I moved the whole app to a standard stack without losing anything: my real data, the original design and every feature. The new version is the one I use today.</p>
+
+<div class="franja-datos" style="margin:18px 0 22px">
+  <div><b>29</b><span lang="es">pruebas automáticas (API y coach)</span><span lang="en">automated tests (API and coach)</span></div>
+  <div><b>244</b><span lang="es">series migradas de la planilla</span><span lang="en">sets migrated from the spreadsheet</span></div>
+  <div><b>0,18 s</b><span lang="es">guardar una serie (antes 0,84 s)</span><span lang="en">saving a set (was 0.84 s)</span></div>
+  <div><b>0 $</b><span lang="es">Render + Neon, planes gratis</span><span lang="en">Render + Neon, free plans</span></div>
+</div>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">Antes y después</span><span lang="en">Before and after</span></div>
+  <div><h4><span lang="es">Antes</span><span lang="en">Before</span></h4><span lang="es">HTML y JavaScript sin framework servidos por Apps Script; 43 funciones de servidor; 9 hojas de una planilla como base de datos; la cuenta de Google como sesión.</span><span lang="en">Framework-free HTML and JavaScript served by Apps Script; 43 server functions; 9 spreadsheet sheets as the database; the Google account as the session.</span></div>
+  <div><h4><span lang="es">Ahora</span><span lang="en">Now</span></h4><span lang="es">React 19 + TypeScript (Vite, TanStack Query); API REST en Node 24 + Express 5 validada con zod; PostgreSQL en Neon con migraciones versionadas; sesión con JWT en cookie httpOnly; desplegada en Render.</span><span lang="en">React 19 + TypeScript (Vite, TanStack Query); a REST API on Node 24 + Express 5 validated with zod; PostgreSQL on Neon with versioned migrations; JWT session in an httpOnly cookie; deployed on Render.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">Mover los datos reales</span><span lang="en">Moving the real data</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">La planilla fue cambiando de forma con cada versión: columnas que aparecían, filas viejas sin la columna «nota», nombres de ejercicios que se renombraron y la nutrición guardada varias veces por día.</span><span lang="en">The spreadsheet changed shape with every version: columns that appeared later, old rows missing the «note» column, renamed exercises and nutrition saved several times a day.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Un script que lee el .xlsx por nombre de columna, une los ejercicios renombrados, se queda con el último guardado de cada día y se puede correr varias veces sin duplicar. Primero en modo prueba (deshace todo al final) y después de verdad.</span><span lang="en">A script that reads the .xlsx by column name, merges renamed exercises, keeps each day's last save and can run repeatedly without duplicating. First as a dry run (everything is rolled back) and then for real.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">Que se sienta igual de rápido</span><span lang="en">Keeping it just as fast</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">La base quedó en São Paulo y el servidor en Estados Unidos: cada consulta cruza el continente. Armar la demo tardaba 151 segundos y guardar una serie casi un segundo.</span><span lang="en">The database is in São Paulo and the server in the US: every query crosses the continent. Building the demo took 151 seconds and saving a set almost a second.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Menos viajes: inserciones en bloque (<code>jsonb_to_recordset</code>) y consultas que leen o escriben todo de una vez. La demo bajó a 2 segundos y guardar una serie a 0,18.</span><span lang="en">Fewer round trips: bulk inserts (<code>jsonb_to_recordset</code>) and queries that read or write everything at once. The demo dropped to 2 seconds and saving a set to 0.18.</span></div>
+</div>
+
+<figure class="codigo">
+  <div class="codigo-barra"><b>datos.ts</b><span lang="es">TypeScript + SQL · guardar una serie y el coach en una consulta</span><span lang="en">TypeScript + SQL · saving a set and the coach in one query</span></div>
+  <pre><code><span class="c">// Guardar una serie y actualizar el coach: una sola consulta (un CTE que modifica, atómico).</span>
+<span class="c">// Antes eran 7 viajes al servidor; con la base en otro continente, cada viaje se nota.</span>
+<span class="k">await</span> db.query(
+  <span class="s">`WITH guardada AS (
+     INSERT INTO series (usuario_id, fecha, ejercicio_id, numero, reps, peso_kg, tiempo_seg, nota)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+     ON CONFLICT (usuario_id, fecha, ejercicio_id, numero)          -- corregir una serie no la duplica
+     DO UPDATE SET reps = EXCLUDED.reps, peso_kg = EXCLUDED.peso_kg, registrada = now()
+     RETURNING 1)
+   UPDATE coach_estado SET sesiones_cumpliendo = $9,
+          subida_pendiente = coalesce($10::jsonb, subida_pendiente)  -- la sugerencia espera tu confirmación
+    WHERE usuario_id = $1 AND ejercicio_id = $3 AND EXISTS (SELECT 1 FROM guardada)`</span>,
+  [...datosSerie, r.sesionesCumpliendo, r.subida ? JSON.stringify(r.subida) : <span class="k">null</span>]);</code></pre>
+  <figcaption lang="es">En la planilla, guardar una serie era buscar la fila a mano, escribirla y después leer y escribir el estado del coach. En PostgreSQL es una sola sentencia: <code>ON CONFLICT</code> corrige la serie si ya existía, y el <code>WITH</code> hace que el coach solo se actualice si la serie quedó guardada.</figcaption>
+  <figcaption lang="en">In the spreadsheet, saving a set meant finding the row by hand, writing it, then reading and writing the coach state. In PostgreSQL it's one statement: <code>ON CONFLICT</code> fixes the set if it already existed, and the <code>WITH</code> makes the coach update only if the set was saved.</figcaption>
+</figure>
+
+<div class="botones" style="margin-top:16px">
+  <a class="boton lleno" href="https://fittracker-9y5d.onrender.com"><span lang="es">Probar la demo</span><span lang="en">Try the demo</span></a>
+</div>
+<p class="nota" lang="es">Con datos inventados, sin crear cuenta. Está en un plan gratis: si nadie la usó hace rato, la primera carga tarda unos 50 segundos.</p>
+<p class="nota" lang="en">With made-up data, no account needed. It runs on a free plan: if nobody used it for a while, the first load takes about 50 seconds.</p>
+
 <h2><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
 <ul lang="es">
+  <li>Migrar es más que reescribir: lo difícil fue traer los datos reales tal como estaban, con sus versiones y sus errores, sin perder nada.</li>
   <li>Con un servidor lento, lo que más se nota es hacer menos viajes y mostrar algo de inmediato, más que optimizar el código.</li>
   <li>Separar sugerir de decidir: la app propone la subida, pero la persona confirma, y eso le da confianza en el coach.</li>
   <li>Versionar el esquema de datos desde el principio permitió agregar hojas y columnas sin romper el historial ya guardado.</li>
 </ul>
 <ul lang="en">
+  <li>Migrating is more than rewriting: the hard part was bringing the real data as it was, with its versions and its mistakes, without losing anything.</li>
   <li>With a slow server, what you notice most is making fewer round trips and showing something right away, more than optimizing code.</li>
   <li>Separating suggesting from deciding: the app proposes the step up but the person confirms it, which builds trust in the coach.</li>
   <li>Versioning the data schema from the start let me add sheets and columns without breaking the saved history.</li>
 </ul>
-<div class="etiquetas"><span>JavaScript</span><span>HTML/CSS</span><span>Google Apps Script</span><span>Google Sheets</span><span>Canvas</span><span>Lottie</span></div>
-<p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado, pero lo comparto en procesos de selección.</p>
-<p class="nota" lang="en">Screenshots of the real app with sample data. The code is private, but I share it in hiring processes.</p>
+<div class="etiquetas"><span>React</span><span>TypeScript</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span><span>Vitest</span><span>JavaScript</span><span>Google Apps Script</span><span>Canvas</span><span>Lottie</span></div>
+<p class="nota" lang="es">Capturas de la app real con datos de ejemplo (la versión nueva conserva el mismo diseño). El código es privado, pero lo comparto en procesos de selección.</p>
+<p class="nota" lang="en">Screenshots of the real app with sample data (the new version keeps the same design). The code is private, but I share it in hiring processes.</p>
 
 <p style="margin:40px 0 10px" lang="es"><a href="web.html">← Volver a desarrollo web</a></p>
 <p style="margin:40px 0 10px" lang="en"><a href="web.html">← Back to web development</a></p>
@@ -148,8 +202,8 @@
     </div>
     <div class="habilidades">
       <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
-      <div><b>Web</b><span>JavaScript · HTML/CSS · Google Apps Script · Bootstrap</span></div>
-      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL · Git · C#</span></div>
+      <div><b>Web</b><span>React · TypeScript · Node.js · JavaScript · HTML/CSS · Google Apps Script</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL (PostgreSQL) · Git · C#</span></div>
       <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
       <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
     </div>
