@@ -39,7 +39,7 @@
     // Visor de capturas
     var visor = document.getElementById("visor");
     if (visor) {
-      document.querySelectorAll(".galeria img, .figura img").forEach(function (img) {
+      document.querySelectorAll(".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img").forEach(function (img) {
         img.addEventListener("click", function () {
           if (html.classList.contains("lupa")) return;
           visor.querySelector("img").src = img.src; visor.classList.add("abierto");

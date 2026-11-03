@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es" data-l="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desarrollo web · Esteban Flores</title>
+<meta name="description" content="Aplicaciones web de Esteban Flores Pizarro: FitTracker y el módulo de minutas de HubLab, con Google Apps Script, JavaScript y Google Sheets.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/web/ft_hist.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
+<link rel="apple-touch-icon" href="img/icono_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="secciones.css">
+<script src="sitio.js"></script>
+</head>
+<body>
+
+<header><div class="ancho">
+  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games"></a>
+  <nav>
+    <a href="index.html#juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web.html" class="activo">Web</a>
+    <a href="pixel.html">Pixel art</a>
+    <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+
+<main class="ancho">
+
+<div class="cabeza-seccion">
+  <span class="estampa"><span lang="es">Desarrollo web</span><span lang="en">Web development</span></span>
+  <h1><span lang="es">Aplicaciones que la gente usa todos los días</span><span lang="en">Apps people use every day</span></h1>
+  <p lang="es">Construyo aplicaciones web completas con Google Apps Script, JavaScript y hojas de cálculo como base de datos: del modelo de datos y el servidor a una interfaz cuidada que funciona en el celular.</p>
+  <p lang="en">I build complete web apps with Google Apps Script, JavaScript and spreadsheets as a database: from the data model and server code to a polished interface that works on a phone.</p>
+  <div class="franja-datos">
+    <span><b>2</b> <span lang="es">apps en uso real</span><span lang="en">apps in real use</span></span>
+    <span><b>~7.400</b> <span lang="es">líneas en FitTracker</span><span lang="en">lines in FitTracker</span></span>
+    <span><b>43</b> <span lang="es">funciones de servidor</span><span lang="en">server functions</span></span>
+    <span><b>9</b> <span lang="es">hojas como base de datos</span><span lang="en">sheets as a database</span></span>
+  </div>
+  <div class="botones">
+    <a class="boton lleno" href="cv/CV_Esteban_Flores_Web.pdf" lang="es">Descargar CV web</a>
+    <a class="boton lleno" href="cv/CV_Esteban_Flores_Web.pdf" lang="en">Download web résumé (ES)</a>
+    <a class="boton" href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </div>
+</div>
+
+<!-- FitTracker -->
+<section class="proyecto">
+  <h2>FitTracker</h2>
+  <div class="sub"><span lang="es">Aplicación de entrenamiento y nutrición · proyecto personal · en uso diario</span><span lang="en">Training and nutrition app · personal project · used daily</span></div>
+  <div class="telefonos">
+    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_intro.webp" alt="Pantalla de inicio de FitTracker" loading="lazy"></div><figcaption lang="es">Inicio animado</figcaption><figcaption lang="en">Animated intro</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_plan_lun.webp" alt="Plan semanal con una sesión completada" loading="lazy"></div><figcaption lang="es">Plan semanal y sesión completada</figcaption><figcaption lang="en">Weekly plan and finished session</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_entreno_mie.webp" alt="Calentamiento sugerido antes de entrenar" loading="lazy"></div><figcaption lang="es">Calentamiento guiado</figcaption><figcaption lang="en">Guided warm-up</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_nutri.webp" alt="Registro de nutrición y proteína de 14 días" loading="lazy"></div><figcaption lang="es">Nutrición y proteína</figcaption><figcaption lang="en">Nutrition and protein</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_hist.webp" alt="Progreso: volumen semanal y grupos musculares" loading="lazy"></div><figcaption lang="es">Progreso y gráficos propios</figcaption><figcaption lang="en">Progress and custom charts</figcaption></figure>
+  </div>
+  <div class="dos-col texto">
+    <div>
+      <div class="rol"><span lang="es"><b>Mi rol:</b> todo, en solitario: modelo de datos, servidor, interfaz, animaciones y sonido.</span><span lang="en"><b>My role:</b> everything, solo: data model, server, interface, animations and sound.</span></div>
+      <ul lang="es">
+        <li>Base de datos en 9 hojas de Google Sheets (entrenos, series, nutrición, peso, calendario, equipamiento, logros, ajustes y coach).</li>
+        <li>Servidor en Apps Script con 43 funciones y caché, para que la app abra rápido aunque la planilla crezca.</li>
+        <li>Progresión automática: sube repeticiones o peso según el tipo de ejercicio y cómo te fue en la sesión anterior.</li>
+      </ul>
+      <ul lang="en">
+        <li>Database across 9 Google Sheets (workouts, sets, nutrition, weight, calendar, equipment, achievements, settings and coach).</li>
+        <li>Apps Script server with 43 functions and caching, so the app opens fast as the sheet grows.</li>
+        <li>Automatic progression: raises reps or weight depending on the exercise type and your last session.</li>
+      </ul>
+    </div>
+    <div>
+      <ul lang="es">
+        <li>Gráficos propios en canvas: volumen semanal, grupos musculares, peso y proteína.</li>
+        <li>Rachas, logros con celebración, cuatro temas de color, sonidos y modo sin conexión.</li>
+        <li>Diseño pensado primero para el celular, instalable como app.</li>
+      </ul>
+      <ul lang="en">
+        <li>Custom canvas charts: weekly volume, muscle groups, weight and protein.</li>
+        <li>Streaks, celebrated achievements, four color themes, sounds and offline mode.</li>
+        <li>Mobile-first design, installable as an app.</li>
+      </ul>
+      <div class="etiquetas"><span>JavaScript</span><span>HTML/CSS</span><span>Google Apps Script</span><span>Google Sheets</span><span>Canvas</span></div>
+      <p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado; lo comparto a pedido.</p>
+      <p class="nota" lang="en">Screenshots of the real app with sample data. The code is private; available on request.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HubLab -->
+<section class="proyecto">
+  <h2><span lang="es">Minutas de reuniones · HubLab</span><span lang="en">Meeting minutes · HubLab</span></h2>
+  <div class="sub"><span lang="es">Práctica profesional · laboratorio de proyectos de empresa · mar–may 2026</span><span lang="en">Professional internship · company project lab · Mar–May 2026</span></div>
+  <div class="dos-col">
+    <div>
+      <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_celula.webp" alt="Minuta de una célula con su tablero de temas" loading="lazy"></div>
+      <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_asistencia.webp" alt="Acuerdos y asistencia del equipo" loading="lazy"></div>
+    </div>
+    <div class="texto">
+      <div class="rol"><span lang="es"><b>Mi rol:</b> desarrollé el módulo de minutas del ecosistema HubLab y, al terminar la práctica de mis compañeros, lideré el equipo de Data Control.</span><span lang="en"><b>My role:</b> I built the meeting-minutes module of the HubLab ecosystem and, when my teammates' internships ended, I led the Data Control team.</span></div>
+      <ul lang="es">
+        <li>Servidor en Apps Script conectado a Google Sheets: un ID único por registro e historial agrupado por célula.</li>
+        <li>Búsqueda de integrantes desde la base de RRHH, acceso por RUT y por PIN de cada célula.</li>
+        <li>Tablero de temas por estado, acuerdos y asistencia del equipo, con interfaz responsive en Bootstrap y JavaScript.</li>
+        <li>Resolví incidencias del resto del ecosistema, documenté los módulos y capacité a integrantes nuevos.</li>
+      </ul>
+      <ul lang="en">
+        <li>Apps Script server connected to Google Sheets: a unique ID per record and history grouped by team.</li>
+        <li>Member lookup from the HR database, access by national ID and per-team PIN.</li>
+        <li>Topic board by status, agreements and team attendance, with a responsive Bootstrap and JavaScript UI.</li>
+        <li>I fixed issues across the ecosystem, documented the modules and onboarded new members.</li>
+      </ul>
+      <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
+      <p class="nota" lang="es">Capturas con personas y datos inventados. El código pertenece a HubLab y no es público.</p>
+      <p class="nota" lang="en">Screenshots with made-up people and data. The code belongs to HubLab and is not public.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Este mismo sitio -->
+<section class="proyecto">
+  <h2><span lang="es">Este portafolio</span><span lang="en">This portfolio</span></h2>
+  <div class="sub"><span lang="es">HTML, CSS y JavaScript sin frameworks · GitHub Pages</span><span lang="en">HTML, CSS and JavaScript, no frameworks · GitHub Pages</span></div>
+  <div class="dos-col texto">
+    <ul lang="es">
+      <li>El sobre de REZAGO sigue a la barra de desplazamiento: 127 cuadros dibujados por el propio juego, en un canvas con inercia.</li>
+      <li>La carta se despliega en 3D con tres copias de la hoja real, y calza exacto con ella al terminar.</li>
+      <li>La lupa replica el shader del juego con filtros SVG: aumento central, orilla comprimida y colores separados en el canto.</li>
+    </ul>
+    <ul lang="es">
+      <li>Las cifras de itch.io se actualizan solas cada día con GitHub Actions y la API de itch.</li>
+      <li>Bilingüe, se adapta al celular y respeta a quien pide menos movimiento en su sistema.</li>
+    </ul>
+    <ul lang="en">
+      <li>The REZAGO envelope follows the scrollbar: 127 frames drawn by the game itself, on a canvas with easing.</li>
+      <li>The letter unfolds in 3D from three copies of the real page, matching it exactly at the end.</li>
+      <li>The magnifier recreates the game's shader with SVG filters: central zoom, compressed rim and split colors at the edge.</li>
+    </ul>
+    <ul lang="en">
+      <li>itch.io figures update daily through GitHub Actions and the itch API.</li>
+      <li>Bilingual, mobile-friendly and respectful of reduced-motion settings.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto" style="padding-top:0">
+  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <div class="contacto">
+    <a class="boton lleno" href="mailto:esteban.flores.dio@gmail.com">esteban.flores.dio@gmail.com</a>
+    <a class="boton" href="https://linkedin.com/in/esteban-flores-pizarro">LinkedIn</a>
+    <a class="boton" href="https://github.com/BandiohGames">GitHub</a>
+  </div>
+</section>
+
+</main>
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<div id="visor"><img alt=""></div>
+</body>
+</html>

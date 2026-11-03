@@ -1,0 +1,97 @@
+/* ===================== Páginas de sección: desarrollo web y pixel art ===================== */
+nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton); padding-bottom: 2px; }
+.cabeza-seccion { padding: 56px 0 26px; }
+.cabeza-seccion .estampa { color: var(--sello-claro); border-color: var(--sello-claro); }
+.cabeza-seccion h1 { font-family: "Courier Prime", monospace; font-size: 42px; line-height: 1.1; margin: 6px 0 12px; }
+.cabeza-seccion p { color: var(--texto-tenue); font-size: 18px; max-width: 46em; }
+.cabeza-seccion .botones { margin-top: 20px; }
+.franja-datos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.franja-datos span { background: var(--madera-2); border: 1px solid var(--madera-3); border-radius: 20px; padding: 5px 14px; font-size: 14px; color: var(--texto-tenue); }
+.franja-datos b { color: var(--laton); font-family: "Courier Prime", monospace; }
+
+.proyecto { margin: 34px 0 70px; }
+.proyecto h2 { font-family: "Courier Prime", monospace; font-size: 30px; margin-bottom: 4px; }
+.proyecto .sub { color: var(--texto-tenue); margin-bottom: 18px; }
+.proyecto .texto p, .proyecto .texto li { color: var(--texto-claro); }
+.proyecto .texto ul { padding-left: 20px; margin: 10px 0 16px; }
+.proyecto .texto li { margin-bottom: 5px; }
+.proyecto .rol { background: var(--madera-2); color: var(--texto-claro); border-left-color: var(--laton); }
+.proyecto .etiquetas span { background: var(--madera-2); color: var(--texto-tenue); border: 1px solid var(--madera-3); }
+.nota { font-size: 13px; color: var(--texto-tenue); margin-top: 8px; }
+.dos-col { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+.dos-col > * { min-width: 0; }
+
+/* teléfonos: las capturas de FitTracker en marcos de celular, con desplazamiento lateral */
+.telefonos { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 18px; scrollbar-width: thin; }
+.telefono { flex: 0 0 auto; width: 214px; scroll-snap-align: start; }
+.telefono .marco-cel { border-radius: 30px; padding: 9px; background: linear-gradient(145deg, #2c2c34, #101014); box-shadow: 0 14px 30px rgba(0,0,0,.5), inset 0 0 0 1px #3a3a44; }
+.telefono img { border-radius: 22px; width: 100%; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; cursor: zoom-in; }
+.telefono figcaption { text-align: center; font-size: 13px; color: var(--texto-tenue); margin-top: 8px; }
+
+/* navegador: las capturas de la minuta en una ventana */
+.navegador { border-radius: 10px; overflow: hidden; background: #0d0f14; box-shadow: 0 14px 30px rgba(0,0,0,.5), inset 0 0 0 1px #2a2f3a; }
+.navegador + .navegador { margin-top: 18px; }
+.navegador .barra { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #1a1d24; }
+.navegador .barra i { width: 10px; height: 10px; border-radius: 50%; background: #444b58; }
+.navegador .barra i:nth-child(1) { background: #e25f57; } .navegador .barra i:nth-child(2) { background: #e3b341; } .navegador .barra i:nth-child(3) { background: #4fb357; }
+.navegador .barra span { margin-left: 10px; font: 12px "Courier Prime", monospace; color: #8a93a3; background: #0f1218; border-radius: 6px; padding: 3px 10px; flex: 1; }
+.navegador img { width: 100%; cursor: zoom-in; }
+
+/* ===================== Pixel art ===================== */
+.px { image-rendering: pixelated; image-rendering: crisp-edges; }
+.lamina { background: #3a3854; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); display: grid; place-items: center; padding: 14px; }
+.reparto { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.personaje figure { margin: 0; }
+.personaje .lamina { aspect-ratio: 1; position: relative; }
+.personaje .lamina img { max-width: 100%; height: auto; }
+.personaje .lamina .anim { position: absolute; inset: 14px; margin: auto; opacity: 0; transition: opacity .15s; }
+.personaje:hover .lamina .anim, .personaje:focus-within .lamina .anim { opacity: 1; }
+.personaje:hover .lamina .quieto { opacity: 0; }
+.personaje h3 { font-family: "Courier Prime", monospace; font-size: 18px; margin-top: 8px; }
+.personaje p { font-size: 14px; color: var(--texto-tenue); }
+.personaje .tam { font: 12px "Courier Prime", monospace; color: var(--laton); }
+.pista-hover { font-size: 13px; color: var(--texto-tenue); margin: -6px 0 14px; }
+
+.evolucion { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+.evolucion figure { margin: 0; }
+.evolucion figcaption { text-align: center; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; }
+.evolucion .lamina { aspect-ratio: 1; }
+.evolucion .lamina img { max-width: 100%; height: auto; }
+
+.assets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
+.assets figure { margin: 0; }
+.assets .lamina { min-height: 200px; }
+.assets .lamina img { max-width: 100%; height: auto; }
+.assets figcaption { font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; text-align: center; }
+.assets .ancho2 { grid-column: span 2; }
+
+.revisiones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
+.revisiones figure { margin: 0; }
+.revisiones .lamina { padding: 12px 12px 12px 30px; position: relative; }
+.revisiones .lamina img { width: 128px; height: 256px; }
+.revisiones .rotulos span { position: absolute; left: 8px; font: 10px "Courier Prime", monospace; color: #c9c6e6; writing-mode: vertical-rl; transform: rotate(180deg); }
+.revisiones .rotulos span:nth-child(-n+2) { top: 18px; } .revisiones .rotulos span:nth-child(n+3) { top: calc(50% + 6px); }
+.revisiones figcaption b { display: block; font-family: "Courier Prime", monospace; margin-top: 8px; }
+.revisiones figcaption span { font-size: 13px; color: var(--texto-tenue); }
+
+.manos { display: flex; gap: 14px; flex-wrap: wrap; }
+.manos .lamina { width: 160px; height: 200px; }
+.manos .lamina img { width: 141px; height: 192px; }
+
+.galeria-px { columns: 3 260px; column-gap: 14px; margin-top: 16px; }
+.galeria-px figure { break-inside: avoid; margin: 0 0 14px; }
+.galeria-px .lamina { padding: 10px; }
+.galeria-px img { max-width: 100%; height: auto; cursor: zoom-in; }
+.galeria-px figcaption { font-size: 13px; color: var(--texto-tenue); margin-top: 5px; }
+
+@media (max-width: 820px) {
+  .cabeza-seccion h1 { font-size: 32px; }
+  .dos-col { grid-template-columns: 1fr; }
+  .reparto { grid-template-columns: repeat(2, 1fr); }
+  .revisiones { grid-template-columns: repeat(2, 1fr); }
+  .assets { grid-template-columns: 1fr; } .assets .ancho2 { grid-column: auto; }
+}
+
+/* sin mouse (celular): las animaciones se ven siempre */
+@media (hover: none) { .personaje .lamina .anim { opacity: 1; } .personaje .lamina .quieto { opacity: 0; } .pista-hover { display: none; } }
+#visor img { image-rendering: auto; }
