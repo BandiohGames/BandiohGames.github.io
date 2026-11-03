@@ -92,23 +92,31 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 .habilidades b { display: inline-block; min-width: 120px; color: var(--texto-claro); }
 .habilidades span { color: var(--texto-tenue); }
 
-/* Contacto: cada correo es un sobre de REZAGO (papel con grano, borde de correo aéreo, estampilla, dirección a mano);
+/* Contacto: cada correo es un sobre de REZAGO (papel con grano, aéreo, blanco o manila, con la dirección a mano);
    las redes, tarjetas iguales con su logo en blanco */
 .contacto-intro { color: var(--texto-tenue); margin: -6px 0 16px; }
 .contacto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: start; }
 .correos { display: grid; gap: 14px; }
-.sobre-correo { position: relative; display: block; min-height: 92px; padding: 20px 96px 18px 22px; text-decoration: none; color: #1f3a6e;
-  background-color: #dacbb3; background-image: url(img/grano_papel.png); border-radius: 3px;
-  box-shadow: 0 8px 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(110,85,45,.25); transform: rotate(-.5deg); transition: transform .18s, box-shadow .18s; }
+.sobre-correo { position: relative; display: block; padding: 20px 22px 18px; text-decoration: none; color: #1f3a6e; border-radius: 3px;
+  background-image: url(img/grano_papel.png); box-shadow: 0 8px 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(110,85,45,.22);
+  transform: rotate(-.5deg); transition: transform .18s, box-shadow .18s; }
 .sobre-correo:nth-child(2) { transform: rotate(.4deg); } .sobre-correo:nth-child(3) { transform: rotate(-.2deg); }
-/* el borde de correo aéreo, arriba y abajo, como en el juego */
-.sobre-correo::before, .sobre-correo::after { content: ""; position: absolute; left: 0; right: 0; height: 6px;
-  background: repeating-linear-gradient(-45deg, #c0453a 0 9px, #dacbb3 9px 13px, #4a6fa8 13px 22px, #dacbb3 22px 26px); }
-.sobre-correo::before { top: 0; } .sobre-correo::after { bottom: 0; }
-.sobre-correo:hover { transform: rotate(0) translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.5), inset 0 0 0 1px rgba(110,85,45,.25); }
+.sobre-correo:hover { transform: rotate(0) translateY(-3px); box-shadow: 0 12px 24px rgba(0,0,0,.5), inset 0 0 0 1px rgba(110,85,45,.22); }
 .sobre-correo small { display: block; font: 700 11px "Courier Prime", monospace; letter-spacing: .1em; text-transform: uppercase; color: #6b5a42; }
 .sobre-correo b { display: block; font: 400 23px/1.15 "Patrick Hand", cursive; margin-top: 4px; overflow-wrap: anywhere; }
-.sobre-correo .estampilla { position: absolute; right: 12px; top: 11px; width: 66px; height: auto; transform: rotate(3deg); }
+/* 1) correo aéreo: papel crema y la franja roja y azul arriba y abajo, como el sobre del juego */
+.sobre-correo.aereo { background-color: #dacbb3; }
+.sobre-correo.aereo::before, .sobre-correo.aereo::after { content: ""; position: absolute; left: 0; right: 0; height: 6px;
+  background: repeating-linear-gradient(-45deg, #c0453a 0 9px, #dacbb3 9px 13px, #4a6fa8 13px 22px, #dacbb3 22px 26px); }
+.sobre-correo.aereo::before { top: 0; } .sobre-correo.aereo::after { bottom: 0; }
+/* 2) sobre blanco: papel claro, con las solapas de atrás que apenas se transparentan */
+.sobre-correo.blanco { background-color: #efebe2;
+  background-image: url(img/grano_papel.png), linear-gradient(to top right, transparent 49.7%, rgba(90,80,60,.11) 50%, transparent 50.3%),
+    linear-gradient(to top left, transparent 49.7%, rgba(90,80,60,.11) 50%, transparent 50.3%); }
+/* 3) sobre manila: amarillento, un poco más oscuro hacia los bordes */
+.sobre-correo.manila { background-color: #d9bd7c; color: #26355a;
+  box-shadow: 0 8px 18px rgba(0,0,0,.45), inset 0 0 0 1px rgba(110,80,30,.3), inset 0 0 22px rgba(120,85,25,.3); }
+.sobre-correo.manila small { color: #5e4a22; }
 .redes { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
 .red { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; border: 1px solid var(--madera-3); border-radius: var(--radio);
   background: var(--madera-2); color: #fff; text-decoration: none; transition: border-color .15s, transform .15s, background .15s; }
@@ -120,7 +128,7 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 @media (max-width: 820px) {
   .contacto { grid-template-columns: 1fr; }
   .redes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sobre-correo { padding-right: 76px; } .sobre-correo b { font-size: 19px; } .sobre-correo .estampilla { width: 52px; }
+  .sobre-correo b { font-size: 19px; }
 }
 footer { border-top: 1px solid var(--madera-3); padding: 24px 0 40px; color: var(--texto-tenue); font-size: 14px; }
 

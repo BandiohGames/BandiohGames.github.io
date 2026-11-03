@@ -94,8 +94,11 @@ def contacto(correo, activa):
     lista = [c for c in CORREOS if c[0] == correo] if correo else CORREOS
     if correo:
         lista = [(lista[0][0], '<span lang="es">Escríbeme a</span><span lang="en">Email me at</span>')]
-    correos = ''.join('      <a class="sobre-correo" href="mailto:%s"><small>%s</small><b>%s</b><img class="estampilla" src="img/estampilla.webp" alt="" width="199" height="196"></a>\n'
-                      % (c, et, c) for c, et in lista)
+    # tres sobres distintos: el de correo aéreo, uno blanco y uno amarillento (manila)
+    # (cada correo tiene siempre el mismo sobre: juegos el aéreo de REZAGO, trabajo el blanco, pixel art el manila)
+    tipos = {'bandioh.games@gmail.com': 'aereo', 'esteban.flores.dio@gmail.com': 'blanco', 'bandioh.pixelart@gmail.com': 'manila'}
+    correos = ''.join('      <a class="sobre-correo %s" href="mailto:%s"><small>%s</small><b>%s</b></a>\n'
+                      % (tipos[c], c, et, c) for c, et in lista)
     return ('<section id="contacto">\n'
             '  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>\n'
             '  <p class="contacto-intro" lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
