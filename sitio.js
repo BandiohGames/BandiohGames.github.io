@@ -59,7 +59,7 @@
     // Cada sección es su propia galería. Se descarga recién al primer clic; si no carga, queda el visor simple.
     // El pixel art se agranda a escala entera (pixelado nítido) y el clip del ascensor se abre en grande.
     // =====================================================================================================
-    var CAPTURAS = ".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img, .evolucion .lamina img, .assets .lamina img";
+    var CAPTURAS = ".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img, .evolucion .lamina img, .assets .lamina img, .manos img";
     var visor = document.getElementById("visor"), PS = null, PSV = "5.4.4";
     var cargarPS = function () {
       if (PS) return PS;
@@ -289,11 +289,21 @@
         pista.style.opacity = (1 - tramo(p, 0.01, 0.05)).toFixed(3);
         // al terminar, la copia le pasa el lugar a la hoja de verdad (que ya está exactamente ahí)
         var lista = p >= 0.995;
+        if (saltar) saltar.classList.toggle("fuera", p > 0.85);
         hoja.classList.toggle("lista", lista);
         pliego.style.visibility = lista ? "hidden" : "visible";
       };
 
       var objetivo = 0, mostrado = 0, ultimo = 0, corriendo = false, fijo = -1;
+      // saltar la animación: baja de una al final de la escena (la carta ya abierta, en su lugar)
+      var saltar = escena.querySelector(".saltar");
+      if (saltar) {
+        saltar.hidden = false;
+        saltar.addEventListener("click", function () {
+          var fin = escena.getBoundingClientRect().top + scrollY + escena.offsetHeight - innerHeight;
+          window.scrollTo({ top: fin, behavior: "auto" });
+        });
+      }
       var leer = function () {
         var r = escena.getBoundingClientRect();
         var total = escena.offsetHeight - innerHeight;

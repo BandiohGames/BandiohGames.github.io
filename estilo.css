@@ -186,3 +186,13 @@ h1, h3 { overflow-wrap: anywhere; }
 
 /* bordes suaves en lo inclinado */
 .sobre-correo, .portada .foto, .estampa { outline: 1px solid transparent; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+
+/* fragmentos de código con su explicación */
+.codigo { margin: 18px 0 8px; }
+.codigo-barra { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; padding: 9px 14px; background: #241a13; border: 1px solid var(--madera-3); border-bottom: 0; border-radius: var(--radio) var(--radio) 0 0; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); }
+.codigo-barra b { color: var(--laton); font-weight: 700; }
+.codigo pre { margin: 0; padding: 14px 16px; overflow-x: auto; background: #15100c; border: 1px solid var(--madera-3); border-radius: 0 0 var(--radio) var(--radio);
+  font: 13.5px/1.55 "Courier Prime", ui-monospace, monospace; color: #e8dcc6; tab-size: 4; }
+.codigo code { font: inherit; white-space: pre; }
+.codigo .c { color: #8f8a7a; font-style: italic; } .codigo .s { color: #b5cf8a; } .codigo .k { color: #e0a96d; } .codigo .n { color: #8fc4d9; }
+.codigo figcaption { margin-top: 10px; color: var(--texto-tenue); font-size: 15px; line-height: 1.55; max-width: 78ch; }

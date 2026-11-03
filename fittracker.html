@@ -10,9 +10,9 @@
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=2dea7343">
-<link rel="stylesheet" href="secciones.css?v=ed3deba9">
-<script src="sitio.js?v=8ec93e86"></script>
+<link rel="stylesheet" href="estilo.css?v=dfe95382">
+<link rel="stylesheet" href="secciones.css?v=332fed9e">
+<script src="sitio.js?v=8c8d79ac"></script>
 </head>
 <body>
 
@@ -78,6 +78,39 @@
   <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Decidir cuándo subir peso o repeticiones a ojo hace que te estanques o que te lesiones.</span><span lang="en">Deciding by feel when to add weight or reps leads to plateaus or injuries.</span></div>
   <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Cada ejercicio tiene un tipo (con peso, peso corporal o isométrico) y un rango objetivo. Cuando llegas al techo dos sesiones seguidas, o lo pasas por 4 o más, la app propone subir: la mancuerna siguiente o un rango más alto. Propone y espera tu confirmación, y los récords se guardan siempre.</span><span lang="en">Each exercise has a type (weighted, bodyweight or isometric) and a target range. When you hit the top of the range two sessions in a row, or beat it by 4 or more, the app suggests a step up: the next dumbbell or a higher range. It suggests and waits for your confirmation, and records are always saved.</span></div>
 </div>
+<figure class="codigo">
+  <div class="codigo-barra"><b>Código.gs</b><span lang="es">Apps Script · cuándo subir la carga</span><span lang="en">Apps Script · when to raise the load</span></div>
+  <pre><code><span class="c">// ¿Cumplió o superó el techo del rango?</span>
+<span class="k">const</span> cumpleTecho = valorComparable &gt;= repMax;
+
+<span class="k">if</span> (cumpleTecho) {
+  sesionesCumpliendo++;
+  <span class="k">const</span> margen = valorComparable - repMax;
+  <span class="k">const</span> margenGrande = margen &gt;= <span class="n">4</span>;
+
+  <span class="k">if</span> (sesionesCumpliendo &gt;= <span class="n">2</span> || margenGrande) {
+    <span class="c">// Calcula la sugerencia de subida, pero NO la escribe — espera confirmación del usuario</span>
+    <span class="k">const</span> nuevoEscalon = Number(r[<span class="n">3</span>]||<span class="n">0</span>) + (margenGrande ? <span class="n">2</span> : <span class="n">1</span>);
+    <span class="k">let</span> nuevoRepMin = repMin, nuevoRepMax = repMax, nuevoPeso = pesoActual;
+
+    <span class="k">if</span> (tipo === <span class="s">'peso'</span>) {
+      <span class="k">const</span> PESOS = [<span class="n">5</span>, <span class="n">10</span>, <span class="n">15</span>];
+      <span class="k">const</span> idxPeso = PESOS.indexOf(pesoActual);
+      <span class="k">if</span> (idxPeso &gt; -<span class="n">1</span> &amp;&amp; idxPeso &lt; PESOS.length - <span class="n">1</span>) {
+        nuevoPeso = PESOS[idxPeso + <span class="n">1</span>];
+      } <span class="k">else</span> {
+        nuevoRepMin = repMin + <span class="n">2</span>; nuevoRepMax = repMax + (margenGrande ? <span class="n">4</span> : <span class="n">2</span>);
+      }
+    } <span class="k">else</span> {
+      nuevoRepMin = repMin + (margenGrande ? <span class="n">4</span> : <span class="n">2</span>);
+      nuevoRepMax = repMax + (margenGrande ? <span class="n">6</span> : <span class="n">3</span>);
+    }
+    evento = margenGrande ? <span class="s">'subio_mucho'</span> : <span class="s">'subio_poco'</span>;
+  }
+}</code></pre>
+  <figcaption lang="es">El corazón del coach, tal como está en el servidor. Con dos sesiones llegando al techo del rango (o una muy por encima) propone subir: si hay una mancuerna más pesada en casa (5, 10 o 15 kg) sube el peso, y si no, las repeticiones. Nunca lo aplica solo: la subida queda pendiente hasta que la persona la confirma.</figcaption>
+  <figcaption lang="en">The heart of the coach, as it is on the server. After two sessions hitting the top of the range (or one well above it) it suggests a step up: a heavier home dumbbell if there is one (5, 10 or 15 kg), otherwise more reps. It never applies it on its own: the step up waits until the user confirms it.</figcaption>
+</figure>
 <div class="antes-despues">
   <div class="titulo-cambio"><span lang="es">4. Que den ganas de volver</span><span lang="en">4. Making you want to come back</span></div>
   <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Una app de registro aburrida se deja de usar a las pocas semanas.</span><span lang="en">A dull logging app gets abandoned within a few weeks.</span></div>

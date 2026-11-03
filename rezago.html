@@ -10,8 +10,8 @@
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=2dea7343">
-<script src="sitio.js?v=8ec93e86"></script>
+<link rel="stylesheet" href="estilo.css?v=dfe95382">
+<script src="sitio.js?v=8c8d79ac"></script>
 </head>
 <body>
 
@@ -66,6 +66,25 @@
   <li><b>Art made with code.</b> Objects are painted by my own Python scripts (relief, lighting and texture) over free textures, for a warm look without an artist.</li>
   <li><b>Automated release.</b> A script exports and packages the Windows and Mac builds, and butler uploads them to itch.io.</li>
 </ul>
+<h3 class="subtitulo"><span lang="es">Un fragmento del código</span><span lang="en">A piece of the code</span></h3>
+<figure class="codigo">
+  <div class="codigo-barra"><b>lente.gd</b><span lang="es">Godot · la lupa que aumenta de verdad</span><span lang="en">Godot · a magnifier that really magnifies</span></div>
+  <pre><code><span class="c">## El SubViewport mira la mesa en `m`, aumentada `zoom()` veces, a la resolución de la ventana: nítido.</span>
+<span class="k">func</span> _enfocar(m: <span class="k">Vector2</span>) -&gt; void:
+    <span class="k">var</span> s := _escala_ventana()
+    <span class="k">var</span> n := <span class="k">int</span>(ceil(RADIO * <span class="n">2.0</span> * s * AMPLIO))
+    <span class="k">if</span> _sub.size != <span class="k">Vector2i</span>(n, n):
+        _sub.size = <span class="k">Vector2i</span>(n, n)
+    <span class="k">var</span> z := lerpf(<span class="n">1.0</span>, zoom(), _acerca)
+    <span class="k">var</span> k := z * s
+    _sub.oversampling_override = k   <span class="c"># la letra se rasteriza al tamaño al que se ve (si no, se ve borrosa)</span>
+    _sub.canvas_transform = <span class="k">Transform2D</span>(<span class="n">0.0</span>, <span class="k">Vector2</span>(k, k), <span class="n">0.0</span>, <span class="k">Vector2</span>(n, n) / <span class="n">2.0</span> - m * k)
+    _mat.set_shader_parameter(<span class="s">"mundo"</span>, m)
+    _mat.set_shader_parameter(<span class="s">"abarca"</span>, RADIO * <span class="n">2.0</span> / z)
+    _mat.set_shader_parameter(<span class="s">"enfoque"</span>, _acerca)</code></pre>
+  <figcaption lang="es">La lupa no estira la pantalla: un <i>SubViewport</i> vuelve a dibujar la mesa ya aumentada y a la resolución real de la ventana, y le pide a la tipografía que se rasterice a ese tamaño. Por eso la letra chica se lee nítida bajo el cristal. La lupa de este portafolio usa la misma idea.</figcaption>
+  <figcaption lang="en">The magnifier doesn't stretch the screen: a <i>SubViewport</i> redraws the desk already magnified, at the window's real resolution, and asks the font to rasterize at that size. That's why small print stays sharp under the glass. This portfolio's magnifier uses the same idea.</figcaption>
+</figure>
 <div class="galeria">
   <img src="img/rezago_uv.webp" alt="" loading="lazy"><img src="img/rezago_mapa.webp" alt="" loading="lazy"><img src="img/rezago_sellos.webp" alt="" loading="lazy">
 </div>

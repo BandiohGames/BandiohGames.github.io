@@ -62,18 +62,18 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .personaje .tam { font: 12px "Courier Prime", monospace; color: var(--laton); }
 .pista-hover { font-size: 13px; color: var(--texto-tenue); margin: -6px 0 14px; }
 
-.evolucion { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
-.evolucion figure { margin: 0; }
-.evolucion figcaption { text-align: center; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; }
-.evolucion .lamina { aspect-ratio: 1; }
-.evolucion .lamina img { max-width: 100%; height: auto; cursor: zoom-in; }
-
+/* evolución: láminas chicas a escala entera (sprites de 30 px x7 = 210 px); el padre y la hija ocupan el ancho de las tres */
+.evolucion { display: grid; grid-template-columns: repeat(3, 238px); gap: 14px; margin: 16px auto 0; width: max-content; }
+.evolucion figure, .assets figure { margin: 0; display: flex; flex-direction: column; }
+.evolucion figcaption, .assets figcaption { text-align: center; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; }
+.evolucion .lamina { padding: 14px; }
+.evolucion .lamina img { width: 210px; height: auto; cursor: zoom-in; }
+.evolucion .fila-entera .lamina img { width: 600px; }
+.fila-entera { grid-column: 1 / -1; }
+/* assets del mundo: tres láminas de la misma altura y los caballos a lo ancho */
 .assets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 16px; }
-.assets figure { margin: 0; }
-.assets .lamina { min-height: 200px; }
+.assets .lamina { flex: 1; min-height: 200px; }
 .assets .lamina img { max-width: 100%; height: auto; cursor: zoom-in; }
-.assets figcaption { font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; text-align: center; }
-.assets .ancho2 { grid-column: span 2; }
 
 .revisiones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
 .revisiones figure { margin: 0; }
@@ -88,9 +88,14 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .revisiones figcaption b { display: block; font-family: "Courier Prime", monospace; margin-top: 8px; }
 .revisiones figcaption span { font-size: 13px; color: var(--texto-tenue); }
 
-.manos { display: flex; gap: 14px; flex-wrap: wrap; }
-.manos .lamina { padding: 14px; }
-.manos .lamina img { max-width: none; height: auto; }
+/* otros proyectos de juego: dos columnas con las filas alineadas (subgrid) y seis láminas iguales de 128 px */
+.otros-juegos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, auto); column-gap: 36px; }
+.otros-juegos > div { display: grid; grid-template-rows: subgrid; grid-row: span 4; min-width: 0; }
+.otros-juegos h3 { font-size: 20px; }
+.otros-juegos .nota { margin-top: 8px; }
+.manos { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 12px; }
+.manos .lamina { width: 156px; height: 156px; padding: 14px; }
+.manos .lamina img { max-width: none; height: auto; cursor: zoom-in; }
 
 .galeria-px { columns: 3 260px; column-gap: 14px; margin-top: 16px; }
 .galeria-px figure { break-inside: avoid; margin: 0 0 14px; }
@@ -107,7 +112,8 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
   .dos-col { grid-template-columns: 1fr; }
   .reparto { grid-template-columns: repeat(2, 1fr); }
   .revisiones { grid-template-columns: repeat(2, 1fr); }
-  .assets { grid-template-columns: 1fr; } .assets .ancho2 { grid-column: auto; }
+  .assets { grid-template-columns: 1fr; }
+  .otros-juegos { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 28px; } .otros-juegos > div { grid-row: auto; grid-template-rows: none; }
 }
 
 /* sin mouse (celular): las animaciones se ven siempre */
@@ -158,3 +164,12 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .pagina-pixel h1, .pagina-pixel h2, .pagina-pixel h3, .pagina-pixel .personaje h3, .pagina-pixel .mono { font-family: "Pixelify Sans", "Courier Prime", monospace !important; letter-spacing: .01em; }
 .pagina-pixel .cabeza-seccion h1 { font-weight: 700; }
 .pagina-pixel .franja-datos b { font-family: "Pixelify Sans", monospace; }
+
+/* en pantallas angostas las láminas de la evolución se encogen (ya no a escala entera, pero sin desbordar) */
+@media (max-width: 800px) {
+  .evolucion { grid-template-columns: repeat(3, minmax(0, 1fr)); width: auto; }
+  .evolucion .lamina { padding: 8px; }
+  .evolucion .lamina img, .evolucion .fila-entera .lamina img { width: 100%; }
+  .manos .lamina { width: calc((100% - 28px) / 3); height: auto; aspect-ratio: 1; padding: 10px; }
+  .manos .lamina img { max-width: 100%; }
+}
