@@ -41,7 +41,7 @@
     // Visor de capturas
     var visor = document.getElementById("visor");
     if (visor) {
-      document.querySelectorAll(".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img").forEach(function (img) {
+      document.querySelectorAll(".galeria img, .figura img, .telefono img, .navegador img, .galeria-px img, .mundo img").forEach(function (img) {
         img.addEventListener("click", function () {
           if (html.classList.contains("lupa")) return;
           visor.querySelector("img").src = img.src; visor.classList.add("abierto");
@@ -70,7 +70,7 @@
         var im = new Image(); im.src = nombre(q);
         // solo se descargan: cada cuadro se decodifica al dibujarlo (decodificar los 127 de una ocupa ~400 MB y el navegador
         // termina botándolos y rehaciéndolos en pleno scroll, que es lo que da tirones)
-        var listo = function () { cuadros[q] = im; if (q <= quiero && q > dibujado) { dibujar(quiero); avisar(); } };   // (llegó uno que faltaba: se vuelve a dibujar)
+        var listo = function () { cuadros[q] = im; if (dibujar && q <= quiero && q > dibujado) { dibujar(quiero); avisar(); } };   // (si ya estaba en caché llega antes de que exista dibujar: se dibuja al arrancar)   // (llegó uno que faltaba: se vuelve a dibujar)
         if (im.complete && im.naturalWidth) listo(); else im.addEventListener("load", listo);
       })(q);
       // el lienzo a la densidad real de la pantalla (si no, el navegador lo estira y los bordes quedan de sierra)

@@ -92,6 +92,7 @@ h2.titulo::after { content: ""; flex: 1; height: 1px; background: var(--madera-3
 .habilidades b { display: inline-block; min-width: 120px; color: var(--texto-claro); }
 .habilidades span { color: var(--texto-tenue); }
 
+.boton.red small { font-weight: 400; opacity: .75; margin-left: 4px; }
 .contacto { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 footer { border-top: 1px solid var(--madera-3); padding: 24px 0 40px; color: var(--texto-tenue); font-size: 14px; }
 

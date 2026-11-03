@@ -51,15 +51,28 @@ SOBRE = '''<section id="sobre">
   </div>
 </section>'''
 
-REDES = ('    <a class="boton" href="https://linkedin.com/in/esteban-flores-pizarro">LinkedIn</a>\n'
-         '    <a class="boton" href="https://bandioh.itch.io">itch.io</a>\n'
-         '    <a class="boton" href="https://github.com/BandiohGames">GitHub</a>\n'
-         '    <a class="boton" href="https://www.youtube.com/@Bandiohgames">YouTube</a>\n'
-         '    <a class="boton" href="https://www.tiktok.com/@bandioh.games">TikTok</a>\n'
-         '    <a class="boton" href="https://www.instagram.com/bandioh.games">Instagram</a>\n')
+# cada red con su usuario; cada sección muestra solo las que le corresponden
+RED = {
+    'linkedin': ('https://linkedin.com/in/esteban-flores-pizarro', 'LinkedIn', 'esteban-flores-pizarro'),
+    'github': ('https://github.com/BandiohGames', 'GitHub', 'BandiohGames'),
+    'itch': ('https://bandioh.itch.io', 'itch.io', 'bandioh'),
+    'youtube': ('https://www.youtube.com/@Bandiohgames', 'YouTube', '@Bandiohgames'),
+    'tiktok': ('https://www.tiktok.com/@bandioh.games', 'TikTok', '@bandioh.games'),
+    'instagram': ('https://www.instagram.com/bandioh.games', 'Instagram', '@bandioh.games'),
+}
+REDES_DE = {
+    'inicio': ['linkedin', 'github', 'itch', 'youtube', 'tiktok', 'instagram'],
+    'juegos': ['itch', 'youtube', 'tiktok', 'instagram', 'linkedin'],
+    'web': ['linkedin', 'github'],
+    'pixel': ['linkedin'],
+}
 
 
-def contacto(correo):
+def redes(activa):
+    return ''.join('    <a class="boton red" href="%s">%s <small>%s</small></a>\n' % RED[k] for k in REDES_DE[activa])
+
+
+def contacto(correo, activa):
     if correo:   # en cada sección, el correo de esa área
         correos = '    <a class="boton lleno" href="mailto:%s">%s</a>\n' % (correo, correo)
     else:        # en el inicio, los tres
@@ -70,7 +83,7 @@ def contacto(correo):
             '  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>\n'
             '  <p lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>\n'
             '  <p lang="en">Have a project or a role in mind? Get in touch.</p>\n'
-            '  <div class="contacto">\n' + correos + REDES + '  </div>\n</section>')
+            '  <div class="contacto">\n' + correos + redes(activa) + '  </div>\n</section>')
 
 
 PIE = '<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>'
@@ -88,7 +101,7 @@ for pagina, (activa, correo) in PAGINAS.items():
     html = io.open(ruta, encoding='utf-8').read()
     html = poner(html, 'cabecera', cabecera(activa))
     html = poner(html, 'sobre', SOBRE)
-    html = poner(html, 'contacto', contacto(correo))
+    html = poner(html, 'contacto', contacto(correo, activa))
     html = poner(html, 'pie', PIE)
     io.open(ruta, 'w', encoding='utf-8', newline='\n').write(html)
     print('ok', pagina)

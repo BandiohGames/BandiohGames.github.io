@@ -4,7 +4,8 @@ html, body { overflow-x: clip; }
 .correo { position: relative; margin-bottom: 110px; }
 .escena-sobre { height: 560vh; position: relative; }
 /* el sobre aparece pegado a lo de arriba (no centrado en una pantalla vacía): la escena sube lo que sobra */
-.escena-sobre { margin-top: min(0px, calc((min(700px, 92vw) * 0.9248 - 100vh) / 2 + 14px)); }
+/* (el cuadro deja vacío su 27 % de arriba para la carta que sale: también se descuenta) */
+.escena-sobre { margin-top: min(0px, calc((min(700px, 92vw) * 0.9248 - 100vh) / 2 - min(700px, 92vw) * 0.9248 * 0.25 + 10px)); }
 .escena-fija { pointer-events: none; }
 /* a todo el ancho de la ventana (no de la columna): así el sobre sale de verdad por el borde de la pantalla */
 .escena-fija { position: sticky; top: 0; height: 100vh; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden; perspective: 12000px; }

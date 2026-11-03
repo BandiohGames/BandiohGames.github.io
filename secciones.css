@@ -51,8 +51,9 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .reparto { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .personaje figure { margin: 0; }
 .personaje .lamina { aspect-ratio: 1; position: relative; }
-.personaje .lamina img { max-width: 100%; height: auto; }
-.personaje .lamina .anim { position: absolute; inset: 14px; margin: auto; opacity: 0; transition: opacity .15s; }
+/* la quieta y la animada ocupan exactamente la misma caja: al pasar el mouse no salta nada */
+.personaje .lamina img { width: 100%; height: 100%; max-width: none; object-fit: contain; }
+.personaje .lamina .anim { position: absolute; left: 14px; top: 14px; width: calc(100% - 28px); height: calc(100% - 28px); opacity: 0; transition: opacity .15s; }
 .personaje:hover .lamina .anim, .personaje:focus-within .lamina .anim { opacity: 1; }
 .personaje:hover .lamina .quieto { opacity: 0; }
 .personaje h3 { font-family: "Courier Prime", monospace; font-size: 18px; margin-top: 8px; }
@@ -145,3 +146,13 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
   .areas { grid-template-columns: 1fr; }
   .cv-fila { grid-template-columns: 1fr auto; } .cv-fila > span { display: none; }
 }
+
+/* la lámina completa del mundo */
+.mundo { margin: 16px 0 0; }
+.mundo .lamina { padding: 10px; }
+.mundo img { width: 100%; height: auto; cursor: zoom-in; }
+.mundo figcaption { font-size: 13px; color: var(--texto-tenue); margin-top: 6px; }
+/* pixel art: títulos con tipografía pixelada (el texto corrido sigue en la de siempre, para leer cómodo) */
+.pagina-pixel h1, .pagina-pixel h2, .pagina-pixel h3, .pagina-pixel .personaje h3, .pagina-pixel .mono { font-family: "Pixelify Sans", "Courier Prime", monospace !important; letter-spacing: .01em; }
+.pagina-pixel .cabeza-seccion h1 { font-weight: 700; }
+.pagina-pixel .franja-datos b { font-family: "Pixelify Sans", monospace; }
