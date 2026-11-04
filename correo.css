@@ -128,30 +128,90 @@ html.lupa, html.lupa * { cursor: none !important; }
 html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
 @media (hover: none), (pointer: coarse) { .boton-lupa, .lupa-mano { display: none !important; } }
 
-/* ===================== EL ASCENSOR DE FLOOR, SIR? ===================== */
-.ascensor { --oro: #b68d48; background: linear-gradient(#2b1f17, #1d140e); border-radius: 6px; padding: 14px 18px 18px;
-  box-shadow: inset 0 0 0 2px #4a3520, 0 8px 20px rgba(0,0,0,.35); align-self: start; }
-.indicador { width: 62%; margin: 0 auto 10px; background: radial-gradient(ellipse at 50% 100%, #3a2a1a, #20160f); border: 3px solid var(--oro);
-  border-bottom-width: 5px; border-radius: 200px 200px 8px 8px; padding: 8px 10px 2px; box-shadow: 0 0 14px rgba(233,207,142,.12) inset; }
-.indicador svg { display: block; width: 100%; }
-.aguja { transform-origin: 100px 96px; transform: rotate(-80deg); transition: transform 2.6s cubic-bezier(.45,.05,.3,1); }
-.ascensor.llega .aguja { transform: rotate(53deg); }   /* el piso 5 */
-.vano { position: relative; aspect-ratio: 16/10; overflow: hidden; border: 6px solid var(--oro); border-radius: 3px; background: #0f0b08; box-shadow: inset 0 0 0 2px #5e4520; }
-.cabina-interior { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: #e9cf8e; font-family: "Courier Prime", monospace;
-  background: radial-gradient(ellipse at 50% 30%, #6e4a26 0%, #2c1c10 70%); }
+/* ===================== EL ASCENSOR DE FLOOR, SIR? =====================
+   Fachada art déco (el hotel es de 1928): dintel escalonado con rayos y el dial de pisos, pilares acanalados de bronce,
+   puertas grabadas que se abren y detrás la reja plegable que se recoge (la misma que se abre a mano en el juego).
+   La secuencia la dispara sitio.js con .llega: aguja (0–2,6 s, cada número se enciende al pasar) → farol (2,7) →
+   puertas (2,9) → reja (4,0) → clip. */
+.ascensor { --oro: #c9a35a; --oro-2: #8c6a35; position: relative; align-self: center; padding: 10px 0 0;
+  background: linear-gradient(180deg, #2e1f15, #1c120c); border-radius: 8px 8px 4px 4px;
+  box-shadow: inset 0 0 0 1px #4a3520, 0 14px 28px rgba(0,0,0,.4); overflow: hidden; }
+/* el dintel: un arco de medio punto con filete de bronce (los escalones, a este tamaño, se leían como píxeles) */
+.asc-dintel { position: relative; margin: 0 7%; padding: 16px 10% 26px; border-radius: 50% 50% 0 0 / 34% 34% 0 0;
+  background: linear-gradient(180deg, #3a2716, #241810);
+  box-shadow: inset 0 0 0 2px var(--oro-2), inset 0 0 0 5px #2a1c12, inset 0 0 0 6px rgba(201,163,90,.35); }
+.asc-dial { display: block; width: 100%; overflow: visible; }
+.asc-nums text { fill: #5e4626; }
+.ascensor.llega .asc-nums .n0, .ascensor.llega .asc-nums .n1, .ascensor.llega .asc-nums .n2,
+.ascensor.llega .asc-nums .n3, .ascensor.llega .asc-nums .n4 { animation: asc-pasa .7s ease-out both; }
+.ascensor.llega .asc-nums .n0 { animation-delay: .05s; } .ascensor.llega .asc-nums .n1 { animation-delay: .7s; }
+.ascensor.llega .asc-nums .n2 { animation-delay: 1.05s; } .ascensor.llega .asc-nums .n3 { animation-delay: 1.35s; }
+.ascensor.llega .asc-nums .n4 { animation-delay: 1.65s; }
+.ascensor.llega .asc-nums .n5 { animation: asc-queda .4s ease-out 2.05s both; }
+@keyframes asc-pasa { 0% { fill: #5e4626; } 25% { fill: #ffe39a; filter: drop-shadow(0 0 3px rgba(255,214,120,.9)); } 100% { fill: #6e5532; filter: none; } }
+@keyframes asc-queda { to { fill: #ffe39a; filter: drop-shadow(0 0 4px rgba(255,214,120,.95)); } }
+html.quieto .ascensor.llega .asc-nums .n5 { fill: #ffe39a; }
+.aguja { transform-origin: 100px 100px; transform: rotate(-70deg); transition: transform 2.6s cubic-bezier(.45,.05,.3,1); }
+.ascensor.llega .aguja { transform: rotate(44deg); }   /* el piso 5 */
+/* el farol de llegada: la flecha de bajada se enciende con el timbre */
+.asc-farol { position: absolute; left: 50%; bottom: 5px; width: 22px; height: 13px; margin-left: -11px; }
+.asc-farol svg { display: block; width: 100%; height: 100%; fill: #4a3520; stroke: var(--oro-2); stroke-width: 1; transition: fill .25s 2.7s, filter .25s 2.7s; }
+.ascensor.llega .asc-farol svg { fill: #ffcf55; filter: drop-shadow(0 0 5px #ffb830); }
+.asc-muro { display: grid; grid-template-columns: 7% 1fr 7%; }
+.asc-pilar { position: relative; background: repeating-linear-gradient(90deg, #5a4020 0 2px, #c9a35a 2px 4px, #8c6a35 4px 6px);
+  box-shadow: inset 0 0 0 1px #3a2716, inset 0 10px 10px -6px rgba(0,0,0,.6); }
+.asc-botonera { position: absolute; left: 50%; top: 44%; transform: translateX(-50%); width: min(120%, 26px); padding: 5px 0; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  background: linear-gradient(#e0c07a, #8c6a35); border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,.5); }
+.asc-botonera i { width: 8px; height: 8px; border-radius: 50%; background: #3a2716; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); }
+/* alguien llamó: el botón queda encendido mientras el ascensor viene y se apaga al llegar */
+.ascensor.llega .asc-botonera i.baja { animation: asc-llamada 2.75s step-end both; }
+@keyframes asc-llamada { 0% { background: #ffcf55; box-shadow: 0 0 6px #ffb830; } 100% { background: #3a2716; box-shadow: inset 0 1px 1px rgba(0,0,0,.6); } }
+.vano { position: relative; aspect-ratio: 16/10.4; overflow: hidden; background: #0f0b08;
+  box-shadow: inset 0 0 0 3px var(--oro), inset 0 0 0 5px #3a2716; }
+.cabina-interior { position: absolute; inset: 5px; background: #050302; overflow: hidden; }
 .cabina-interior img, .cabina-interior video { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* puertas de reja plegable de 1928: bronce con rombos */
-.puerta { position: absolute; top: 0; bottom: 0; width: 50.5%; transition: transform 1.4s cubic-bezier(.6,0,.25,1) 3s;
-  background: repeating-linear-gradient(60deg, transparent 0 13px, rgba(30,18,8,.55) 13px 15px),
-    repeating-linear-gradient(-60deg, transparent 0 13px, rgba(30,18,8,.55) 13px 15px),
-    linear-gradient(90deg, #8c6a35, #d6b36c 45%, #9b773c); }
-.puerta.izq { left: 0; box-shadow: inset -3px 0 4px rgba(0,0,0,.4); }
-.puerta.der { right: 0; box-shadow: inset 3px 0 4px rgba(0,0,0,.4); }
-.ascensor.llega .puerta.izq { transform: translateX(-100%); }
-.ascensor.llega .puerta.der { transform: translateX(100%); }
-.timbre { width: 12px; height: 12px; margin: 10px auto 0; border-radius: 50%; background: #4a3520; box-shadow: inset 0 0 0 2px var(--oro);
-  transition: background .2s 2.7s, box-shadow .2s 2.7s; }
-.ascensor.llega .timbre { background: #ffd977; box-shadow: inset 0 0 0 2px var(--oro), 0 0 12px #ffcf55; }
+/* al abrir, la cabina está a oscuras; se enciende su luz y recién ahí aparece el clip. Si el video estuviera visible
+   desde el principio se confundía con la reja de la fachada: el clip también parte con una reja moviéndose. */
+.cabina-interior video { opacity: 0; transition: opacity .8s ease-out 5.5s; }
+.ascensor.llega .cabina-interior video { opacity: 1; }
+/* la luz de la cabina se derrama al abrir y se asienta en una viñeta cálida */
+.asc-luz { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,214,140,.5), rgba(255,180,90,0) 65%); opacity: 0; }
+.cabina-interior::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 36px rgba(0,0,0,.6); }
+.ascensor.llega .asc-luz { animation: asc-enciende 2.4s ease-out 4.8s both; }
+@keyframes asc-enciende { 0% { opacity: 0; } 12% { opacity: .55; } 18% { opacity: .2; } 30% { opacity: .9; } 100% { opacity: .1; } }   /* parpadea al prenderse */
+html.quieto .ascensor .cabina-interior video { opacity: 1; }
+/* la reja plegable: rombos de latón que se comprimen al recogerse hacia la izquierda */
+.asc-reja { position: absolute; inset: 5px; transform-origin: 0 50%; transition: transform 1.05s cubic-bezier(.55,0,.3,1) 4s;
+  background:
+    linear-gradient(90deg, #e0c07a 0 3px, transparent 3px) 0 0 / 34px 100%,
+    repeating-linear-gradient(58deg, transparent 0 15px, #b8924c 15px 17px),
+    repeating-linear-gradient(-58deg, transparent 0 15px, #b8924c 15px 17px);
+  box-shadow: inset 0 3px 0 #e0c07a, inset 0 -3px 0 #e0c07a; }
+.ascensor.llega .asc-reja { transform: scaleX(.07); }
+/* puertas de bronce grabadas: marco interior, medio sol que se completa con las dos cerradas y rombos abajo */
+.puerta { position: absolute; top: 5px; bottom: 5px; width: calc(50% - 5px); overflow: hidden; transition: transform 1.25s cubic-bezier(.6,0,.2,1) 2.9s;
+  background:
+    linear-gradient(90deg, transparent 8%, rgba(60,36,14,.6) 8% 9%, transparent 9% 91%, rgba(60,36,14,.6) 91% 92%, transparent 92%),
+    linear-gradient(180deg, transparent 6%, rgba(60,36,14,.6) 6% 7%, transparent 7% 93%, rgba(60,36,14,.6) 93% 94%, transparent 94%),
+    linear-gradient(180deg, #a7813f, #e0c07a 35%, #b48c47 70%, #8c6a35); }
+.puerta::before { content: ""; position: absolute; top: 14%; width: 76%; aspect-ratio: 1; border-radius: 50%; opacity: .5;
+  background: repeating-conic-gradient(from 0deg, #6b4a1e 0 6deg, transparent 6deg 15deg);
+  -webkit-mask: radial-gradient(circle, transparent 17%, #000 18% 62%, transparent 63%); mask: radial-gradient(circle, transparent 17%, #000 18% 62%, transparent 63%); }
+.puerta::after { content: ""; position: absolute; left: 9%; right: 9%; bottom: 10%; height: 20%; opacity: .4;
+  background: repeating-linear-gradient(135deg, transparent 0 8px, #6b4a1e 8px 10px), repeating-linear-gradient(45deg, transparent 0 8px, #6b4a1e 8px 10px); }
+.puerta.izq { left: 5px; box-shadow: inset -2px 0 3px rgba(0,0,0,.45); }
+.puerta.izq::before { right: -38%; }
+.puerta.der { right: 5px; box-shadow: inset 2px 0 3px rgba(0,0,0,.45); }
+.puerta.der::before { left: -38%; }
+.ascensor.llega .puerta.izq { transform: translateX(-104%); }
+.ascensor.llega .puerta.der { transform: translateX(104%); }
+.asc-umbral { height: 8px; margin: 0 7%; background: linear-gradient(180deg, #d8d2c4, #8f877a); box-shadow: 0 2px 0 #3a2716; }
+/* el zócalo: el mismo nogal del dintel, con la placa del piso, para que arriba y abajo pesen parecido */
+.asc-zocalo { position: relative; margin: 0 7%; height: 54px; display: grid; place-items: center;
+  background: linear-gradient(180deg, #241810, #3a2716); box-shadow: inset 0 0 0 2px var(--oro-2), inset 0 0 0 5px #2a1c12, inset 0 0 0 6px rgba(201,163,90,.35); }
+.asc-zocalo span { font: 700 12px/1 "Courier Prime", monospace; letter-spacing: .3em; padding: 6px 10px 6px 13px; border-radius: 3px; color: #2a1c12;
+  background: linear-gradient(180deg, #e0c07a, #9b773c); box-shadow: 0 1px 2px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.35); }
 
 @media (max-width: 820px) {
   .hoja-int { padding: 30px 20px 26px; }
@@ -164,7 +224,7 @@ html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
   .escena-sobre { display: none; }
   html.js .escena-sobre + .hoja { margin-top: 0; visibility: visible; }
   .pista-scroll { display: none; }
-  .ascensor * { transition: none !important; }
+  .ascensor * { transition: none !important; animation: none !important; }
 }
 
 /* el ascensor se puede abrir en grande */
@@ -198,7 +258,7 @@ html.lupa .boton-lupa, html.lupa .boton-lupa * { cursor: pointer !important; }
 html.quieto .escena-sobre { display: none; }
 html.quieto.js .escena-sobre + .hoja { margin-top: 0; visibility: visible; }
 html.quieto .pista-scroll { display: none; }
-html.quieto .ascensor * { transition: none !important; }
+html.quieto .ascensor * { transition: none !important; animation: none !important; }
 
 /* En Vivo en la página de juegos: el clip dentro de un televisor de tubo de fines de los 90 (negro, cuadrado,
    controles abajo), dibujado con CSS. El efecto CRT lo pinta un shader WebGL (sitio.js, «LA TELE»): curva del

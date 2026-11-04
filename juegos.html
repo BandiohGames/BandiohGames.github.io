@@ -13,9 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css?v=ac8ac763">
-<link rel="stylesheet" href="correo.css?v=c99a05c7">
+<link rel="stylesheet" href="correo.css?v=43b8dea4">
 <link rel="stylesheet" href="secciones.css?v=463fedae">
-<script src="sitio.js?v=e9568301"></script>
+<script src="sitio.js?v=9980a077"></script>
 </head>
 <body class="area-juegos">
 
@@ -174,23 +174,31 @@
         <div class="etiquetas"><span>Godot 4.6</span><span>3D</span><span lang="es">Pruebas automatizadas</span><span lang="en">Automated testing</span><span lang="es">Narrativa ramificada</span><span lang="en">Branching narrative</span></div>
         <div class="botones"><a class="boton" href="floor.html"><span lang="es">Cómo lo voy haciendo</span><span lang="en">How I'm making it</span></a></div>
       </div>
-      <!-- El ascensor: la aguja recorre los pisos, suena el timbre y se abren las puertas.
-           Detrás de las puertas, un clip del prototipo (img/floor_cabina.mp4): parte cuando las puertas se abren. -->
+      <!-- El ascensor: una fachada art déco de 1928. La aguja recorre los pisos (cada número se enciende al pasar), el farol
+           avisa la llegada, se abren las puertas de bronce y la reja plegable se recoge, como la que se abre a mano en el juego.
+           Detrás, el clip del prototipo (img/floor_cabina.mp4), que parte cuando se recoge la reja. -->
       <div class="ascensor" id="ascensor-floor" aria-hidden="true" data-anim>
-        <div class="indicador">
-          <svg viewBox="0 0 200 104">
-            <path d="M18 96 A82 82 0 0 1 182 96" fill="none" stroke="#7a5a2a" stroke-width="3"/>
-            <g font-family="Courier Prime, monospace" font-size="13" font-weight="700" fill="#e9cf8e" text-anchor="middle">
-              <text x="30" y="88">L</text><text x="46" y="52">1</text><text x="74" y="30">2</text><text x="100" y="22">3</text><text x="126" y="30">4</text><text x="154" y="52">5</text><text x="170" y="88">6</text>
-            </g>
-            <g class="aguja"><path d="M100 96 L100 34" stroke="#e9cf8e" stroke-width="3.2" stroke-linecap="round"/><circle cx="100" cy="96" r="7" fill="#b68d48"/></g>
+        <div class="asc-dintel">
+          <svg viewBox="0 0 200 108" class="asc-dial">
+            <g class="asc-rayos" stroke="#4e3920" stroke-width="2.4"><line x1="84.5" y1="95.9" x2="51.7" y2="87.1"/><line x1="86.1" y1="92.0" x2="56.7" y2="75.0"/><line x1="88.7" y1="88.7" x2="64.6" y2="64.6"/><line x1="92.0" y1="86.1" x2="75.0" y2="56.7"/><line x1="95.9" y1="84.5" x2="87.1" y2="51.7"/><line x1="100.0" y1="84.0" x2="100.0" y2="50.0"/><line x1="104.1" y1="84.5" x2="112.9" y2="51.7"/><line x1="108.0" y1="86.1" x2="125.0" y2="56.7"/><line x1="111.3" y1="88.7" x2="135.4" y2="64.6"/><line x1="113.9" y1="92.0" x2="143.3" y2="75.0"/><line x1="115.5" y1="95.9" x2="148.3" y2="87.1"/></g>
+            <path d="M8 104 A92 92 0 0 1 192 104" fill="none" stroke="#c9a35a" stroke-width="2.5"/>
+            <path d="M22 104 A78 78 0 0 1 178 104" fill="none" stroke="#5a4020" stroke-width="1.5"/>
+            <g class="asc-nums" font-family="Courier Prime, monospace" font-size="13" font-weight="700" text-anchor="middle"><text class="n0" x="32.4" y="74.9">L</text><text class="n1" x="48.6" y="51.8">1</text><text class="n2" x="72.3" y="36.4">2</text><text class="n3" x="100.0" y="31.0">3</text><text class="n4" x="127.7" y="36.4">4</text><text class="n5" x="151.4" y="51.8">5</text><text class="n6" x="167.6" y="74.9">6</text></g>
+            <g class="aguja"><path d="M100 100 L100 40" stroke="#f0d68e" stroke-width="3" stroke-linecap="round"/><path d="M100 100 L100 112" stroke="#8c6a35" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="#c9a35a" stroke="#6b4f26" stroke-width="1.5"/></g>
           </svg>
+          <span class="asc-farol"><svg viewBox="0 0 20 12"><path d="M2 2 L18 2 L10 11 Z"/></svg></span>
         </div>
-        <div class="vano">
-          <div class="cabina-interior"><video src="img/floor_cabina.mp4" poster="img/floor_cabina.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-          <div class="puerta izq"></div><div class="puerta der"></div>
+        <div class="asc-muro">
+          <span class="asc-pilar"></span>
+          <div class="vano">
+            <div class="cabina-interior"><video src="img/floor_cabina.mp4" poster="img/floor_cabina.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="asc-luz"></span></div>
+            <div class="asc-reja"></div>
+            <div class="puerta izq"></div><div class="puerta der"></div>
+          </div>
+          <span class="asc-pilar"><span class="asc-botonera"><i></i><i class="baja"></i></span></span>
         </div>
-        <div class="timbre"></div>
+        <div class="asc-umbral"></div>
+        <div class="asc-zocalo"><span>PISO 5</span></div>
       </div>
     </div>
   </article>

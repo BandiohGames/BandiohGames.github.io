@@ -619,8 +619,8 @@
     var ascensor = document.getElementById("ascensor-floor");
     if (ascensor) {
       var clip = ascensor.querySelector("video");
-      // el clip parte justo cuando las puertas empiezan a abrirse (3 s después de que llega la aguja)
-      var llegar = function () { ascensor.classList.add("llega"); avisar(); if (clip) setTimeout(function () { var r = clip.play(); if (r && r.catch) r.catch(function () {}); }, quieto ? 0 : 2900); };
+      // el clip parte cuando aparece (puertas 2,9 s, reja 4 s, luz de la cabina 4,8 s y el video a los 5,5 s)
+      var llegar = function () { ascensor.classList.add("llega"); avisar(); if (clip) setTimeout(function () { var r = clip.play(); if (r && r.catch) r.catch(function () {}); }, quieto ? 0 : 5400); };
       if (quieto || !("IntersectionObserver" in window)) llegar();
       else {
         var obs = new IntersectionObserver(function (ent) { if (ent[0].isIntersecting) { obs.disconnect(); llegar(); } }, { threshold: 0.6 });
