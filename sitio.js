@@ -298,6 +298,7 @@
         c.removeAttribute("id"); c.removeAttribute("data-anim"); c.classList.remove("lista");
         c.querySelectorAll("[id]").forEach(function (e) { e.removeAttribute("id"); });
         c.querySelectorAll("[data-lupa]").forEach(function (e) { e.removeAttribute("data-lupa"); });
+        c.querySelectorAll("img").forEach(function (im) { im.loading = "eager"; });
         return c;
       };
       var div = function (clase, css) { var d = document.createElement("div"); d.className = clase; if (css) d.style.cssText = css; return d; };
@@ -316,7 +317,7 @@
         pliego.style.width = P.w + "px"; pliego.style.height = (3 * P.h) + "px";
         var alto = "height:" + P.h + "px;";
         // el del medio, fijo
-        var medio = div("panel", "top:" + P.h + "px;" + alto);
+        var medio = div("panel", "top:" + P.h + "px;" + alto); P.pMedio = medio;
         var cMedio = cara(1); P.sMedio = div("sombra"); cMedio.appendChild(P.sMedio);
         // la sombra que echa cada tercio sobre el del medio mientras está levantado
         P.proyA = div("proy arriba"); P.proyB = div("proy abajo"); cMedio.appendChild(P.proyA); cMedio.appendChild(P.proyB);
@@ -327,7 +328,7 @@
         // el tinte: el papel se oscurece al quedar de canto a la luz (como `_cara` de plegada.gd)
         P.tAbajoC = div("tinte"); cAbajo.appendChild(P.tAbajoC);
         var rAbajo = div("reves"); P.tAbajoR = div("tinte"); rAbajo.appendChild(P.tAbajoR);
-        var pAbajo = div("panel", "top:0;" + alto); pAbajo.appendChild(cAbajo); pAbajo.appendChild(rAbajo);
+        var pAbajo = div("panel", "top:0;" + alto); pAbajo.appendChild(cAbajo); pAbajo.appendChild(rAbajo); P.pAbajo = pAbajo;
         P.bAbajo.appendChild(pAbajo);
         // el de arriba: gira por su borde de abajo; su revés es lo que se ve por fuera
         P.bArriba = div("bisagra arriba", "top:0;" + alto);
@@ -338,7 +339,7 @@
         P.boca = div("boca"); revesFuera.appendChild(P.boca);
         P.tArribaR = div("tinte"); revesFuera.appendChild(P.tArribaR);
         var cArriba = cara(0); P.tArribaC = div("tinte"); cArriba.appendChild(P.tArribaC);
-        var pArriba = div("panel", "top:0;" + alto); pArriba.appendChild(cArriba); pArriba.appendChild(revesFuera);
+        var pArriba = div("panel", "top:0;" + alto); pArriba.appendChild(cArriba); pArriba.appendChild(revesFuera); P.pArriba = pArriba;
         P.bArriba.appendChild(pArriba);
         pliego.appendChild(medio); pliego.appendChild(P.bAbajo); pliego.appendChild(P.bArriba);
         // el resto de la hoja (lo que queda bajo el pliego): ya desdoblada, se despliega hacia abajo mientras se baja,
@@ -435,6 +436,8 @@
         P.proyB.style.opacity = (abreAbajo > 0 && abreAbajo < 1 ? 0.9 * sinB : 0).toFixed(3);
         P.sMedio.style.opacity = (0.8 * (1 - abreAbajo)).toFixed(3);
         P.sAbajo.style.opacity = (0.6 * (1 - abreAbajo)).toFixed(3);
+        var aplana = suave(tramo(p, 0.86, 0.985)), sombraPanel = "3px 5px 12px rgba(0,0,0," + (0.26 * (1 - aplana)).toFixed(3) + ")";
+        P.pMedio.style.boxShadow = sombraPanel; P.pAbajo.style.boxShadow = sombraPanel; P.pArriba.style.boxShadow = sombraPanel;
         if (P.resto) {
           var despliega = abreAbajo >= 1 ? suave(tramo(p, 0.875, 0.985)) : 0;
           P.resto.style.visibility = despliega > 0 ? "visible" : "hidden";
@@ -475,6 +478,7 @@
         var dt = Math.min(0.05, (t - ultimo) / 1000 || 0.016); ultimo = t;
         leer();
         mostrado += (objetivo - mostrado) * (1 - Math.exp(-dt * 9));   // inercia: se acerca suave al scroll
+        if (objetivo >= 1) mostrado = 1;   // (si ya se pasó la escena, no se queda la copia a medio camino mientras la hoja sigue)
         if (Math.abs(objetivo - mostrado) < 0.0003 || window.__p != null) mostrado = objetivo;
         if (mostrado !== fijo) { pintar(mostrado); fijo = mostrado; avisar(); }
         if (mostrado !== objetivo) requestAnimationFrame(paso); else corriendo = false;
