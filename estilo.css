@@ -342,3 +342,4 @@ body.area-inicio { --madera: #171513; --madera-2: #211e1b; --madera-3: #322e2a; 
 .resumen-caso dt { margin: 0; font-weight: 700; color: var(--sello); font-size: 14.5px; }
 .resumen-caso dd { margin: 0; font-size: 16px; line-height: 1.5; }
 @media (max-width: 640px) { .resumen-caso > div { grid-template-columns: 1fr; gap: 1px; } .resumen-caso { padding: 12px 14px; } }
+.resumen-area { margin: 18px 0 20px; }
