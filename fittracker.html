@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css?v=ac8ac763">
-<link rel="stylesheet" href="secciones.css?v=fff32de3">
+<link rel="stylesheet" href="secciones.css?v=c4fefa0a">
 <script src="sitio.js?v=a114f627"></script>
 </head>
 <body class="area-web">
@@ -43,7 +43,7 @@
   <div><dt><span lang="es">Estado</span><span lang="en">Status</span></dt><dd><span lang="es">Publicada, de uso personal diario</span><span lang="en">Live, in daily personal use</span></dd></div>
   <div><dt><span lang="es">Antes</span><span lang="en">Before</span></dt><dd>Google Apps Script y Google Sheets</dd></div>
   <div><dt><span lang="es">Ahora</span><span lang="en">Now</span></dt><dd>React, TypeScript, Node, PostgreSQL (Neon), Render</dd></div>
-  <div><dt><span lang="es">Pruebas</span><span lang="en">Tests</span></dt><dd><span lang="es">29 automatizadas</span><span lang="en">29 automated</span></dd></div>
+  <div><dt><span lang="es">Pruebas</span><span lang="en">Tests</span></dt><dd><span lang="es">30 automatizadas</span><span lang="en">30 automated</span></dd></div>
   <div><dt><span lang="es">Probar</span><span lang="en">Try it</span></dt><dd><a href="https://fittracker-9y5d.onrender.com">fittracker-9y5d.onrender.com</a></dd></div>
 </dl>
 <div class="franja-datos" style="margin-bottom:26px">
@@ -131,7 +131,7 @@
 <p lang="en">Apps Script let me start for free, but it tied me to Google and to a stack few employers look for. So I moved the whole app to a standard stack without losing anything: my real data, the original design and every feature. The new version is the one I use today.</p>
 
 <div class="franja-datos" style="margin:18px 0 22px">
-  <div><b>29</b><span lang="es">pruebas automáticas (API y coach)</span><span lang="en">automated tests (API and coach)</span></div>
+  <div><b>30</b><span lang="es">pruebas automáticas (API y coach)</span><span lang="en">automated tests (API and coach)</span></div>
   <div><b>244</b><span lang="es">series migradas de la planilla</span><span lang="en">sets migrated from the spreadsheet</span></div>
   <div><b>0,18 s</b><span lang="es">guardar una serie (antes 0,84 s)</span><span lang="en">saving a set (was 0.84 s)</span></div>
   <div><b>0 $</b><span lang="es">Render + Neon, planes gratis</span><span lang="en">Render + Neon, free plans</span></div>
@@ -179,8 +179,8 @@
 <p class="nota" lang="en">With made-up data, no account needed. It runs on a free plan: opening this page already started waking it up, so it usually opens within a few seconds.</p>
 
 <h2><span lang="es">El rediseño: más rápida, cómoda y con identidad propia</span><span lang="en">The redesign: faster, easier to use and with its own identity</span></h2>
-<p lang="es">Migrada, la app funcionaba, pero seguía pareciéndose a cualquier app hecha con IA: negro con neón cian y violeta, una columna de 560 px en el computador y una primera carga de 46 segundos. La rehíce en cuatro pasos, probando cada uno en el celular y en el computador antes de pasar al siguiente.</p>
-<p lang="en">Once migrated, the app worked, but it still looked like any AI-made app: black with cyan and violet neon, a 560 px column on desktop and a 46-second first load. I redid it in four steps, testing each one on phone and desktop before moving on.</p>
+<p lang="es">Migrada, la app funcionaba, pero seguía pareciéndose a cualquier app hecha con IA: negro con neón cian y violeta, una columna de 560 px en el computador y una primera carga de 46 segundos. La rehíce en cinco pasos, probando cada uno en el celular y en el computador antes de pasar al siguiente.</p>
+<p lang="en">Once migrated, the app worked, but it still looked like any AI-made app: black with cyan and violet neon, a 560 px column on desktop and a 46-second first load. I redid it in five steps, testing each one on phone and desktop before moving on.</p>
 <div class="franja-datos" style="margin:18px 0 22px">
   <div><b>864 → 14 KB</b><span lang="es">fuente de íconos (solo los 76 que se usan)</span><span lang="en">icon font (only the 76 in use)</span></div>
   <div><b>346 → 123 KB</b><span lang="es">de CSS</span><span lang="en">of CSS</span></div>
@@ -223,6 +223,18 @@
   <figcaption lang="es"><b>Tema claro «Concreto»:</b> gris cemento y naranja de seguridad, para usarla de día.</figcaption>
   <figcaption lang="en"><b>«Concrete» light theme:</b> cement grey and safety orange, for daytime use.</figcaption>
 </figure>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">5. Una biblioteca de ejercicios y cambiar los de la rutina</span><span lang="en">5. An exercise library and swapping routine exercises</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">La rutina venía fija: si un ejercicio no te acomodaba o no tenías el equipo, no había cómo cambiarlo sin tocar la base de datos.</span><span lang="en">The routine was fixed: if an exercise didn't suit you or you lacked the equipment, there was no way to change it without touching the database.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Una biblioteca de 1.324 ejercicios con búsqueda, filtros por músculo y equipo, mapa muscular y pasos en español, armada con los datos de un dataset abierto (licencia MIT; sin sus imágenes, que no son libres). Traduje los nombres con un glosario propio. Desde Plan, cualquier ejercicio se cambia por uno equivalente: el servidor conserva series y descanso, ajusta el peso al equipo, le da al nuevo su propio progreso del coach y recuerda el original para volver. El historial no se toca.</span><span lang="en">A library of 1,324 exercises with search, muscle and equipment filters, a muscle map and steps in Spanish, built from an open dataset (MIT license; without its images, which aren't free). I translated the names with my own glossary. From the Plan, any exercise can be swapped for an equivalent: the server keeps sets and rest, adjusts the weight to the equipment, gives the new one its own coach progress and remembers the original so you can go back. The history is untouched.</span></div>
+</div>
+<div class="telefonos telefonos-4">
+  <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_biblioteca.webp" alt="Biblioteca de ejercicios filtrada por espalda" data-alt-en="Exercise library filtered by back" loading="lazy"></div><figcaption lang="es">Biblioteca</figcaption><figcaption lang="en">Library</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_ficha.webp" alt="Ficha de un ejercicio con mapa muscular y pasos" data-alt-en="Exercise sheet with muscle map and steps" loading="lazy"></div><figcaption lang="es">Ficha con pasos</figcaption><figcaption lang="en">Exercise sheet</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_cambiar.webp" alt="Elegir con qué cambiar un ejercicio de la rutina" data-alt-en="Choosing what to swap a routine exercise for" loading="lazy"></div><figcaption lang="es">Cambiar un ejercicio</figcaption><figcaption lang="en">Swap an exercise</figcaption></figure>
+  <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_cambiar_confirmar.webp" alt="Confirmación del cambio" data-alt-en="Swap confirmation" loading="lazy"></div><figcaption lang="es">Confirmar el cambio</figcaption><figcaption lang="en">Confirm the swap</figcaption></figure>
+</div>
 
 <h2><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
 <ul lang="es">
