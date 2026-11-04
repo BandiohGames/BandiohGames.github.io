@@ -162,9 +162,10 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .mundo img { width: 100%; height: auto; cursor: zoom-in; }
 .mundo figcaption { font-size: 13px; color: var(--texto-tenue); margin-top: 6px; }
 /* pixel art: títulos con tipografía pixelada (el texto corrido sigue en la de siempre, para leer cómodo) */
-.pagina-pixel h1, .pagina-pixel h2, .pagina-pixel h3, .pagina-pixel .personaje h3, .pagina-pixel .mono { font-family: "Pixelify Sans", "Courier Prime", monospace !important; letter-spacing: .01em; }
+.pagina-pixel h1, .pagina-pixel h2, .pagina-pixel h3, .pagina-pixel .personaje h3, .pagina-pixel .mono { font-family: "Pixelify Sans", "Courier Prime", monospace !important; font-weight: 500 !important; letter-spacing: .04em; }
+/* (en 700 las letras se pegan: «Twitch» se leía «Twito»; en 500 con aire se lee y sigue siendo pixel) */
 .pagina-pixel .cabeza-seccion h1 { font-weight: 700; }
-.pagina-pixel .franja-datos b { font-family: "Pixelify Sans", monospace; }
+.pagina-pixel .franja-datos b { font-family: "Pixelify Sans", monospace; font-weight: 500; letter-spacing: .04em; }
 
 /* en pantallas angostas las láminas de la evolución se encogen (ya no a escala entera, pero sin desbordar) */
 @media (max-width: 800px) {

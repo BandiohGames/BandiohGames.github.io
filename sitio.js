@@ -307,7 +307,11 @@
         d.appendChild(c); return d;
       };
       var armarPliego = function () {
-        P.w = hoja.offsetWidth; P.h = hoja.offsetHeight / 3;
+        // Mientras se abre, el pliego usa solo la parte de arriba de la hoja, con proporción de carta (la hoja real es larguísima
+        // y desdoblada se veía como una tira). Siempre llega más abajo del borde de la pantalla, así que al pasarle el lugar
+        // a la hoja de verdad no se nota que el resto aparece.
+        P.w = hoja.offsetWidth;
+        P.h = Math.min(hoja.offsetHeight, Math.max(P.w * 1.35, innerHeight - 40)) / 3;
         pliego.innerHTML = "";
         pliego.style.width = P.w + "px"; pliego.style.height = (3 * P.h) + "px";
         var alto = "height:" + P.h + "px;";
