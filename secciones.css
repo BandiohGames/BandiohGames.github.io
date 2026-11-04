@@ -290,3 +290,9 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 }
 @media (prefers-reduced-motion: reduce) { .obj { transition: none; } }
 .areas-cortas b span { font-size: inherit; color: inherit; }
+
+/* FitTracker: antes y después del rediseño, en pares */
+/* dos pares (antes, después) con un respiro entre los pares; en el celular, un par por fila */
+.antes-despues-capturas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 18px minmax(0, 1fr) minmax(0, 1fr); column-gap: 16px; row-gap: 18px; margin: 6px 0 22px; }
+.antes-despues-capturas .telefono:nth-child(3) { grid-column: 4; }
+@media (max-width: 820px) { .antes-despues-capturas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .antes-despues-capturas .telefono:nth-child(3) { grid-column: auto; } }
