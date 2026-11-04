@@ -233,6 +233,97 @@
     }
 
     // =====================================================================================================
+    // LA TELE DE EN VIVO. Un shader WebGL pinta el video como en un tubo: vidrio curvo, brillo del fósforo que se
+    // corre, aberración de color hacia los bordes, líneas de barrido, máscara RGB, viñeta, ruido y la franja que
+    // sube. Clic en la tele: el clip en grande y limpio. Sin WebGL queda el video con el rayado de CSS.
+    // =====================================================================================================
+    var tele = document.querySelector("figure.tele"), teleV = tele && tele.querySelector("video"), teleC = tele && tele.querySelector(".tele-crt");
+    if (tele && teleV) {
+      var aparato = tele.querySelector(".tele-aparato");
+      aparato.setAttribute("role", "button"); aparato.setAttribute("tabindex", "0");
+      aparato.setAttribute("aria-label", en() ? "Watch the En Vivo clip full size" : "Ver en grande el clip de En Vivo");
+      var verTele = function () {
+        if (html.classList.contains("lupa")) return;
+        abrirVisor([{ html: '<div class="pswp-video"><video src="' + teleV.getAttribute("src") + '" poster="' + teleV.getAttribute("poster") + '" autoplay muted loop playsinline controls></video></div>' }], 0, "pswp-clip");
+      };
+      aparato.addEventListener("click", verTele);
+      aparato.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); verTele(); } });
+    }
+    var gl = null;
+    try { gl = teleC && teleC.getContext("webgl", { alpha: false, antialias: false, premultipliedAlpha: false }); } catch (e) { gl = null; }
+    if (gl) (function () {
+      var VS = "attribute vec2 p; varying vec2 v; void main(){ v = vec2(p.x*.5+.5, .5-p.y*.5); gl_Position = vec4(p,0.,1.); }";
+      var FS = [
+        "precision mediump float;",
+        "uniform sampler2D t; uniform vec2 res; uniform vec2 esc; uniform float tiempo; uniform float lineas;",
+        "varying vec2 v;",
+        "vec3 tx(vec2 uv){ return texture2D(t, (uv-.5)*esc+.5).rgb; }",
+        "float azar(vec2 c){ return fract(sin(dot(c, vec2(12.9898,78.233)))*43758.5453); }",
+        "void main(){",
+        "  vec2 uv = v*2.-1.; uv += uv*(uv.yx*uv.yx)*vec2(.075,.10); uv = uv*.5+.5;",   // la curva del vidrio
+        "  float borde = smoothstep(0.,.012,uv.x)*smoothstep(0.,.012,uv.y)*smoothstep(0.,.012,1.-uv.x)*smoothstep(0.,.012,1.-uv.y);",
+        "  if (borde <= 0.) { gl_FragColor = vec4(0.,0.,0.,1.); return; }",
+        "  vec2 c = uv-.5; float ab = .0018 + .0055*dot(c,c)*4.;",   // aberración: más hacia los bordes
+        "  vec3 col = vec3(tx(uv+vec2(ab,0.)).r, tx(uv).g, tx(uv-vec2(ab,0.)).b);",
+        "  vec2 px = 1.6/res; vec3 bri = vec3(0.);",   // el fósforo se corre: brillo de lo claro
+        "  bri += tx(uv+vec2(px.x*3.,0.)); bri += tx(uv-vec2(px.x*3.,0.)); bri += tx(uv+vec2(0.,px.y*3.)); bri += tx(uv-vec2(0.,px.y*3.));",
+        "  bri += tx(uv+px*5.); bri += tx(uv-px*5.); bri += tx(uv+vec2(px.x,-px.y)*5.); bri += tx(uv+vec2(-px.x,px.y)*5.);",
+        "  bri /= 8.; col = col*1.12 + max(bri-.12, 0.)*.75;",
+        "  col = pow(col, vec3(.82))*1.12;",   // los tubos se veían más vivos que la captura del juego
+        "  float l = dot(col, vec3(.3,.59,.11));",
+        "  float s = .5+.5*cos(uv.y*lineas*6.28318);",   // barrido: la línea se ensancha cuando hay más luz
+        "  col *= 1. - .42*(1.-s)*(1.-.55*l);",
+        "  float m = mod(gl_FragCoord.x, 3.);",   // máscara de apertura RGB
+        "  vec3 mk = m < 1. ? vec3(1.,.8,.8) : (m < 2. ? vec3(.8,1.,.8) : vec3(.8,.8,1.)); col *= mk*1.12;",
+        "  float vg = 16.*uv.x*uv.y*(1.-uv.x)*(1.-uv.y); col *= pow(vg, .28);",
+        "  float fr = fract(tiempo*.09); col *= 1. + .07*exp(-pow((uv.y-fr)*9., 2.));",   // la franja que sube
+        "  col += (azar(floor(uv*res*.5)+tiempo) - .5)*.045;",
+        "  col *= 1. + .012*sin(tiempo*55.);",
+        "  gl_FragColor = vec4(col*borde, 1.);",
+        "}"].join("\n");
+      var sh = function (tipo, src) { var s = gl.createShader(tipo); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+      var vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+      if (!vs || !fs) return;
+      var pr = gl.createProgram(); gl.attachShader(pr, vs); gl.attachShader(pr, fs); gl.linkProgram(pr);
+      if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+      gl.useProgram(pr);
+      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      var ap = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 0, 0);
+      var tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+      [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(function (k) { gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE); });
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      var U = {}; ["res", "esc", "tiempo", "lineas"].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
+      var visible = false, corriendo = false, t0 = performance.now(), listo = false;
+      var medir = function () {
+        var r = teleC.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+        var w = Math.max(1, Math.round(r.width * d)), h = Math.max(1, Math.round(r.height * d));
+        if (teleC.width !== w || teleC.height !== h) { teleC.width = w; teleC.height = h; gl.viewport(0, 0, w, h); }
+        var ac = w / h, av = (teleV.videoWidth || 16) / (teleV.videoHeight || 9);
+        gl.uniform2f(U.res, w, h);
+        gl.uniform2f(U.esc, av > ac ? ac / av : 1, av > ac ? 1 : av / ac);   // como object-fit: cover
+        gl.uniform1f(U.lineas, Math.max(110, Math.min(260, r.height / 2.4)));
+      };
+      var pintar = function () {
+        if (teleV.readyState < 2) return false;
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, teleV);
+        gl.uniform1f(U.tiempo, quieto ? 0 : (performance.now() - t0) / 1000);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        if (!listo) { listo = true; tele.classList.add("con-gl"); }
+        return true;
+      };
+      var bucle = function () {
+        if (!visible) { corriendo = false; return; }
+        pintar(); requestAnimationFrame(bucle);
+      };
+      var arrancar = function () { if (!corriendo && visible) { corriendo = true; medir(); requestAnimationFrame(bucle); } };
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; arrancar(); }, { rootMargin: "120px" }).observe(teleC);
+      teleV.addEventListener("loadedmetadata", medir);
+      window.addEventListener("resize", medir, { passive: true });
+      teleC.addEventListener("webglcontextlost", function (e) { e.preventDefault(); visible = false; tele.classList.remove("con-gl"); });
+    })();
+
+    // =====================================================================================================
     // EL SOBRE DE REZAGO. Todo sigue a la barra de desplazamiento (y vuelve atrás al subir), con inercia suave.
     // 127 cuadros dibujados por SobreVisual del juego (img/sobre/000..126): 0 frente · 1-48 se da vuelta ·
     // 49-96 el abrecartas corta el borde · 97-102 la tira salta · 103-126 la carta asoma por la boca.

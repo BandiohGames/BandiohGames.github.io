@@ -257,13 +257,21 @@ body.area-pixel { --madera: #1b1a29; --madera-2: #252438; --madera-3: #37365a; -
    Solo se animan posición, escala y opacidad (lo barato de dibujar), para que vayan fluidas. */
 @view-transition { navigation: auto; }
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
-header { view-transition-name: cabecera; }
-::view-transition-group(cabecera) { animation-duration: .25s; }
+/* LA CABECERA, EN DOS CAPAS. Antes era una sola foto que se fundía con la de la página siguiente: durante el fundido
+   se veían a la vez los dos «activos» (Juegos y Web subrayados), los dos colores de texto y, a medias, la barra del
+   área anterior. Ahora el fondo se funde de un color al otro y el contenido (logo, enlaces, botones) cambia de una
+   vez: está en el mismo lugar en todas las páginas, así que solo salta el enlace activo, como en cualquier menú. */
+header { view-transition-name: cabecera-fondo; }
+header .ancho { view-transition-name: cabecera; }
+::view-transition-group(cabecera-fondo) { animation-duration: .32s; animation-timing-function: ease; }
+::view-transition-old(cabecera-fondo), ::view-transition-new(cabecera-fondo) { animation-duration: .32s; }
+::view-transition-group(cabecera) { animation: none; }
+::view-transition-old(cabecera) { animation: none; opacity: 0; }
+::view-transition-new(cabecera) { animation: none; }
 /* La transición es solo un fundido (barato: una foto del tamaño de la pantalla). El contenido nuevo
    llega oculto y aparece en cascada (más abajo), con el carácter de cada área. */
 ::view-transition-old(root) { animation: vt-fuera .16s ease-in both; }
 ::view-transition-new(root) { animation: vt-dentro .26s .14s ease-out both; }
-::view-transition-group(cabecera) { animation-duration: .3s; }
 @keyframes vt-fuera { to { opacity: 0; } }
 @keyframes vt-dentro { from { opacity: 0; } }
 
