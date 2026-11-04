@@ -200,12 +200,64 @@ html.quieto.js .escena-sobre + .hoja { margin-top: 0; visibility: visible; }
 html.quieto .pista-scroll { display: none; }
 html.quieto .ascensor * { transition: none !important; }
 
-/* En Vivo en la página de juegos: el clip dentro de un televisor */
+/* En Vivo en la página de juegos: el clip dentro de un televisor de tubo de los 90, dibujado con CSS
+   (mueble enchapado, pantalla abombada, perillas y parlante). Solo aquí lleva filtro CRT: en
+   «Cómo lo hice» los clips van limpios para que se vean los detalles. */
 .tele { margin: 0; align-self: center; }
-.tele-pantalla { position: relative; background: #1b1a1c; padding: 14px; border-radius: 18px;
-  box-shadow: inset 0 0 0 2px #2d2b2e, inset 0 -6px 0 #121113, 0 12px 24px rgba(0,0,0,.35); }
-.tele-pantalla video { display: block; width: 100%; height: auto; border-radius: 10px / 14px; box-shadow: inset 0 0 30px rgba(0,0,0,.6); }
-.al-aire { position: absolute; top: 22px; right: 24px; display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 3px;
-  background: #b5342b; color: #fff; font: 700 11px "Source Sans 3", sans-serif; letter-spacing: .06em; }
+.tele-aparato { position: relative; padding-top: 50px; }
+/* antena de conejo */
+.tele-antena { position: absolute; left: 50%; top: 39px; width: 30px; height: 12px; margin-left: -15px; border-radius: 15px 15px 3px 3px;
+  background: linear-gradient(#3a3633, #1d1b19); z-index: 1; }
+.tele-antena::before, .tele-antena::after { content: ""; position: absolute; bottom: 6px; left: 50%; width: 3px; margin-left: -1.5px; height: 44px; border-radius: 2px;
+  background: linear-gradient(90deg, #8a857e, #3b3834 60%, #24211e); transform-origin: 50% 100%; }
+.tele-antena::before { transform: rotate(-34deg); }
+.tele-antena::after { transform: rotate(27deg); height: 38px; }
+.tele-caja { position: relative; display: grid; grid-template-columns: 1fr 17%; gap: 4%; padding: 4.5%; border-radius: 18px;
+  background:
+    repeating-linear-gradient(92deg, rgba(0,0,0,.07) 0 2px, transparent 2px 9px, rgba(255,255,255,.035) 9px 11px, transparent 11px 19px),
+    linear-gradient(180deg, #7a5233, #5b3a22 60%, #4a2f1b);
+  box-shadow: inset 0 2px 0 rgba(255,230,200,.18), inset 0 -4px 0 rgba(0,0,0,.35), 0 16px 26px rgba(0,0,0,.45); }
+.tele-bisel { position: relative; padding: 5.5%; border-radius: 14px; background: linear-gradient(160deg, #2a2725, #141210);
+  box-shadow: inset 0 0 0 1px #3a3532, inset 0 3px 8px rgba(0,0,0,.7); }
+.tele-pantalla { position: relative; overflow: hidden; border-radius: 9% / 13%; background: #0c0d0e; isolation: isolate;
+  box-shadow: 0 0 0 2px #0a0908; }
+.tele-pantalla video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover;
+  filter: saturate(1.3) contrast(1.12) brightness(1.18); transform: scale(1.03); }
+/* el tubo: líneas de barrido, máscara de fósforo RGB, viñeta del vidrio curvo y un reflejo */
+.tele-pantalla::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    repeating-linear-gradient(180deg, rgba(0,0,0,.30) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255,40,40,.07) 0 1px, rgba(40,255,90,.05) 1px 2px, rgba(60,90,255,.07) 2px 3px); }
+.tele-pantalla::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; border-radius: inherit;
+  background:
+    linear-gradient(162deg, rgba(255,255,255,.13), rgba(255,255,255,0) 34%),
+    radial-gradient(ellipse 75% 70% at 50% 50%, transparent 58%, rgba(0,0,0,.62) 100%);
+  box-shadow: inset 0 0 24px rgba(0,0,0,.75), inset 0 0 3px rgba(255,255,255,.08);
+  animation: parpadeo-crt 5s steps(1) infinite; }
+@keyframes parpadeo-crt { 0%, 100% { opacity: 1; } 47% { opacity: .9; } 48% { opacity: 1; } 81% { opacity: .94; } 82% { opacity: 1; } }
+html.quieto .tele-pantalla::after { animation: none; }
+@media (prefers-reduced-motion: reduce) { .tele-pantalla::after { animation: none; } }
+.al-aire { position: absolute; z-index: 4; top: 7%; right: 6%; display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 3px;
+  background: #b5342b; color: #fff; font: 700 11px "Source Sans 3", sans-serif; letter-spacing: .06em; box-shadow: 0 0 10px rgba(220,60,50,.45); }
 .al-aire::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
-.tele figcaption { color: var(--tinta-suave); font-size: 13.5px; margin-top: 8px; }
+/* panel lateral: canal, dos perillas, parlante y la luz de encendido */
+.tele-panel { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8%;
+  padding: 10% 8%; border-radius: 10px; background: linear-gradient(180deg, #2d2a27, #1d1b19); box-shadow: inset 0 0 0 1px #3d3935; }
+.tele-canal { font: 700 13px/1 "Source Sans 3", sans-serif; color: #f2b84b; background: #0d0c0b; padding: 4px 6px; border-radius: 3px;
+  text-shadow: 0 0 6px rgba(242,184,75,.6); letter-spacing: .05em; }
+.tele-perilla { width: 72%; aspect-ratio: 1; border-radius: 50%; position: relative;
+  background: radial-gradient(circle at 35% 30%, #c9c4bb, #77726b 55%, #3c3935);
+  box-shadow: 0 2px 3px rgba(0,0,0,.6), inset 0 -2px 2px rgba(0,0,0,.35); }
+.tele-perilla::after { content: ""; position: absolute; left: 50%; top: 9%; width: 9%; height: 32%; margin-left: -4.5%; border-radius: 2px; background: #2a2724; }
+.tele-perilla.b::after { transform-origin: 50% 128%; transform: rotate(118deg); }
+.tele-parlante { width: 82%; flex: 1; min-height: 22px; border-radius: 4px;
+  background: repeating-linear-gradient(180deg, #0d0c0b 0 2px, #34302c 2px 5px); }
+.tele-luz { width: 7px; height: 7px; border-radius: 50%; background: #e2463a; box-shadow: 0 0 8px 2px rgba(226,70,58,.6); }
+.tele-patas { display: flex; justify-content: space-between; padding: 0 12%; }
+.tele-patas::before, .tele-patas::after { content: ""; width: 9%; height: 12px; border-radius: 0 0 4px 4px; background: linear-gradient(#2b1c10, #170f08); }
+.tele figcaption { color: var(--tinta-suave); font-size: 13.5px; margin-top: 10px; }
+@media (max-width: 560px) {
+  .tele-caja { grid-template-columns: 1fr 15%; gap: 3%; padding: 4%; border-radius: 14px; }
+  .tele-canal { font-size: 10px; padding: 3px 4px; }
+  .tele-panel { padding: 12% 6%; }
+}
