@@ -333,3 +333,12 @@ body.area-inicio { --madera: #171513; --madera-2: #211e1b; --madera-3: #322e2a; 
   .ficha-tecnica > div { grid-template-columns: 6.2em minmax(0, 1fr); gap: 10px; }
 }
 @media (max-width: 389px) { .marca img.logo { height: 34px; } .animaciones { padding: 4px 7px; } }
+
+/* El resumen de cada caso: para quien tiene un minuto. Tres líneas antes de la ficha técnica. */
+.resumen-caso { margin: 0 0 22px; padding: 14px 18px; border-left: 3px solid var(--sello); background: color-mix(in srgb, var(--sello) 7%, transparent);
+  border-radius: 0 var(--radio, 8px) var(--radio, 8px) 0; display: grid; gap: 8px; max-width: 820px; }
+.botones + .resumen-caso { margin-top: 16px; }
+.resumen-caso > div { display: grid; grid-template-columns: 9.5em 1fr; gap: 12px; align-items: baseline; }
+.resumen-caso dt { margin: 0; font-weight: 700; color: var(--sello); font-size: 14.5px; }
+.resumen-caso dd { margin: 0; font-size: 16px; line-height: 1.5; }
+@media (max-width: 640px) { .resumen-caso > div { grid-template-columns: 1fr; gap: 1px; } .resumen-caso { padding: 12px 14px; } }
