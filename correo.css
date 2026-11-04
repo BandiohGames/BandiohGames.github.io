@@ -217,7 +217,8 @@ html.quieto .ascensor * { transition: none !important; }
 .tele-pantalla video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10.5; object-fit: cover;
   filter: saturate(1.25) contrast(1.1) brightness(1.2); }
 .tele-crt { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; }
-.tele.con-gl video { opacity: 0; }   /* el video sigue corriendo: el shader lo lee cuadro a cuadro */
+.tele.con-gl .al-aire { opacity: 0; }   /* el shader lo dibuja dentro del tubo (el video queda debajo, visible: si se
+   ocultara, algunos navegadores dejan de decodificarlo y el tubo se queda en negro) */   /* el video sigue corriendo: el shader lo lee cuadro a cuadro */
 /* sin WebGL: lo de siempre, rayado con CSS */
 .tele:not(.con-gl) .tele-pantalla::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: repeating-linear-gradient(180deg, rgba(0,0,0,.3) 0 1px, transparent 1px 3px); }

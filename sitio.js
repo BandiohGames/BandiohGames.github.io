@@ -294,7 +294,22 @@
       [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(function (k) { gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE); });
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       var U = {}; ["res", "esc", "tiempo", "lineas"].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
-      var visible = false, corriendo = false, t0 = performance.now(), listo = false;
+      var visible = false, corriendo = false, t0 = performance.now(), listo = false, apagado = false, revisar = 3;
+      // «AL AIRE» va DENTRO de la imagen (un lienzo 2D con el cuadro del video y el cartel encima): así también pasa
+      // por el tubo, con su curva, su brillo y sus líneas, como el grafismo de un canal de verdad.
+      var lienzo = document.createElement("canvas"), c2 = lienzo.getContext("2d"), recorte = 0;
+      var cartel = function (W, H) {
+        var k = H / 540, txt = en() ? "ON AIR" : "AL AIRE";
+        c2.font = "700 " + Math.round(31 * k) + "px 'Source Sans 3', sans-serif";
+        var tw = c2.measureText(txt).width, pw = tw + 64 * k, ph = 46 * k;
+        var x = W * (1 - recorte) - pw - 34 * k, y = 34 * k;
+        c2.fillStyle = "#c0352b"; c2.beginPath();
+        if (c2.roundRect) c2.roundRect(x, y, pw, ph, 5 * k); else c2.rect(x, y, pw, ph);
+        c2.fill();
+        var prendido = quieto || ((performance.now() - t0) % 1400) < 950;   // el punto titila, como el de verdad
+        if (prendido) { c2.fillStyle = "#fff"; c2.beginPath(); c2.arc(x + 20 * k, y + ph / 2, 6 * k, 0, 6.2832); c2.fill(); }
+        c2.fillStyle = "#fff"; c2.textBaseline = "middle"; c2.fillText(txt, x + 36 * k, y + ph / 2 + 1 * k);
+      };
       var medir = function () {
         var r = teleC.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
         var w = Math.max(1, Math.round(r.width * d)), h = Math.max(1, Math.round(r.height * d));
@@ -302,18 +317,32 @@
         var ac = w / h, av = (teleV.videoWidth || 16) / (teleV.videoHeight || 9);
         gl.uniform2f(U.res, w, h);
         gl.uniform2f(U.esc, av > ac ? ac / av : 1, av > ac ? 1 : av / ac);   // como object-fit: cover
+        recorte = av > ac ? (1 - ac / av) / 2 : 0;   // lo que el cover corta por cada lado (para que el cartel no quede fuera)
         gl.uniform1f(U.lineas, Math.max(110, Math.min(260, r.height / 2.4)));
       };
       var pintar = function () {
-        if (teleV.readyState < 2) return false;
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, teleV);
+        if (apagado || teleV.readyState < 2) return false;
+        if (teleV.paused) { var pp = teleV.play(); if (pp && pp.catch) pp.catch(function () {}); }
+        var W = teleV.videoWidth, H = teleV.videoHeight;
+        if (lienzo.width !== W || lienzo.height !== H) { lienzo.width = W; lienzo.height = H; }
+        c2.drawImage(teleV, 0, 0, W, H);
+        if (!listo || revisar > 0) {
+          // RED DE SEGURIDAD: hay navegadores (decodificación por hardware) que entregan el cuadro en negro. Si el video
+          // ya avanzó y lo copiado sigue negro, se apaga el tubo y queda el video normal con el rayado de CSS.
+          var mx = 0, px = c2.getImageData(0, 0, W, H).data;
+          for (var q = 0; q < px.length; q += 4 * 997) mx = Math.max(mx, px[q], px[q + 1], px[q + 2]);
+          if (mx < 6) { if (teleV.currentTime > 1.2) { apagado = true; tele.classList.remove("con-gl"); } return false; }
+          revisar--;
+        }
+        cartel(W, H);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, lienzo);
         gl.uniform1f(U.tiempo, quieto ? 0 : (performance.now() - t0) / 1000);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         if (!listo) { listo = true; tele.classList.add("con-gl"); }
         return true;
       };
       var bucle = function () {
-        if (!visible) { corriendo = false; return; }
+        if (!visible || apagado) { corriendo = false; return; }
         pintar(); requestAnimationFrame(bucle);
       };
       var arrancar = function () { if (!corriendo && visible) { corriendo = true; medir(); requestAnimationFrame(bucle); } };
