@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="es" data-l="es">
+<html lang="es" data-l="es" data-titulo-en="REZAGO · how I made it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>REZAGO · cómo lo hice</title>
-<meta name="description" content="Caso de estudio de REZAGO: diseño, sistemas, playtests y lanzamiento de un juego de deducción hecho en solitario en Godot.">
+<meta name="description" content="Caso de estudio de REZAGO: diseño, sistemas, playtests y lanzamiento de un juego de deducción hecho en solitario en Godot." data-en="REZAGO case study: design, systems, playtests and launch of a deduction game made solo in Godot.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/rezago_fundamento.webp">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=03e5f947">
-<script src="sitio.js?v=9310c887"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<script src="sitio.js?v=bd47f8ef"></script>
 </head>
-<body>
+<body class="area-juegos">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
     <a href="juegos.html" class="activo" aria-current="page"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="web.html">Web</a>
@@ -25,13 +25,12 @@
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
 <!--/comun:cabecera-->
 
 <main class="ancho caso" style="padding-top:44px">
-
-<span class="estampa" style="color:var(--sello-claro);border-color:var(--sello-claro)"><span lang="es">Caso de estudio</span><span lang="en">Case study</span></span>
 <h1 class="mono" style="font-size:40px;line-height:1.1">REZAGO: a quien corresponda</h1>
 <p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
   <span lang="es">Un juego de deducción sobre cartas perdidas, hecho en solitario en Godot 4, de la idea al lanzamiento en poco más de un mes.</span>
@@ -42,16 +41,26 @@
   <a class="boton" href="https://www.youtube.com/watch?v=wJkrWOI4L6o"><span lang="es">Ver tráiler</span><span lang="en">Watch trailer</span></a>
 </div>
 
+<dl class="ficha-tecnica">
+  <div><dt><span lang="es">Rol</span><span lang="en">Role</span></dt><dd><span lang="es">Todo, en solitario</span><span lang="en">Everything, solo</span></dd></div>
+  <div><dt><span lang="es">Estado</span><span lang="en">Status</span></dt><dd><span lang="es">Publicado en octubre de 2026</span><span lang="en">Released in October 2026</span></dd></div>
+  <div><dt><span lang="es">Desarrollo</span><span lang="en">Development</span></dt><dd><span lang="es">Poco más de un mes</span><span lang="en">Just over a month</span></dd></div>
+  <div><dt><span lang="es">Plataformas</span><span lang="en">Platforms</span></dt><dd><span lang="es">Windows y Mac · 8 idiomas</span><span lang="en">Windows and Mac · 8 languages</span></dd></div>
+  <div><dt><span lang="es">Duración</span><span lang="en">Playtime</span></dt><dd><span lang="es">1,5 a 2 horas</span><span lang="en">1.5 to 2 hours</span></dd></div>
+  <div><dt><span lang="es">Tecnología</span><span lang="en">Tech</span></dt><dd>Godot 4, GDScript, Python</dd></div>
+  <div><dt><span lang="es">Jugar</span><span lang="en">Play</span></dt><dd><a href="https://bandioh.itch.io/rezago">bandioh.itch.io/rezago</a></dd></div>
+</dl>
+
 <h2><span lang="es">El objetivo</span><span lang="en">The goal</span></h2>
 <p lang="es">Quería un juego de escritorio en la línea de los juegos de papeleo, pero cálido: en vez de rechazar gente, ayudas a que las cartas lleguen. El reto de diseño era que deducir se sintiera propio. El juego no podía decirte la respuesta, pero tampoco podía dejarte adivinando.</p>
-<p lang="en">I wanted a desk game in the spirit of paperwork games, but warm: instead of turning people away, you help letters reach them. The design challenge was making deduction feel like your own. The game couldn't tell you the answer, but it couldn't leave you guessing either.</p>
+<p lang="en">I wanted a desk game in the spirit of paperwork games, but warm: instead of turning people away, you help letters reach them. The design challenge was making each deduction feel earned by the player. The game couldn't tell you the answer, but it couldn't leave you guessing either.</p>
 
 <h2><span lang="es">Mi rol</span><span lang="en">My role</span></h2>
 <p lang="es">Todo, en solitario: diseño, guion de más de 20 cartas y 3 finales, programación, arte, sonido, localización a 8 idiomas, marketing y publicación. Programé con Claude Code como asistente: yo decidía el diseño, revisaba cada cambio y lo probaba jugando. ChatGPT me ayudó a planear la difusión.</p>
-<p lang="en">Everything, solo: design, writing 20+ letters and 3 endings, programming, art, sound, localization into 8 languages, marketing and release. I programmed with Claude Code as an assistant: I made the design calls, reviewed every change and tested it by playing. ChatGPT helped me plan the marketing.</p>
+<p lang="en">I handled the entire project on my own: design, writing 20+ letters and 3 endings, programming, art, sound, localization into 8 languages, marketing and release. I programmed with Claude Code as an assistant: I made the design calls, reviewed every change and tested it by playing. ChatGPT helped me plan the marketing.</p>
 
 <h2><span lang="es">Sistemas destacados</span><span lang="en">Key systems</span></h2>
-<figure class="figura"><img src="img/rezago_fundamento.webp" alt=""><figcaption lang="es">El fundamento: un hilo rojo une un dato de la carta con la libreta o el mapa.</figcaption><figcaption lang="en">Backing up a delivery: a red thread links a fact in the letter to the notebook or the map.</figcaption></figure>
+<figure class="figura"><img decoding="async" width="1600" height="900" src="img/rezago_fundamento.webp" alt=""><figcaption lang="es">El fundamento: un hilo rojo une un dato de la carta con la libreta o el mapa.</figcaption><figcaption lang="en">Backing up a delivery: a red thread links a fact in the letter to the notebook or the map.</figcaption></figure>
 <ul lang="es">
   <li><b>Fundamento con hilo rojo.</b> Entregar no basta: tienes que justificar. Cada dato que lees en la carta se ata a una casa del mapa o a una página de la libreta, y cada hilo bien puesto paga extra.</li>
   <li><b>Lupa en tiempo real.</b> Un SubViewport vuelve a dibujar la mesa aumentada, así el texto se ve nítido y no pixelado. Lo escondido (tinta UV, marcas finas) vive en una capa de render propia que solo ve la lupa.</li>
@@ -86,7 +95,7 @@
   <figcaption lang="en">The magnifier doesn't stretch the screen: a <i>SubViewport</i> redraws the desk already magnified, at the window's real resolution, and asks the font to rasterize at that size. That's why small print stays sharp under the glass. This portfolio's magnifier uses the same idea.</figcaption>
 </figure>
 <div class="galeria">
-  <img src="img/rezago_uv.webp" alt="" loading="lazy"><img src="img/rezago_mapa.webp" alt="" loading="lazy"><img src="img/rezago_sellos.webp" alt="" loading="lazy">
+  <img decoding="async" width="1600" height="900" src="img/rezago_uv.webp" alt="" loading="lazy"><img decoding="async" width="1600" height="900" src="img/rezago_mapa.webp" alt="" loading="lazy"><img decoding="async" width="1600" height="900" src="img/rezago_sellos.webp" alt="" loading="lazy">
 </div>
 
 <h2><span lang="es">Qué cambió con los playtests</span><span lang="en">What playtesting changed</span></h2>
@@ -118,10 +127,10 @@
 <p lang="es">Sin presupuesto: tráilers, videos cortos en TikTok, Reels y Shorts, y un post en r/chilegames. Resultados de la primera semana:</p>
 <p lang="en">No budget: trailers, short videos on TikTok, Reels and Shorts, and a post on r/chilegames. First-week results:</p>
 <div class="cifras" style="margin:14px 0 0">
-  <div class="cifra"><b>18.000+</b><span lang="es">visualizaciones en redes</span><span lang="en">social media views</span></div>
-  <div class="cifra"><b>8.800</b><span lang="es">en el post de Reddit (95 votos)</span><span lang="en">on the Reddit post (95 upvotes)</span></div>
+  <div class="cifra"><b><span lang="es">18.000+</span><span lang="en">18,000+</span></b><span lang="es">visualizaciones en redes</span><span lang="en">social media views</span></div>
+  <div class="cifra"><b><span lang="es">8.800</span><span lang="en">8,800</span></b><span lang="es">en el post de Reddit (95 votos)</span><span lang="en">on the Reddit post (95 upvotes)</span></div>
   <div class="cifra"><b data-itch="rezago" data-campo="descargas">33</b><span lang="es">descargas</span><span lang="en">downloads</span></div>
-  <div class="cifra"><b>5 ★</b><span lang="es">única reseña: «muy weno»</span><span lang="en">only review: «muy weno»<small class="traduccion">(“sooo good”, in Chilean slang)</small></span></div>
+  <div class="cifra"><b>5 ★</b><span lang="es">única reseña: «muy weno»</span><span lang="en">only review: “muy weno”<small class="traduccion">(“sooo good”, in Chilean slang)</small></span></div>
 </div>
 
 <h2><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
@@ -138,8 +147,10 @@
   <li>Short videos showing one specific letter worked far better than the trailer: 7,300 views on TikTok versus 121 on YouTube.</li>
 </ul>
 
-<p style="margin:40px 0 10px" lang="es"><a href="juegos.html">← Volver a los juegos</a></p>
-<p style="margin:40px 0 10px" lang="en"><a href="juegos.html">← Back to games</a></p>
+<nav class="navegar-caso" aria-label="Más proyectos" data-aria-label-en="More projects">
+  <a class="volver" href="juegos.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Juegos</b><b lang="en">Games</b></span></a>
+  <a class="siguiente" href="floor.html"><span><small lang="es">Siguiente caso</small><small lang="en">Next case study</small><b>Floor, Sir?</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
 </main>
 <div class="ancho">
 <!--comun:sobre-->
@@ -148,7 +159,7 @@
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>
@@ -188,6 +199,6 @@
 <!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <!--/comun:pie-->
-<div id="visor"><img alt=""></div>
+<div id="visor"><img decoding="async" alt=""></div>
 </body>
 </html>

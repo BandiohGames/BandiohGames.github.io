@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="es" data-l="es">
+<html lang="es" data-l="es" data-titulo-en="Games · Esteban Flores">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Juegos · Esteban Flores</title>
-<meta name="description" content="Videojuegos de Esteban Flores Pizarro (bandioh games) en Godot: REZAGO, Floor, Sir? y En Vivo.">
+<meta name="description" content="Videojuegos de Esteban Flores Pizarro (bandioh games) en Godot: REZAGO, Floor, Sir? y En Vivo." data-en="Games by Esteban Flores Pizarro (bandioh games) in Godot: REZAGO, Floor, Sir? and En Vivo.">
 <meta property="og:title" content="Juegos · Esteban Flores · bandioh games">
 <meta property="og:description" content="Desarrollador de videojuegos en Godot. Creador de REZAGO: a quien corresponda.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/rezago_menu.webp">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=03e5f947">
-<link rel="stylesheet" href="correo.css?v=3de93521">
-<link rel="stylesheet" href="secciones.css?v=c7f0f5e7">
-<script src="sitio.js?v=9310c887"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="correo.css?v=e5e4c915">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
 </head>
-<body>
+<body class="area-juegos">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
     <a href="juegos.html" class="activo" aria-current="page"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="web.html">Web</a>
@@ -29,6 +29,7 @@
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
 <!--/comun:cabecera-->
@@ -36,16 +37,14 @@
 <main class="ancho">
 
 <div class="cabeza-seccion">
-  <span class="estampa"><span lang="es">Videojuegos</span><span lang="en">Games</span></span>
-  <h1><span lang="es">Juegos narrativos hechos en Godot</span><span lang="en">Narrative games made in Godot</span></h1>
-  <p lang="es">Diseño, programo y publico juegos donde observar con calma tiene recompensa.</p>
-  <p lang="en">I design, program and ship games that reward patient observation.</p>
-  <div class="franja-datos">
-    <div><b>1</b><span lang="es">juego publicado</span><span lang="en">shipped game</span></div>
-    <div><b>8</b><span lang="es">idiomas</span><span lang="en">languages</span></div>
-    <div><b>18.000+</b><span lang="es">visualizaciones en la primera semana</span><span lang="en">views in launch week</span></div>
-    <div><b>219</b><span lang="es">pruebas automatizadas en Floor, Sir?</span><span lang="en">automated tests in Floor, Sir?</span></div>
-  </div>
+  <h1><span lang="es">Juegos en Godot, de la idea a la publicación</span><span lang="en">Games in Godot, from idea to release</span></h1>
+  <p lang="es">Diseño, programo y publico juegos de géneros muy distintos: deducción, simulación de oficio, cooperativo en línea y, en pausa, un metroidvania basado en la mitología chilena.</p>
+  <p lang="en">I design, program and ship games across very different genres: deduction, job simulation, online co-op and, on hold, a metroidvania rooted in Chilean mythology.</p>
+  <nav class="indice-juegos" aria-label="En esta página" data-aria-label-en="On this page">
+    <a href="#correo-rezago"><b>REZAGO</b><span lang="es">Publicado</span><span lang="en">Released</span></a>
+    <a href="#floor"><b>Floor, Sir?</b><span lang="es">En desarrollo</span><span lang="en">In development</span></a>
+    <a href="#en-vivo"><b>En Vivo</b><span lang="es">Prototipo en pausa</span><span lang="en">Prototype on hold</span></a>
+  </nav>
   <div class="botones">
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Videojuegos.pdf" lang="es">Descargar CV de videojuegos</a>
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Game_Developer.pdf" lang="en">Download game dev CV</a>
@@ -63,8 +62,8 @@
     <div class="escena-sobre">
       <div class="escena-fija">
         <div class="sobre-mesa">
-          <canvas class="sobre-lienzo" id="sobre-lienzo" width="944" height="873" data-anim aria-label="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»"></canvas>
-          <img class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true" data-anim>
+          <canvas class="sobre-lienzo" id="sobre-lienzo" width="944" height="873" data-anim aria-label="Sobre de REZAGO: «A quien corresponda, portafolio de Esteban Flores»" data-aria-label-en="REZAGO envelope: “To whom it may concern, portfolio of Esteban Flores”"></canvas>
+          <img decoding="async" class="abrecartas" src="img/abrecartas.png" width="280" height="29" alt="" aria-hidden="true" data-anim>
         </div>
         <div class="pliego" aria-hidden="true" data-anim></div>
         <p class="pista-scroll"><span lang="es">Baja para abrir el sobre</span><span lang="en">Scroll to open the envelope</span><b aria-hidden="true">↓</b></p>
@@ -87,8 +86,8 @@
         </div>
 
         <figure class="foto-clip">
-          <div class="medio"><button class="yt" type="button" data-yt="wJkrWOI4L6o" aria-label="Ver el tráiler de REZAGO">
-            <img src="https://i.ytimg.com/vi/wJkrWOI4L6o/maxresdefault.jpg" alt="" width="1280" height="720" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wJkrWOI4L6o/hqdefault.jpg'">
+          <div class="medio"><button class="yt" type="button" data-yt="wJkrWOI4L6o" aria-label="Ver el tráiler de REZAGO" data-aria-label-en="Watch the REZAGO trailer">
+            <img decoding="async" src="https://i.ytimg.com/vi/wJkrWOI4L6o/maxresdefault.jpg" alt="" width="1280" height="720" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/wJkrWOI4L6o/hqdefault.jpg'">
             <span class="yt-play" aria-hidden="true"></span></button></div>
           <figcaption><span lang="es">Tráiler · octubre 2026</span><span lang="en">Trailer · October 2026</span></figcaption>
           <i class="cinta a" aria-hidden="true"></i><i class="cinta b" aria-hidden="true"></i>
@@ -100,7 +99,7 @@
             <p lang="en">Chile, winter of 1996. The neighborhood postman has died, leaving you his notebook and the letters nobody could deliver. Over five nights you examine envelopes with a magnifier and UV light, cross-check clues against a map and call the neighbors to find out who each letter belongs to.</p>
             <div class="rol">
               <span lang="es"><b>Mi rol:</b> todo el juego en solitario: diseño, escritura, programación, arte, sonido, localización y publicación. Programado con asistencia de IA (Claude Code) bajo mi dirección.</span>
-              <span lang="en"><b>My role:</b> solo developer: design, writing, programming, art, sound, localization and release. Programmed with AI assistance (Claude Code) under my direction.</span>
+              <span lang="en"><b>My role:</b> I made it solo, handling design, writing, programming, art, sound, localization and release. Programmed with AI assistance (Claude Code) under my direction.</span>
             </div>
             <ul lang="es">
               <li>Sistema de deducción: cada pista de una carta se «ata» con hilo rojo a una casa del mapa o a una página de la libreta.</li>
@@ -121,21 +120,21 @@
               <div class="boleta-titulo"><span lang="es">Primera semana</span><span lang="en">Launch week</span></div>
               <div><span lang="es">Visitas en itch.io</span><span lang="en">itch.io views</span><b data-itch="rezago" data-campo="vistas">130</b></div>
               <div><span lang="es">Descargas</span><span lang="en">Downloads</span><b data-itch="rezago" data-campo="descargas">33</b></div>
-              <div><span lang="es">Post en r/chilegames</span><span lang="en">r/chilegames post</span><b>8.800</b></div>
-              <div><span lang="es">Mejor video en TikTok</span><span lang="en">Best TikTok video</span><b>7.300</b></div>
+              <div><span lang="es">Post en r/chilegames</span><span lang="en">r/chilegames post</span><b><span lang="es">8.800</span><span lang="en">8,800</span></b></div>
+              <div><span lang="es">Mejor video en TikTok</span><span lang="en">Best TikTok video</span><b><span lang="es">7.300</span><span lang="en">7,300</span></b></div>
               <div><span lang="es">Reseñas</span><span lang="en">Reviews</span><b>★★★★★</b></div>
-              <small><span lang="es">Cifras de itch.io al día · </span><span lang="en">itch.io figures kept current · </span><span data-itch-fecha>3-11-2026</span></small>
+              <small><span lang="es">Cifras de itch.io al día · </span><span lang="en">itch.io figures updated daily · </span><span data-itch-fecha>3-11-2026</span></small>
             </div>
           </aside>
         </div>
 
         <div class="galeria">
-          <img src="img/rezago_fundamento.webp" alt="Libreta y fundamento con hilo rojo" loading="lazy">
-          <img src="img/rezago_uv.webp" alt="Lupa con luz UV" loading="lazy">
-          <img src="img/rezago_mapa.webp" alt="Carta y mapa del barrio" loading="lazy">
-          <img src="img/rezago_telefono.webp" alt="Teléfono y guía telefónica" loading="lazy">
-          <img src="img/rezago_sellos.webp" alt="Lupa sobre el sobre" loading="lazy">
-          <img src="img/rezago_tienda.webp" alt="Resumen del turno y almacén" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_fundamento.webp" alt="Libreta y fundamento con hilo rojo" data-alt-en="Notebook and red-thread evidence" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_uv.webp" alt="Lupa con luz UV" data-alt-en="Magnifier with UV light" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_mapa.webp" alt="Carta y mapa del barrio" data-alt-en="Letter and neighborhood map" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_telefono.webp" alt="Teléfono y guía telefónica" data-alt-en="Phone and phone book" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_sellos.webp" alt="Lupa sobre el sobre" data-alt-en="Magnifier over the envelope" loading="lazy">
+          <img decoding="async" width="1600" height="900" src="img/rezago_tienda.webp" alt="Resumen del turno y almacén" data-alt-en="Shift summary and storeroom" loading="lazy">
         </div>
 
         <div class="hoja-pie">
@@ -152,7 +151,7 @@
   </div>
 
   <!-- Floor, Sir?: en desarrollo, se muestra poco -->
-  <article class="ficha">
+  <article class="ficha" id="floor">
     <div class="cuerpo dos">
       <div>
         <span class="estampa gris"><span lang="es">En desarrollo</span><span lang="en">In development</span></span>
@@ -163,16 +162,17 @@
         <p lang="en">You run the elevator of a hotel in 1928. With a manual lever you take guests to their floor, overhear what you shouldn't and decide who to help. Seven shifts, a branching story and multiple endings.</p>
         <p class="nota" lang="en">The elevator clip is from the current prototype, recorded while playing: art and text are still in progress.</p>
         <ul lang="es">
-          <li>Lógica separada de las escenas y cubierta con 219 pruebas automatizadas.</li>
+          <li>Lógica separada de las escenas y cubierta con 264 pruebas automatizadas.</li>
           <li>Diálogos y turnos escritos en datos, con condiciones y marcas que cambian el mundo.</li>
           <li>Herramientas internas: salto a cualquier turno y un auditor que detecta decisiones sin consecuencias.</li>
         </ul>
         <ul lang="en">
-          <li>Logic separated from scenes and covered by 219 automated tests.</li>
+          <li>Logic separated from scenes and covered by 264 automated tests.</li>
           <li>Dialogue and shifts written as data, with conditions and flags that change the world.</li>
           <li>Internal tools: jump to any shift and an auditor that flags choices with no consequences.</li>
         </ul>
         <div class="etiquetas"><span>Godot 4.6</span><span>3D</span><span lang="es">Pruebas automatizadas</span><span lang="en">Automated testing</span><span lang="es">Narrativa ramificada</span><span lang="en">Branching narrative</span></div>
+        <div class="botones"><a class="boton" href="floor.html"><span lang="es">Cómo lo voy haciendo</span><span lang="en">How I'm making it</span></a></div>
       </div>
       <!-- El ascensor: la aguja recorre los pisos, suena el timbre y se abren las puertas.
            Detrás de las puertas, un clip del prototipo (img/floor_cabina.mp4): parte cuando las puertas se abren. -->
@@ -195,14 +195,29 @@
     </div>
   </article>
 
-  <article class="ficha"><div class="cuerpo">
-    <span class="estampa gris"><span lang="es">Prototipo</span><span lang="en">Prototype</span></span>
-    <h3>En Vivo</h3>
-    <div class="tipo"><span lang="es">Cooperativo para 2 a 4 jugadores · Godot</span><span lang="en">2–4 player co-op · Godot</span></div>
-    <p lang="es">Un estudio de TV de los 90: el programa sale al aire pase lo que pase. El loop, la progresión y el sistema de tareas ya se probaron con 3 jugadores.</p>
-    <p lang="en">A 90s TV studio: the show goes on air no matter what. The loop, progression and task system have been playtested with 3 players.</p>
-  </div></article>
+  <article class="ficha" id="en-vivo">
+    <div class="cuerpo dos">
+      <div>
+        <span class="estampa gris"><span lang="es">Prototipo</span><span lang="en">Prototype</span></span>
+        <h3>En Vivo</h3>
+        <div class="tipo"><span lang="es">Cooperativo para 2 a 4 jugadores · Godot</span><span lang="en">2–4 player co-op · Godot</span></div>
+        <p lang="es">Un estudio de TV de los 90: el programa sale al aire pase lo que pase. Mi primer prototipo en 3D: el multijugador en línea, la física y un teléfono con cordón simulado. Lo mostré jugando en vivo por Discord; quedó en pausa antes de probarlo en línea con otros.</p>
+        <p lang="en">A 90s TV studio: the show goes on air no matter what. My first 3D prototype: online multiplayer, physics and a phone with a simulated cord. I showed it off by streaming my gameplay on Discord; it went on hold before it could be tested online with others.</p>
+        <div class="botones"><a class="boton" href="envivo.html"><span lang="es">Cómo lo hice</span><span lang="en">How I made it</span></a></div>
+      </div>
+      <figure class="tele">
+        <div class="tele-pantalla"><video src="img/envivo_corte.mp4" poster="img/envivo_corte.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="al-aire"><span lang="es">AL AIRE</span><span lang="en">ON AIR</span></span></div>
+        <figcaption lang="es">Demasiado lejos: el cordón se tensa y el auricular vuelve volando a su base.</figcaption>
+        <figcaption lang="en">Too far: the cord pulls tight and the handset flies back to its base.</figcaption>
+      </figure>
+    </div>
+  </article>
 </section>
+
+<nav class="navegar-caso" aria-label="Otras áreas" data-aria-label-en="Other fields">
+  <span></span>
+  <a class="siguiente" href="web.html"><span><small lang="es">Siguiente área</small><small lang="en">Next field</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
 
 <!--comun:sobre-->
 <section id="sobre">
@@ -210,7 +225,7 @@
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>
@@ -250,8 +265,8 @@
 <!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <!--/comun:pie-->
-<div id="visor"><img alt=""></div>
-<button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span><small><span lang="es">soltar: clic derecho o Esc</span><span lang="en">drop: right-click or Esc</span></small></button>
+<div id="visor"><img decoding="async" alt=""></div>
+<button class="boton-lupa" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span lang="es">Lupa</span><span lang="en">Magnifier</span><small><span lang="es">soltar: clic derecho o Esc</span><span lang="en">release: right-click or Esc</span></small></button>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="vidrio-lupa" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
     <feGaussianBlur id="enfoque-lupa" in="SourceGraphic" stdDeviation="0" result="vista"/>
@@ -269,6 +284,6 @@
     <!-- un suavizado mínimo (0,3 px): el desplazamiento toma pixeles enteros y deja escalones en los bordes -->
     <feGaussianBlur in="lente" stdDeviation=".0013"/>
   </filter></svg>
-<div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><div class="brillo"></div><img class="marco" src="img/lupa_mano.png" alt=""></div>
+<div class="lupa-mano" aria-hidden="true"><div class="vidrio"><div class="mundo"></div></div><div class="brillo"></div><img decoding="async" width="554" height="498" class="marco" src="img/lupa_mano.png" alt=""></div>
 </body>
 </html>

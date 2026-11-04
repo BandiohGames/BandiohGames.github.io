@@ -2,17 +2,17 @@
 nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton); padding-bottom: 2px; }
 .cabeza-seccion { padding: 56px 0 26px; }
 .cabeza-seccion .estampa { color: var(--sello-claro); border-color: var(--sello-claro); }
-.cabeza-seccion h1 { font-family: "Courier Prime", monospace; font-size: 42px; line-height: 1.1; margin: 6px 0 12px; }
+.cabeza-seccion h1 { font-family: var(--titulos); font-size: 42px; line-height: 1.1; margin: 6px 0 12px; }
 .cabeza-seccion p { color: var(--texto-tenue); font-size: 18px; max-width: 46em; }
 .cabeza-seccion .botones { margin-top: 20px; }
 /* cifras de la sección: número grande y su etiqueta debajo (sin pastillas) */
 .franja-datos { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--madera-3); }
 .franja-datos > div { min-width: 0; max-width: 15em; }
-.franja-datos b { display: block; font: 700 28px/1.1 "Courier Prime", monospace; color: var(--laton); }
+.franja-datos b { display: block; font: 700 28px/1.1 var(--titulos); color: var(--laton); }
 .franja-datos > div > span { display: block; font-size: 14px; color: var(--texto-tenue); line-height: 1.35; margin-top: 3px; }
 
 .proyecto { margin: 34px 0 70px; }
-.proyecto h2 { font-family: "Courier Prime", monospace; font-size: 30px; margin-bottom: 4px; }
+.proyecto h2 { font-family: var(--titulos); font-size: 30px; margin-bottom: 4px; }
 .proyecto .sub { color: var(--texto-tenue); margin-bottom: 18px; }
 .proyecto .texto p, .proyecto .texto li { color: var(--texto-claro); }
 .proyecto .texto ul { padding-left: 20px; margin: 10px 0 16px; }
@@ -37,13 +37,14 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .captura { margin: 22px 0 0; }
 .captura figcaption { font-size: 14px; color: var(--texto-tenue); margin-top: 8px; }
 .captura figcaption b { color: var(--texto-claro); }
-.subtitulo { font: 700 22px "Courier Prime", monospace; margin: 40px 0 0; color: var(--laton); }
+.subtitulo { font: 700 22px var(--titulos); margin: 40px 0 0; color: var(--laton); }
 .proyecto .dos-col + .dos-col, .captura + .dos-col { margin-top: 4px; }
 .navegador .barra { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #1a1d24; }
 .navegador .barra i { width: 10px; height: 10px; border-radius: 50%; background: #444b58; }
 .navegador .barra i:nth-child(1) { background: #e25f57; } .navegador .barra i:nth-child(2) { background: #e3b341; } .navegador .barra i:nth-child(3) { background: #4fb357; }
 .navegador .barra span { margin-left: 10px; font: 12px "Courier Prime", monospace; color: #8a93a3; background: #0f1218; border-radius: 6px; padding: 3px 10px; flex: 1; }
 .navegador img { width: 100%; height: auto; cursor: zoom-in; }
+.navegador video { display: block; width: 100%; height: auto; }
 
 /* ===================== Pixel art ===================== */
 .px { image-rendering: pixelated; image-rendering: crisp-edges; }
@@ -57,15 +58,15 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 /* la animada arranca en el mismo cuadro que la quieta (sitio.js la reinicia al entrar): el cambio no se nota */
 .personaje.anima .lamina .anim { visibility: visible; }
 .personaje.anima .lamina .quieto { visibility: hidden; }
-.personaje h3 { font-family: "Courier Prime", monospace; font-size: 18px; margin-top: 8px; }
+.personaje h3 { font-family: var(--titulos); font-size: 18px; margin-top: 8px; }
 .personaje p { font-size: 14px; color: var(--texto-tenue); }
-.personaje .tam { font: 12px "Courier Prime", monospace; color: var(--laton); }
+.personaje .tam { font: 600 12.5px "Source Sans 3", sans-serif; color: var(--laton); }
 .pista-hover { font-size: 13px; color: var(--texto-tenue); margin: -6px 0 14px; }
 
 /* evolución: láminas chicas a escala entera (sprites de 30 px x7 = 210 px); el padre y la hija ocupan el ancho de las tres */
 .evolucion { display: grid; grid-template-columns: repeat(3, 238px); gap: 14px; margin: 16px auto 0; width: max-content; }
 .evolucion figure, .assets figure { margin: 0; display: flex; flex-direction: column; }
-.evolucion figcaption, .assets figcaption { text-align: center; font: 13px "Courier Prime", monospace; color: var(--texto-tenue); margin-top: 6px; }
+.evolucion figcaption, .assets figcaption { text-align: center; font: 14px "Source Sans 3", sans-serif; color: var(--texto-tenue); margin-top: 6px; }
 .evolucion .lamina { padding: 14px; }
 .evolucion .lamina img { width: 210px; height: auto; cursor: zoom-in; }
 .evolucion .fila-entera .lamina img { width: 600px; }
@@ -85,7 +86,7 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .revisiones .rotulos span:nth-child(n+3) { top: 50%; }
 .revisiones .rotulos { position: absolute; left: 0; top: 12px; bottom: 12px; width: 26px; }
 .nota-rev { font-size: 15px; color: var(--texto-tenue); margin: 18px 0 -4px; }
-.revisiones figcaption b { display: block; font-family: "Courier Prime", monospace; margin-top: 8px; }
+.revisiones figcaption b { display: block; font-family: var(--titulos); margin-top: 8px; }
 .revisiones figcaption span { font-size: 13px; color: var(--texto-tenue); }
 
 /* otros proyectos de juego: dos columnas con las filas alineadas (subgrid) y seis láminas iguales de 128 px */
@@ -127,12 +128,12 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 .areas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .area { display: flex; flex-direction: column; background: var(--papel); color: var(--tinta); border-radius: var(--radio); box-shadow: var(--sombra); overflow: hidden;
   text-decoration: none; transition: transform .2s, box-shadow .2s; }
-.area:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(0,0,0,.55); }
+
 .area .vista { position: relative; aspect-ratio: 16 / 11; overflow: hidden; }
 .area .cuerpo { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
 .area .cuerpo .estampa { align-self: flex-start; }
 .area img { height: auto; }
-.area h3 { font: 700 21px/1.2 "Courier Prime", monospace; margin: 2px 0 8px; }
+.area h3 { font: 700 21px/1.2 var(--titulos); margin: 2px 0 8px; }
 .area p { color: var(--tinta-suave); font-size: 16px; margin-bottom: 12px; }
 .area .ir { margin-top: auto; color: var(--sello); font-weight: 700; }
 .vista-juegos { background: radial-gradient(ellipse at 50% 40%, #4a3524, #24180f 75%); display: grid; place-items: center; }
@@ -183,3 +184,108 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 @media (max-width: 900px) { .emotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }   /* 3 filas de 3 en pantallas angostas */
 /* el visor: con zoom, el cursor indica que se puede arrastrar */
 .pswp--zoomed-in .pswp__img { cursor: grab; }
+
+/* ===================== Inicio v2: presentación, mesa, pilares, destacados ===================== */
+.portada.inicio { display: grid; grid-template-columns: .9fr 1.1fr; gap: 36px; align-items: center; padding: 64px 0 40px; }
+.portada.inicio h1 { white-space: normal; font-size: clamp(32px, 3.9vw, 48px); }
+.rol-linea { font: italic 400 22px/1.3 var(--titulos); color: var(--laton); margin: 8px 0 0; }
+.portada.inicio .bajada { margin-top: 12px; }
+
+.pilares { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.pilar { background: var(--madera-2); border: 1px solid var(--madera-3); border-radius: var(--radio); padding: 18px 18px 16px; border-top: 3px solid var(--laton); }
+.pilar .num { font: 700 13px "Courier Prime", monospace; color: var(--sello-claro); letter-spacing: .1em; }
+.pilar h3 { font: 700 22px/1.2 var(--titulos); margin: 4px 0 8px; }
+.pilar p { color: var(--texto-tenue); font-size: 15.5px; line-height: 1.5; }
+
+.destacados { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.tarjeta-proyecto { display: flex; flex-direction: column; background: var(--papel); color: var(--tinta); border-radius: var(--radio); box-shadow: var(--sombra);
+  overflow: hidden; text-decoration: none; transition: transform .25s, box-shadow .25s; }
+.tarjeta-proyecto:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.tarjeta-proyecto.grande { grid-column: 1 / -1; flex-direction: row; }
+.tarjeta-proyecto.grande .imagen { flex: 1.25; aspect-ratio: auto; min-height: 300px; }
+.tarjeta-proyecto.grande .cuerpo { flex: 1; justify-content: center; padding: 28px 30px; }
+.tarjeta-proyecto.grande h3 { font-size: 34px; }
+.tarjeta-proyecto .imagen { aspect-ratio: 16 / 10; overflow: hidden; background: #1a120c; }
+.tarjeta-proyecto .imagen img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+
+.tarjeta-proyecto .imagen-web { background: #0d0f14; display: grid; place-items: center; }
+.tarjeta-proyecto .imagen-web img { width: auto; height: 116%; object-fit: contain; margin-top: 22%; border-radius: 14px; border: 5px solid #16161c; }
+.tarjeta-proyecto .imagen-px { background: #373951; }
+.tarjeta-proyecto .imagen-px img { image-rendering: pixelated; object-fit: cover; object-position: 30% 50%; }
+.tarjeta-proyecto .cuerpo { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.tarjeta-proyecto h3 { font: 700 26px/1.15 var(--titulos); margin: 10px 0 8px; }
+.tarjeta-proyecto p { color: var(--tinta-suave); font-size: 16px; margin-bottom: 12px; }
+.tarjeta-proyecto .tec { margin-top: auto; font: 600 14px "Source Sans 3", sans-serif; color: var(--sello); }
+.marcas { display: flex; flex-wrap: wrap; gap: 6px; }
+.area-tag, .estado { font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 20px; }
+.area-tag { color: #fff; background: var(--tinta-suave); }
+.area-tag.juego { background: var(--sello); }
+.area-tag.web { background: #2f5d7c; }
+.area-tag.pixel { background: #5b4a8a; }
+.estado { color: var(--tinta-suave); border: 1px solid #c9b994; }
+.estado.listo { color: #2e6b3a; border-color: #8fbf98; }
+.tambien { margin-top: 18px; color: var(--texto-tenue); font-size: 15.5px; }
+.tambien a { color: var(--laton); }
+
+.areas-cortas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.areas-cortas a { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; align-items: center; padding: 16px 18px; border-radius: var(--radio); text-decoration: none;
+  background: var(--madera-2); border: 1px solid var(--madera-3); color: var(--texto-claro); transition: border-color .2s; }
+.areas-cortas a:hover { border-color: var(--laton); }
+.areas-cortas b { font: 700 20px var(--titulos); grid-column: 1; }
+.areas-cortas span { color: var(--texto-tenue); font-size: 14.5px; grid-column: 1; }
+.areas-cortas i { grid-column: 2; grid-row: 1 / span 2; font-style: normal; color: var(--laton); font-size: 20px; }
+
+@media (max-width: 900px) {
+  .portada.inicio { grid-template-columns: 1fr; padding-top: 40px; }
+  .escritorio { max-width: 620px; width: 100%; margin: 0 auto; }
+  .pilares { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .destacados { grid-template-columns: 1fr 1fr; }
+  .tarjeta-proyecto.grande { flex-direction: column; }
+  .tarjeta-proyecto.grande .imagen { aspect-ratio: 16 / 9; min-height: 0; flex: none; }
+  .tarjeta-proyecto.grande .cuerpo { padding: 18px 20px 20px; }
+  .tarjeta-proyecto.grande h3 { font-size: 26px; }
+  .areas-cortas { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .pilares, .destacados { grid-template-columns: 1fr; }
+}
+
+/* El escritorio del inicio: cada objeto es un proyecto (la mesa de REZAGO, en chico) */
+.escritorio { display: block; margin: 0; width: 100%; position: relative; aspect-ratio: 1 / .82; border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255,214,160,.10), transparent 70%),
+    url("img/madera_mesa.webp") center / 420px auto repeat, #3a2617;
+  box-shadow: inset 0 0 0 1px rgba(255,220,170,.06), inset 0 -30px 60px rgba(0,0,0,.35), var(--sombra); }
+.obj { position: absolute; display: block; text-decoration: none; color: var(--tinta); transition: transform .25s ease; }
+.obj img { display: block; width: 100%; height: auto; }
+.obj:hover, .obj:focus-visible { z-index: 5; }
+.obj:focus-visible { outline: 2px solid var(--laton); outline-offset: 4px; }
+.polaroid { display: block; background: var(--papel); padding: 6px 6px 0; box-shadow: 0 10px 18px rgba(0,0,0,.5); }
+.polaroid b { display: block; font: 22px/1.5 "Patrick Hand", cursive; color: #2b3f75; text-align: center; padding: 2px 0 3px; }
+.rotulo { position: absolute; display: block; background: var(--papel); padding: 3px 10px 4px; box-shadow: 0 4px 8px rgba(0,0,0,.4); white-space: nowrap;
+  font: 17px/1.15 "Patrick Hand", cursive; color: #2b3f75; }
+.rotulo::before { content: ""; position: absolute; left: 50%; top: -7px; width: 38px; height: 13px; margin-left: -19px; background: rgba(214,196,150,.85); transform: rotate(-4deg); }
+.rotulo b { display: block; font-weight: 400; font-size: 20px; }
+.rotulo span { color: var(--tinta-suave); font-size: 15px; }
+.o-sobre { width: 50%; left: 3%; top: 6%; transform: rotate(-7deg); }
+.o-sobre img { filter: drop-shadow(0 12px 12px rgba(0,0,0,.55)); }
+.o-sobre .rotulo { right: 6%; bottom: -4%; transform: rotate(4deg); }
+.o-floor { width: 44%; right: 4%; top: 4%; transform: rotate(4deg); }
+.o-vivo { width: 31%; left: 7%; bottom: 7%; transform: rotate(-3deg); }
+.o-px { width: 25%; left: 41%; bottom: 13%; transform: rotate(2deg); }
+.o-px .lamina { display: grid; grid-template-columns: 1fr 1fr; gap: 4%; padding: 8%; background: #373951; box-shadow: 0 8px 14px rgba(0,0,0,.5); }
+.o-px .lamina img { image-rendering: pixelated; }
+.o-px .rotulo { left: 6%; bottom: auto; top: 88%; transform: rotate(-3deg); }
+.o-cel { width: 18%; right: 9%; bottom: 6%; transform: rotate(7deg); }
+.o-cel img { border-radius: 12px; border: 5px solid #16161c; box-shadow: 0 10px 18px rgba(0,0,0,.55); }
+.o-cel .rotulo { right: 38%; bottom: 4%; top: auto; transform: rotate(-6deg); }
+.o-sobre:hover, .o-sobre:focus-visible { transform: rotate(-5deg) translateY(-6px); }
+.o-floor:hover, .o-floor:focus-visible { transform: rotate(2deg) translateY(-6px); }
+.o-vivo:hover, .o-vivo:focus-visible { transform: rotate(-1deg) translateY(-6px); }
+.o-px:hover, .o-px:focus-visible { transform: rotate(0deg) translateY(-6px); }
+.o-cel:hover, .o-cel:focus-visible { transform: rotate(4deg) translateY(-6px); }
+@media (max-width: 600px) {
+  .polaroid b { font-size: 16px; } .rotulo { font-size: 14px; padding: 2px 7px 3px; } .rotulo b { font-size: 16px; } .rotulo span { font-size: 12.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .obj { transition: none; } }
+.areas-cortas b span { font-size: inherit; color: inherit; }

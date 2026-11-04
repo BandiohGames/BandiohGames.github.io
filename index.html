@@ -1,26 +1,26 @@
 <!doctype html>
-<html lang="es" data-l="es">
+<html lang="es" data-l="es" data-titulo-en="Esteban Flores · bandioh games">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Esteban Flores · bandioh games</title>
-<meta name="description" content="Portafolio de Esteban Flores Pizarro (bandioh games): videojuegos en Godot, aplicaciones web y pixel art.">
+<meta name="description" content="Portafolio de Esteban Flores Pizarro (bandioh games): videojuegos en Godot, aplicaciones web y pixel art." data-en="Portfolio of Esteban Flores Pizarro (bandioh games): games in Godot, web apps and pixel art.">
 <meta property="og:title" content="Esteban Flores · bandioh games">
 <meta property="og:description" content="Desarrollador de videojuegos en Godot. Creador de REZAGO: a quien corresponda.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/rezago_menu.webp">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=03e5f947">
-<link rel="stylesheet" href="secciones.css?v=c7f0f5e7">
-<script src="sitio.js?v=9310c887"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Special+Elite&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
 </head>
-<body>
+<body class="area-inicio">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
     <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="web.html">Web</a>
@@ -28,6 +28,7 @@
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
 <!--/comun:cabecera-->
@@ -35,66 +36,126 @@
 <main class="ancho">
 
 <div class="portada inicio">
-  <span class="estampa"><span lang="es">Portafolio</span><span lang="en">Portfolio</span></span>
-  <h1>Esteban Flores Pizarro</h1>
-  <p class="bajada">
-    <span lang="es">Analista Programador en Santiago de Chile. Hago videojuegos en Godot, aplicaciones web que se usan a diario y pixel art.</span>
-    <span lang="en">Programmer analyst in Santiago, Chile. I make games in Godot, web apps people use every day, and pixel art.</span>
-  </p>
-  <div class="botones">
-    <a class="boton lleno" href="juegos.html"><span lang="es">Ver mis juegos</span><span lang="en">See my games</span></a>
-    <a class="boton" href="#cv"><span lang="es">Currículums</span><span lang="en">CVs</span></a>
-    <a class="boton" href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  <div class="presenta">
+    <h1>Esteban Flores Pizarro</h1>
+    <p class="rol-linea"><span lang="es">Desarrollador de videojuegos y software</span><span lang="en">Game and software developer</span></p>
+    <p class="bajada">
+      <span lang="es">Hago productos completos, de la idea a la publicación: programo los sistemas, diseño la experiencia y dirijo el arte. Juegos en Godot, aplicaciones web y pixel art, desde Santiago de Chile.</span>
+      <span lang="en">I build complete products, from idea to release: I program the systems, design the experience and direct the art. Games in Godot, web apps and pixel art, from Santiago, Chile.</span>
+    </p>
+    <div class="botones">
+      <a class="boton lleno" href="#destacados"><span lang="es">Ver proyectos</span><span lang="en">See projects</span></a>
+      <a class="boton" href="#cv"><span lang="es">Currículums</span><span lang="en">CVs</span></a>
+      <a class="boton" href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+    </div>
   </div>
+  <nav class="escritorio" aria-label="Mis proyectos sobre el escritorio" data-aria-label-en="My projects on the desk">
+    <a class="obj o-sobre" href="rezago.html"><img decoding="async" src="img/sobre/000.webp" alt="" width="944" height="873"><span class="rotulo"><b>REZAGO</b><span lang="es">publicado</span><span lang="en">released</span></span></a>
+    <a class="obj o-floor" href="floor.html"><span class="polaroid"><img decoding="async" src="img/floor_cabina.jpg" alt="" width="1280" height="720"><b>Floor, Sir?</b></span></a>
+    <a class="obj o-vivo" href="envivo.html"><span class="polaroid"><img decoding="async" src="img/envivo_mano.jpg" alt="" width="960" height="540"><b>En Vivo</b></span></a>
+    <a class="obj o-px" href="pixel.html"><span class="lamina"><img decoding="async" src="img/pixel/rep_trauco_anim.webp" alt="" width="288" height="288"><img decoding="async" src="img/pixel/rep_chilote_anim.webp" alt="" width="288" height="288"></span><span class="rotulo"><b>Pixel art</b><span lang="es">Chillotüm</span><span lang="en">Chillotüm</span></span></a>
+    <a class="obj o-cel" href="fittracker.html"><img decoding="async" src="img/web/ft_intro.webp" alt="" width="780" height="1688"><span class="rotulo"><b>FitTracker</b><span lang="es">uso personal</span><span lang="en">personal use</span></span></a>
+  </nav>
 </div>
 
 <div class="cifras">
   <div class="cifra"><b>1</b><span lang="es">juego publicado en 8 idiomas</span><span lang="en">game shipped in 8 languages</span></div>
-  <div class="cifra"><b>18.000+</b><span lang="es">visualizaciones en su primera semana</span><span lang="en">views in its launch week</span></div>
+  <div class="cifra"><b><span lang="es">18.000+</span><span lang="en">18,000+</span></b><span lang="es">visualizaciones en su primera semana</span><span lang="en">views in its launch week</span></div>
   <div class="cifra"><b>2</b><span lang="es">aplicaciones web en uso</span><span lang="en">web apps in use</span></div>
   <div class="cifra"><b>700+</b><span lang="es">horas de pixel art en Aseprite</span><span lang="en">hours of pixel art in Aseprite</span></div>
 </div>
 
+<section id="como">
+  <h2 class="titulo"><span lang="es">Cómo trabajo</span><span lang="en">How I work</span></h2>
+  <div class="pilares">
+    <div class="pilar">
+      <h3><span lang="es">Programo</span><span lang="en">I program</span></h3>
+      <p lang="es">Godot y GDScript para juegos; React, Node y PostgreSQL para la web. La lógica va separada y con pruebas automatizadas.</p>
+      <p lang="en">Godot and GDScript for games; React, Node and PostgreSQL for the web. Logic stays separate and covered by automated tests.</p>
+    </div>
+    <div class="pilar">
+      <h3><span lang="es">Diseño</span><span lang="en">I design</span></h3>
+      <p lang="es">Sistemas de juego, interfaces y la experiencia completa. Este portafolio también es un proyecto: la escena del sobre está hecha con cuadros del juego.</p>
+      <p lang="en">Game systems, interfaces and the whole experience. This portfolio is a project too: the envelope scene is built from frames rendered by the game.</p>
+    </div>
+    <div class="pilar">
+      <h3><span lang="es">Dirijo el arte</span><span lang="en">I direct the art</span></h3>
+      <p lang="es">Dibujo y animo pixel art para mis juegos y para encargos. En cada proyecto decido el estilo y armo lo que falta con assets libres o generado por código, para que todo se vea como un solo mundo.</p>
+      <p lang="en">I draw and animate pixel art for my games and for clients. On each project I set the style and fill the gaps with free assets or code-generated art, so it all looks like one world.</p>
+    </div>
+    <div class="pilar">
+      <h3><span lang="es">Pruebo y publico</span><span lang="en">I test and ship</span></h3>
+      <p lang="es">Ciclos cortos: lo pongo en manos de alguien, miro dónde se traba y corrijo. Uso IA para programar; el diseño, las pruebas y las decisiones son mías.</p>
+      <p lang="en">Short cycles: I put it in someone's hands, watch where they get stuck and fix it. I use AI to program; the design, testing and decisions are mine.</p>
+    </div>
+  </div>
+</section>
+
+<section id="destacados">
+  <h2 class="titulo"><span lang="es">Proyectos destacados</span><span lang="en">Featured projects</span></h2>
+  <div class="destacados">
+    <a class="tarjeta-proyecto grande" href="rezago.html">
+      <div class="imagen"><img decoding="async" src="img/rezago_fundamento.webp" alt="" width="1600" height="900" loading="lazy"></div>
+      <div class="cuerpo">
+        <div class="marcas"><span class="area-tag juego"><span lang="es">Videojuego</span><span lang="en">Game</span></span><span class="estado listo"><span lang="es">Publicado</span><span lang="en">Released</span></span></div>
+        <h3>REZAGO</h3>
+        <p lang="es">Juego de deducción con cartas perdidas, hecho en solitario y publicado en itch.io en 8 idiomas.</p>
+        <p lang="en">A deduction game about lost letters, made solo and released on itch.io in 8 languages.</p>
+        <span class="tec">Godot 4 · GDScript · Python</span>
+      </div>
+    </a>
+    <a class="tarjeta-proyecto" href="floor.html">
+      <div class="imagen"><img decoding="async" src="img/floor_cabina.jpg" alt="" width="1280" height="720" loading="lazy"></div>
+      <div class="cuerpo">
+        <div class="marcas"><span class="area-tag juego"><span lang="es">Videojuego 3D</span><span lang="en">3D game</span></span><span class="estado"><span lang="es">En desarrollo</span><span lang="en">In development</span></span></div>
+        <h3>Floor, Sir?</h3>
+        <p lang="es">Ascensorista en un hotel de 1928: física de la cabina, historia ramificada y 264 pruebas.</p>
+        <p lang="en">Elevator operator in a 1928 hotel: car physics, a branching story and 264 tests.</p>
+        <span class="tec">Godot 4.6 · 3D · <span lang="es">shaders</span><span lang="en">shaders</span></span>
+      </div>
+    </a>
+    <a class="tarjeta-proyecto" href="fittracker.html">
+      <div class="imagen imagen-web"><img decoding="async" width="780" height="1688" src="img/web/ft_plan_lun.webp" alt="" loading="lazy"></div>
+      <div class="cuerpo">
+        <div class="marcas"><span class="area-tag web">Web</span><span class="estado listo"><span lang="es">Uso personal</span><span lang="en">Personal use</span></span></div>
+        <h3>FitTracker</h3>
+        <p lang="es">App de entrenamiento y nutrición, migrada de Apps Script a un stack estándar con mis datos reales.</p>
+        <p lang="en">A training and nutrition app, migrated from Apps Script to a standard stack with my real data.</p>
+        <span class="tec">React · TypeScript · Node · PostgreSQL</span>
+      </div>
+    </a>
+    <a class="tarjeta-proyecto" href="pixel.html">
+      <div class="imagen imagen-px"><img decoding="async" src="img/pixel/mundo.png" alt="" width="1200" height="500" loading="lazy"></div>
+      <div class="cuerpo">
+        <div class="marcas"><span class="area-tag pixel">Pixel art</span><span class="estado"><span lang="es">En pausa</span><span lang="en">On hold</span></span></div>
+        <h3>Chillotüm</h3>
+        <p lang="es">Metroidvania basado en la mitología de Chiloé: personajes, animaciones y mundo en una sola paleta.</p>
+        <p lang="en">A metroidvania rooted in Chiloé's mythology: characters, animation and world in a single palette.</p>
+        <span class="tec">Aseprite · <span lang="es">animación</span><span lang="en">animation</span></span>
+      </div>
+    </a>
+  </div>
+  <p class="tambien">
+    <span lang="es">También:</span><span lang="en">Also:</span>
+    <a href="envivo.html"><span lang="es">En Vivo, prototipo cooperativo en línea</span><span lang="en">En Vivo, an online co-op prototype</span></a> ·
+    <a href="hublab.html"><span lang="es">minutas de HubLab, práctica profesional</span><span lang="en">HubLab meeting minutes, internship</span></a> ·
+    <a href="pixel.html"><span lang="es">encargos de animación</span><span lang="en">animation commissions</span></a>
+  </p>
+</section>
+
 <section id="areas">
-  <h2 class="titulo"><span lang="es">Lo que hago</span><span lang="en">What I do</span></h2>
-  <div class="areas">
-    <a class="area" href="juegos.html">
-      <div class="vista vista-juegos"><img src="img/sobre/000.webp" alt="" width="944" height="873"></div>
-      <div class="cuerpo">
-        <span class="estampa"><span lang="es">Videojuegos</span><span lang="en">Games</span></span>
-        <h3><span lang="es">Juegos narrativos en Godot</span><span lang="en">Narrative games in Godot</span></h3>
-        <p lang="es">REZAGO, un juego de deducción con cartas perdidas, y Floor, Sir?, en desarrollo.</p>
-        <p lang="en">REZAGO, a deduction game about lost letters, and Floor, Sir?, in development.</p>
-        <span class="ir"><span lang="es">Abrir el sobre</span><span lang="en">Open the envelope</span> →</span>
-      </div>
-    </a>
-    <a class="area" href="web.html">
-      <div class="vista vista-web"><img class="pantalla" src="img/web/minuta_tablero.webp" alt="" width="1280" height="800"><img class="cel" src="img/web/ft_intro.webp" alt="" width="390" height="844"></div>
-      <div class="cuerpo">
-        <span class="estampa"><span lang="es">Desarrollo web</span><span lang="en">Web development</span></span>
-        <h3><span lang="es">Apps con Apps Script y JavaScript</span><span lang="en">Apps Script &amp; JavaScript apps</span></h3>
-        <p lang="es">FitTracker, mi app de entrenamiento, y el módulo de minutas de HubLab.</p>
-        <p lang="en">FitTracker, my training app, and the HubLab meeting-minutes module.</p>
-        <span class="ir"><span lang="es">Ver las apps</span><span lang="en">See the apps</span> →</span>
-      </div>
-    </a>
-    <a class="area" href="pixel.html">
-      <div class="vista vista-pixel"><img class="px" src="img/pixel/rep_chilote_anim.webp" alt=""><img class="px" src="img/pixel/rep_imbunche_anim.webp" alt=""><img class="px" src="img/pixel/rep_trauco_anim.webp" alt=""></div>
-      <div class="cuerpo">
-        <span class="estampa">Pixel art</span>
-        <h3><span lang="es">Personajes y animación</span><span lang="en">Characters and animation</span></h3>
-        <p lang="es">Sprites, assets y animaciones para Chillotüm, encargos y mis juegos.</p>
-        <p lang="en">Sprites, assets and animation for Chillotüm, commissions and my games.</p>
-        <span class="ir"><span lang="es">Ver el pixel art</span><span lang="en">See the pixel art</span> →</span>
-      </div>
-    </a>
+  <h2 class="titulo"><span lang="es">Juegos, web y pixel art</span><span lang="en">Games, web and pixel art</span></h2>
+  <div class="areas-cortas">
+    <a href="juegos.html"><b><span lang="es">Videojuegos</span><span lang="en">Games</span></b><span lang="es">REZAGO, Floor, Sir? y En Vivo</span><span lang="en">REZAGO, Floor, Sir? and En Vivo</span><i>→</i></a>
+    <a href="web.html"><b><span lang="es">Desarrollo web</span><span lang="en">Web development</span></b><span lang="es">FitTracker, HubLab y este portafolio</span><span lang="en">FitTracker, HubLab and this portfolio</span><i>→</i></a>
+    <a href="pixel.html"><b>Pixel art</b><span lang="es">Chillotüm, encargos y assets</span><span lang="en">Chillotüm, commissions and assets</span><i>→</i></a>
   </div>
 </section>
 
 <section id="cv">
   <h2 class="titulo"><span lang="es">Currículums</span><span lang="en">CVs</span></h2>
   <p class="nota-cv" lang="es">Uno por área, en PDF de una página.</p>
-  <p class="nota-cv" lang="en">One per field, as a one-page PDF.</p>
+  <p class="nota-cv" lang="en">A one-page résumé tailored to each field.</p>
   <div class="cvs">
     <a class="cv-fila" href="cv/CV_Esteban_Flores_Videojuegos.pdf" lang="es"><b>Desarrollo de videojuegos</b><span>Godot · GDScript · Python</span><i>PDF ↓</i></a>
     <a class="cv-fila" href="cv/CV_Esteban_Flores_Game_Developer.pdf" lang="en"><b>Game development</b><span>Godot · GDScript · Python</span><i>PDF ↓</i></a>
@@ -111,7 +172,7 @@
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>
@@ -153,6 +214,6 @@
 <!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <!--/comun:pie-->
-<div id="visor"><img alt=""></div>
+<div id="visor"><img decoding="async" alt=""></div>
 </body>
 </html>

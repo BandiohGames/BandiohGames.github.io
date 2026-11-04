@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es" data-l="es" data-titulo-en="HubLab meeting minutes · how I built it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minutas de HubLab · cómo lo hice</title>
+<meta name="description" content="Caso de estudio del módulo de minutas de HubLab: práctica profesional con Google Apps Script, de un formulario a un tablero de temas." data-en="Case study of the HubLab meeting-minutes module: an internship project in Google Apps Script, from a form to a topic board.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/web/minuta_tablero.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
+<link rel="apple-touch-icon" href="img/icono_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
+</head>
+<body class="area-web">
+
+<!--comun:cabecera-->
+<header><div class="ancho">
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
+  <nav>
+    <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web.html" class="activo" aria-current="page">Web</a>
+    <a href="pixel.html">Pixel art</a>
+    <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+    <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+<!--/comun:cabecera-->
+
+<main class="ancho caso" style="padding-top:44px">
+
+<h1 class="mono" style="font-size:40px;line-height:1.1"><span lang="es">Minutas de HubLab</span><span lang="en">HubLab meeting minutes</span></h1>
+<p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
+  <span lang="es">El módulo de minutas de reuniones del ecosistema HubLab, hecho durante mi práctica profesional: de un formulario simple a un tablero de temas con historial.</span>
+  <span lang="en">The meeting-minutes module of the HubLab ecosystem, built during my internship: from a simple form to a topic board with history.</span>
+</p>
+<dl class="ficha-tecnica">
+  <div><dt><span lang="es">Rol</span><span lang="en">Role</span></dt><dd><span lang="es">Desarrollo del módulo y, al final, líder del equipo de Data Control</span><span lang="en">Built the module and, at the end, led the Data Control team</span></dd></div>
+  <div><dt><span lang="es">Contexto</span><span lang="en">Context</span></dt><dd><span lang="es">Práctica profesional, de marzo a mayo de 2026</span><span lang="en">Internship, March to May 2026</span></dd></div>
+  <div><dt><span lang="es">Tamaño</span><span lang="en">Size</span></dt><dd><span lang="es">Unas 13.000 líneas y 56 funciones de servidor</span><span lang="en">About 13,000 lines and 56 server functions</span></dd></div>
+  <div><dt><span lang="es">Tecnología</span><span lang="en">Tech</span></dt><dd>Google Apps Script, Google Sheets, JavaScript, Bootstrap, Looker Studio</dd></div>
+  <div><dt><span lang="es">Código</span><span lang="en">Code</span></dt><dd><span lang="es">De HubLab, no es público</span><span lang="en">HubLab's, not public</span></dd></div>
+</dl>
+
+<h2><span lang="es">El problema</span><span lang="en">The problem</span></h2>
+<p lang="es">Cada célula de HubLab se reúne cada semana, y lo que se hablaba quedaba en notas sueltas que nadie volvía a encontrar. El módulo reúne cada reunión en un solo lugar: quién asistió, cómo avanzó cada tema y qué se acordó.</p>
+<p lang="en">Every HubLab team meets weekly, and what was discussed ended up in scattered notes nobody could find again. The module keeps every meeting in one place: who attended, how each topic progressed and what was agreed.</p>
+
+<h2><span lang="es">Qué hace</span><span lang="en">What it does</span></h2>
+  <div class="texto">
+      <ul lang="es">
+        <li><b>Acceso:</b> identificación por RUT contra la base de RRHH, PIN por célula y modo lectura para visitas.</li>
+        <li><b>Equipo:</b> roles de líder y colíder, altas y bajas desde RRHH y postulaciones a una célula.</li>
+        <li><b>Historial:</b> cada minuta guarda asistencia, acuerdos y una foto del tablero, con filtros por célula, autor, integrante, estado y fecha.</li>
+        <li><b>Avisos:</b> notificaciones, registro de actividad, tutorial guiado y tema claro u oscuro.</li>
+      </ul>
+      <ul lang="en">
+        <li><b>Access:</b> national ID check against the HR database, per-team PIN and read-only mode for visitors.</li>
+        <li><b>Team:</b> leader and co-leader roles, adding and removing members from HR, and requests to join a team.</li>
+        <li><b>History:</b> each record keeps attendance, agreements and a snapshot of the board, filterable by team, author, member, status and date.</li>
+        <li><b>Alerts:</b> notifications, activity log, guided tutorial and light or dark theme.</li>
+      </ul>
+    </div>
+
+  <figure class="captura">
+    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img decoding="async" src="img/web/minuta_tablero.webp" alt="Tablero de temas de una célula, con columnas pendiente, en progreso y completado" data-alt-en="A team's topic board, with to-do, in-progress and done columns" width="1280" height="800" loading="lazy"></div>
+    <figcaption lang="es"><b>Tablero de temas.</b> Columnas y etiquetas propias de cada célula; tarjetas y columnas se arrastran, y cada tarjeta tiene prioridad, responsables, fecha y checklist.</figcaption>
+    <figcaption lang="en"><b>Topic board.</b> Each team has its own columns and tags; cards and columns can be dragged, and every card has priority, owners, a due date and a checklist.</figcaption>
+  </figure>
+
+  <div class="dos-col">
+    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img decoding="async" src="img/web/minuta_tarjeta.webp" alt="Detalle de una tarjeta con checklist y comentarios con menciones" data-alt-en="Card detail with a checklist and comments with mentions" width="980" height="820" loading="lazy"></div>
+      <figcaption lang="es"><b>Detalle de un tema:</b> checklist con avance, responsables y comentarios con @menciones que avisan a la persona.</figcaption>
+      <figcaption lang="en"><b>Topic detail:</b> checklist with progress, owners and comments with @mentions that notify the person.</figcaption></figure>
+    <div>
+      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img decoding="async" width="2560" height="1350" src="img/web/minuta_asistencia.webp" alt="Acuerdos y asistencia del equipo" data-alt-en="The team's agreements and attendance" loading="lazy"></div>
+        <figcaption lang="es"><b>Acuerdos y asistencia</b> de cada reunión, con el rol de cada integrante.</figcaption>
+        <figcaption lang="en"><b>Agreements and attendance</b> for each meeting, with each member&#39;s role.</figcaption></figure>
+      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img decoding="async" src="img/web/minuta_historial.webp" alt="Historial de minutas con filtros" data-alt-en="Meeting history with filters" width="1280" height="600" loading="lazy"></div>
+        <figcaption lang="es"><b>Historial</b> con filtros que se combinan.</figcaption>
+        <figcaption lang="en"><b>History</b> with combinable filters.</figcaption></figure>
+    </div>
+  </div>
+
+  <h2><span lang="es">Cómo creció</span><span lang="en">How it grew</span></h2>
+  <div class="dos-col">
+    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span lang="es">Primera versión</span><span lang="en">First version</span></div><img decoding="async" src="img/web/minuta_v1.webp" alt="Primera versión de la minuta: un formulario" data-alt-en="First version of the minutes: a form" width="1280" height="617" loading="lazy"></div>
+      <figcaption lang="es"><b>Primera versión · ~1.100 líneas.</b> Un formulario: fecha, líder, asistencia, temas y acuerdos en texto libre.</figcaption>
+      <figcaption lang="en"><b>First version · ~1,100 lines.</b> A form: date, leader, attendance, topics and agreements as free text.</figcaption></figure>
+    <div class="texto">
+      <p lang="es"><b>Versión actual · ~13.000 líneas y 56 funciones de servidor.</b> Los temas dejaron de ser texto: ahora son tarjetas que siguen vivas de una reunión a la otra, y cada minuta guarda una foto del tablero para ver cómo avanzó cada tema.</p>
+      <p lang="en"><b>Current version · ~13,000 lines and 56 server functions.</b> Topics stopped being free text: they are now cards that live on from one meeting to the next, and each record stores a snapshot of the board to show how every topic progressed.</p>
+      <p lang="es">Además, el historial alimenta un panel en Looker Studio para la coordinación.</p>
+      <p lang="en">The history also feeds a Looker Studio dashboard for coordinators.</p>
+      <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span>Looker Studio</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
+      <p class="nota" lang="es">Capturas de la app real corriendo con personas y datos inventados. El código pertenece a HubLab y no es público.</p>
+      <p class="nota" lang="en">Screenshots of the real app running with made-up people and data. The code belongs to HubLab and is not public.</p>
+    </div>
+  </div>
+
+<nav class="navegar-caso" aria-label="Más proyectos" data-aria-label-en="More projects">
+  <a class="volver" href="web.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
+  <a class="siguiente" href="portafolio.html"><span><small lang="es">Siguiente proyecto</small><small lang="en">Next project</small><b lang="es">Este portafolio</b><b lang="en">This portfolio</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
+</main>
+<div class="ancho">
+<!--comun:sobre-->
+<section id="sobre">
+  <h2 class="titulo"><span lang="es">Sobre mí</span><span lang="en">About me</span></h2>
+  <div class="sobre">
+    <div>
+      <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
+      <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
+      <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
+    </div>
+    <div class="habilidades">
+      <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
+      <div><b>Web</b><span>React · TypeScript · Node.js · JavaScript · HTML/CSS · Google Apps Script</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL (PostgreSQL) · Git · C#</span></div>
+      <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
+      <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
+    </div>
+  </div>
+</section>
+<!--/comun:sobre-->
+
+<!--comun:contacto-->
+<section id="contacto">
+  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <p class="contacto-intro" lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>
+  <p class="contacto-intro" lang="en">Have a project or a role in mind? Get in touch.</p>
+  <div class="contacto">
+    <div class="correos">
+      <a class="sobre-correo blanco" href="mailto:esteban.flores.dio@gmail.com"><small><span lang="es">Escríbeme a</span><span lang="en">Email me at</span></small><b>esteban.flores.dio@gmail.com</b></a>
+    </div>
+    <div class="redes">
+      <a class="red" href="https://linkedin.com/in/esteban-flores-pizarro"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span><b>LinkedIn</b><small>esteban-flores-pizarro</small></span></a>
+    </div>
+  </div>
+</section>
+<!--/comun:contacto-->
+</div>
+
+<!--comun:pie-->
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<!--/comun:pie-->
+<div id="visor"><img decoding="async" alt=""></div>
+</body>
+</html>

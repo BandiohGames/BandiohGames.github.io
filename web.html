@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="es" data-l="es">
+<html lang="es" data-l="es" data-titulo-en="Web development · Esteban Flores">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desarrollo web · Esteban Flores</title>
-<meta name="description" content="Aplicaciones web de Esteban Flores Pizarro: FitTracker y el módulo de minutas de HubLab, con Google Apps Script, JavaScript y Google Sheets.">
+<meta name="description" content="Aplicaciones web de Esteban Flores Pizarro: FitTracker y el módulo de minutas de HubLab, con Google Apps Script, JavaScript y Google Sheets." data-en="Web apps by Esteban Flores Pizarro: FitTracker and the HubLab meeting-minutes module.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/web/ft_hist.webp">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=03e5f947">
-<link rel="stylesheet" href="secciones.css?v=c7f0f5e7">
-<script src="sitio.js?v=9310c887"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
 </head>
-<body>
+<body class="area-web">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
     <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="web.html" class="activo" aria-current="page">Web</a>
@@ -26,6 +26,7 @@
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
 <!--/comun:cabecera-->
@@ -33,16 +34,9 @@
 <main class="ancho">
 
 <div class="cabeza-seccion">
-  <span class="estampa"><span lang="es">Desarrollo web</span><span lang="en">Web development</span></span>
-  <h1><span lang="es">Aplicaciones que la gente usa todos los días</span><span lang="en">Apps people use every day</span></h1>
+  <h1><span lang="es">Aplicaciones web completas, del dato a la pantalla</span><span lang="en">Complete web apps, from data to screen</span></h1>
   <p lang="es">Construyo aplicaciones web completas con Google Apps Script, JavaScript y hojas de cálculo como base de datos: del modelo de datos y el servidor a una interfaz cuidada que funciona en el celular.</p>
   <p lang="en">I build complete web apps with Google Apps Script, JavaScript and spreadsheets as a database: from the data model and server code to a polished interface that works on a phone.</p>
-  <div class="franja-datos">
-    <div><b>2</b><span lang="es">aplicaciones en uso real</span><span lang="en">apps in real use</span></div>
-    <div><b>~7.400</b><span lang="es">líneas en FitTracker</span><span lang="en">lines in FitTracker</span></div>
-    <div><b>~13.000</b><span lang="es">líneas en el módulo de minutas</span><span lang="en">lines in the minutes module</span></div>
-    <div><b>99</b><span lang="es">funciones de servidor entre las dos</span><span lang="en">server functions across both</span></div>
-  </div>
   <div class="botones">
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Web.pdf" lang="es">Descargar CV web</a>
     <a class="boton lleno" href="cv/CV_Esteban_Flores_Web_Developer.pdf" lang="en">Download web CV</a>
@@ -54,15 +48,15 @@
   <h2>FitTracker</h2>
   <div class="sub"><span lang="es">Aplicación de entrenamiento y nutrición · proyecto personal · en uso diario</span><span lang="en">Training and nutrition app · personal project · used daily</span></div>
   <div class="telefonos">
-    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_intro.webp" alt="Pantalla de inicio de FitTracker" loading="lazy"></div><figcaption lang="es">Inicio animado</figcaption><figcaption lang="en">Animated intro</figcaption></figure>
-    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_plan_lun.webp" alt="Plan semanal con una sesión completada" loading="lazy"></div><figcaption lang="es">Plan semanal y sesión completada</figcaption><figcaption lang="en">Weekly plan and finished session</figcaption></figure>
-    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_entreno_mie.webp" alt="Calentamiento sugerido antes de entrenar" loading="lazy"></div><figcaption lang="es">Calentamiento guiado</figcaption><figcaption lang="en">Guided warm-up</figcaption></figure>
-    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_nutri.webp" alt="Registro de nutrición y proteína de 14 días" loading="lazy"></div><figcaption lang="es">Nutrición y proteína</figcaption><figcaption lang="en">Nutrition and protein</figcaption></figure>
-    <figure class="telefono"><div class="marco-cel"><img src="img/web/ft_hist.webp" alt="Progreso: volumen semanal y grupos musculares" loading="lazy"></div><figcaption lang="es">Progreso y gráficos propios</figcaption><figcaption lang="en">Progress and custom charts</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_intro.webp" alt="Pantalla de inicio de FitTracker" data-alt-en="FitTracker home screen" loading="lazy"></div><figcaption lang="es">Inicio animado</figcaption><figcaption lang="en">Animated intro</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_plan_lun.webp" alt="Plan semanal con una sesión completada" data-alt-en="Weekly plan with a completed session" loading="lazy"></div><figcaption lang="es">Plan semanal y sesión completada</figcaption><figcaption lang="en">Weekly plan and finished session</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_entreno_mie.webp" alt="Calentamiento sugerido antes de entrenar" data-alt-en="Suggested warm-up before training" loading="lazy"></div><figcaption lang="es">Calentamiento guiado</figcaption><figcaption lang="en">Guided warm-up</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_nutri.webp" alt="Registro de nutrición y proteína de 14 días" data-alt-en="14-day nutrition and protein log" loading="lazy"></div><figcaption lang="es">Nutrición y proteína</figcaption><figcaption lang="en">Nutrition and protein</figcaption></figure>
+    <figure class="telefono"><div class="marco-cel"><img decoding="async" width="780" height="1688" src="img/web/ft_hist.webp" alt="Progreso: volumen semanal y grupos musculares" data-alt-en="Progress: weekly volume and muscle groups" loading="lazy"></div><figcaption lang="es">Progreso y gráficos propios</figcaption><figcaption lang="en">Progress and custom charts</figcaption></figure>
   </div>
   <div class="dos-col texto">
     <div>
-      <div class="rol"><span lang="es"><b>Mi rol:</b> todo, en solitario: modelo de datos, servidor, interfaz, animaciones y sonido.</span><span lang="en"><b>My role:</b> everything, solo: data model, server, interface, animations and sound.</span></div>
+      <div class="rol"><span lang="es"><b>Mi rol:</b> todo, en solitario: modelo de datos, servidor, interfaz, animaciones y sonido.</span><span lang="en"><b>My role:</b> I handled the entire project on my own: data model, server, interface, animations and sound.</span></div>
       <ul lang="es">
         <li>Base de datos en 9 hojas de Google Sheets (entrenos, series, nutrición, peso, calendario, equipamiento, logros, ajustes y coach).</li>
         <li>Servidor en Apps Script con 43 funciones y caché, para que la app abra rápido aunque la planilla crezca.</li>
@@ -89,7 +83,7 @@
       </ul>
       <div class="etiquetas"><span>React</span><span>TypeScript</span><span>Node.js</span><span>PostgreSQL</span><span>Google Apps Script</span><span>Canvas</span></div>
       <p class="nota" lang="es">Capturas de la app real con datos de ejemplo. El código es privado, pero lo comparto en procesos de selección.</p>
-      <p class="nota" lang="en">Screenshots of the real app with sample data. The code is private, but I share it in hiring processes.</p>
+      <p class="nota" lang="en">Screenshots of the real app with sample data. The code is private, but I can share it during hiring processes.</p>
       <div class="botones" style="margin-top:12px">
         <a class="boton lleno" href="https://fittracker-9y5d.onrender.com"><span lang="es">Probar la demo</span><span lang="en">Try the demo</span></a>
         <a class="boton" href="fittracker.html"><span lang="es">Cómo lo hice</span><span lang="en">How I built it</span></a>
@@ -100,13 +94,13 @@
 
 <!-- HubLab -->
 <section class="proyecto">
-  <h2><span lang="es">Minutas de reuniones · HubLab</span><span lang="en">Meeting minutes · HubLab</span></h2>
+  <h2 id="minuta"><span lang="es">Minutas de reuniones · HubLab</span><span lang="en">Meeting minutes · HubLab</span></h2>
   <div class="sub"><span lang="es">Práctica profesional · laboratorio de proyectos de empresa · mar–may 2026</span><span lang="en">Professional internship · company project lab · Mar–May 2026</span></div>
   <div class="dos-col texto">
     <div>
       <div class="rol"><span lang="es"><b>Mi rol:</b> desarrollé el módulo de minutas del ecosistema HubLab y, cuando terminó la práctica de mis compañeros, lideré el equipo de Data Control.</span><span lang="en"><b>My role:</b> I built the meeting-minutes module of the HubLab ecosystem and, when my teammates&#39; internships ended, I led the Data Control team.</span></div>
       <p lang="es">Cada célula de HubLab se reúne cada semana. El módulo reemplazó las minutas sueltas por un solo lugar donde la reunión queda registrada: quién vino, qué temas avanzaron y qué se acordó.</p>
-      <p lang="en">Every HubLab team meets weekly. The module replaced scattered notes with a single place where each meeting is recorded: who came, which topics moved forward and what was agreed.</p>
+      <p lang="en">Every HubLab team meets weekly. The module replaced scattered notes with a single place where each meeting is recorded: who attended, how each topic progressed and what was agreed.</p>
     </div>
     <div>
       <ul lang="es">
@@ -125,40 +119,12 @@
   </div>
 
   <figure class="captura">
-    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_tablero.webp" alt="Tablero de temas de una célula, con columnas pendiente, en progreso y completado" width="1280" height="800" loading="lazy"></div>
+    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img decoding="async" src="img/web/minuta_tablero.webp" alt="Tablero de temas de una célula, con columnas pendiente, en progreso y completado" data-alt-en="A team's topic board, with to-do, in-progress and done columns" width="1280" height="800" loading="lazy"></div>
     <figcaption lang="es"><b>Tablero de temas.</b> Columnas y etiquetas propias de cada célula; tarjetas y columnas se arrastran, y cada tarjeta tiene prioridad, responsables, fecha y checklist.</figcaption>
     <figcaption lang="en"><b>Topic board.</b> Each team has its own columns and tags; cards and columns can be dragged, and every card has priority, owners, a due date and a checklist.</figcaption>
   </figure>
-
-  <div class="dos-col">
-    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_tarjeta.webp" alt="Detalle de una tarjeta con checklist y comentarios con menciones" width="980" height="820" loading="lazy"></div>
-      <figcaption lang="es"><b>Detalle de un tema:</b> checklist con avance, responsables y comentarios con @menciones que avisan a la persona.</figcaption>
-      <figcaption lang="en"><b>Topic detail:</b> checklist with progress, owners and comments with @mentions that notify the person.</figcaption></figure>
-    <div>
-      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_asistencia.webp" alt="Acuerdos y asistencia del equipo" loading="lazy"></div>
-        <figcaption lang="es"><b>Acuerdos y asistencia</b> de cada reunión, con el rol de cada integrante.</figcaption>
-        <figcaption lang="en"><b>Agreements and attendance</b> for each meeting, with each member&#39;s role.</figcaption></figure>
-      <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>HubLab · Minutas</span></div><img src="img/web/minuta_historial.webp" alt="Historial de minutas con filtros" width="1280" height="600" loading="lazy"></div>
-        <figcaption lang="es"><b>Historial</b> con filtros que se combinan.</figcaption>
-        <figcaption lang="en"><b>History</b> with combinable filters.</figcaption></figure>
-    </div>
-  </div>
-
-  <h3 class="subtitulo"><span lang="es">Cómo creció</span><span lang="en">How it grew</span></h3>
-  <div class="dos-col">
-    <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span lang="es">Primera versión</span><span lang="en">First version</span></div><img src="img/web/minuta_v1.webp" alt="Primera versión de la minuta: un formulario" width="1280" height="617" loading="lazy"></div>
-      <figcaption lang="es"><b>Primera versión · ~1.100 líneas.</b> Un formulario: fecha, líder, asistencia, temas y acuerdos en texto libre.</figcaption>
-      <figcaption lang="en"><b>First version · ~1,100 lines.</b> A form: date, leader, attendance, topics and agreements as free text.</figcaption></figure>
-    <div class="texto">
-      <p lang="es"><b>Versión actual · ~13.000 líneas y 56 funciones de servidor.</b> Los temas dejaron de ser texto: ahora son tarjetas que siguen vivas de una reunión a la otra, y cada minuta guarda una foto del tablero para ver cómo avanzó cada tema.</p>
-      <p lang="en"><b>Current version · ~13,000 lines and 56 server functions.</b> Topics stopped being free text: they are now cards that live on from one meeting to the next, and each record stores a snapshot of the board to show how every topic progressed.</p>
-      <p lang="es">Además, el historial alimenta un panel en Looker Studio para la coordinación.</p>
-      <p lang="en">The history also feeds a Looker Studio dashboard for coordinators.</p>
-      <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span>Looker Studio</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
-      <p class="nota" lang="es">Capturas de la app real corriendo con personas y datos inventados. El código pertenece a HubLab y no es público.</p>
-      <p class="nota" lang="en">Screenshots of the real app running with made-up people and data. The code belongs to HubLab and is not public.</p>
-    </div>
-  </div>
+  <div class="etiquetas"><span>Google Apps Script</span><span>Google Sheets</span><span>JavaScript</span><span>Bootstrap</span><span>Looker Studio</span><span lang="es">Liderazgo</span><span lang="en">Leadership</span></div>
+  <div class="botones" style="margin-top:14px"><a class="boton" href="hublab.html"><span lang="es">Cómo lo hice</span><span lang="en">How I built it</span></a></div>
 </section>
 
 <!-- Este mismo sitio -->
@@ -166,54 +132,17 @@
   <h2><span lang="es">Este portafolio</span><span lang="en">This portfolio</span></h2>
   <div class="sub"><span lang="es">HTML, CSS y JavaScript sin frameworks · GitHub Pages</span><span lang="en">HTML, CSS and JavaScript, no frameworks · GitHub Pages</span></div>
   <p class="texto" lang="es">El sitio también es un proyecto: lo diseñé y lo programé para que se sienta como abrir el correo de REZAGO. Lo más trabajado es la escena del sobre en la página de juegos, que avanza con la barra de desplazamiento.</p>
-  <p class="texto" lang="en">The site is a project too: I designed and built it to feel like opening REZAGO's mail. The most polished part is the envelope scene on the games page, which moves with the scrollbar.</p>
-  <div class="dos-col texto">
-    <ul lang="es">
-      <li>El sobre de REZAGO sigue a la barra de desplazamiento: 127 cuadros dibujados por el propio juego, en un canvas con inercia.</li>
-      <li>La carta se despliega en 3D con tres copias de la hoja real, y calza exacto con ella al terminar.</li>
-      <li>La lupa replica el shader del juego con filtros SVG: aumento central, orilla comprimida y colores separados en el canto.</li>
-    </ul>
-    <ul lang="es">
-      <li>Las cifras de itch.io se actualizan solas cada día con GitHub Actions y la API de itch.</li>
-      <li>Bilingüe, se adapta al celular y respeta a quien pide menos movimiento en su sistema.</li>
-    </ul>
-    <ul lang="en">
-      <li>The REZAGO envelope follows the scrollbar: 127 frames drawn by the game itself, on a canvas with easing.</li>
-      <li>The letter unfolds in 3D from three copies of the real page, matching it exactly at the end.</li>
-      <li>The magnifier recreates the game's shader with SVG filters: central zoom, compressed rim and split colors at the edge.</li>
-    </ul>
-    <ul lang="en">
-      <li>itch.io figures update daily through GitHub Actions and the itch API.</li>
-      <li>Bilingual, mobile-friendly and respectful of reduced-motion settings.</li>
-    </ul>
-  </div>
-  <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span lang="es">Cuatro de los 127 cuadros</span><span lang="en">Four of the 127 frames</span></div><img src="img/web/escena_cuadros.webp" alt="Cuatro cuadros de la escena del sobre: de frente, dándose vuelta, con la tira cortada y con la carta asomando" width="1476" height="333" loading="lazy"></div>
-    <figcaption lang="es"><b>Los cuadros los dibuja el juego.</b> El mismo código de REZAGO que pinta los sobres en la partida exportó cada cuadro del corte; la web solo elige cuál mostrar.</figcaption>
-    <figcaption lang="en"><b>The frames are drawn by the game.</b> The same REZAGO code that paints envelopes in play exported every frame of the cut; the site just picks which one to show.</figcaption></figure>
-<figure class="codigo">
-  <div class="codigo-barra"><b>sitio.js</b><span lang="es">JavaScript · el scroll que mueve el sobre</span><span lang="en">JavaScript · the scroll that drives the envelope</span></div>
-  <pre><code><span class="k">var</span> tramo = <span class="k">function</span> (p, a, b) { <span class="k">return</span> <span class="k">Math</span>.min(<span class="n">1</span>, <span class="k">Math</span>.max(<span class="n">0</span>, (p - a) / (b - a))); };
-
-<span class="k">var</span> leer = <span class="k">function</span> () {
-  <span class="k">var</span> r = escena.getBoundingClientRect();
-  <span class="k">var</span> total = escena.offsetHeight - innerHeight;
-  objetivo = <span class="k">Math</span>.min(<span class="n">1</span>, <span class="k">Math</span>.max(<span class="n">0</span>, -r.top / <span class="k">Math</span>.max(total, <span class="n">1</span>)));
-};
-<span class="k">var</span> paso = <span class="k">function</span> (t) {
-  <span class="k">var</span> dt = <span class="k">Math</span>.min(<span class="n">0.05</span>, (t - ultimo) / <span class="n">1000</span> || <span class="n">0.016</span>); ultimo = t;
-  leer();
-  mostrado += (objetivo - mostrado) * (<span class="n">1</span> - <span class="k">Math</span>.exp(-dt * <span class="n">9</span>));   <span class="c">// inercia: se acerca suave al scroll</span>
-  <span class="k">if</span> (<span class="k">Math</span>.abs(objetivo - mostrado) &lt; <span class="n">0.0003</span>) mostrado = objetivo;
-  <span class="k">if</span> (mostrado !== fijo) { pintar(mostrado); fijo = mostrado; }
-  <span class="k">if</span> (mostrado !== objetivo) requestAnimationFrame(paso); <span class="k">else</span> corriendo = <span class="k">false</span>;
-};
-<span class="c">// dentro de pintar(p): cada etapa ocupa su propio tramo del recorrido</span>
-<span class="k">var</span> gira = tramo(p, <span class="n">0.03</span>, <span class="n">0.17</span>), corte = tramo(p, <span class="n">0.24</span>, <span class="n">0.42</span>);</code></pre>
-  <figcaption lang="es">La escena no es un video: es un <i>canvas</i> que dibuja uno de los 127 cuadros según cuánto has bajado. La posición del scroll se vuelve un número de 0 a 1, ese número se acerca al real con un poco de inercia (así no salta), y cada etapa (darse vuelta, cortar, sacar la carta, desplegarla) ocupa su propio tramo. Si subes, todo vuelve atrás.</figcaption>
-  <figcaption lang="en">The scene isn't a video: it's a <i>canvas</i> that draws one of 127 frames depending on how far you've scrolled. The scroll position becomes a number from 0 to 1, that number eases toward the real one (so it never jumps), and each stage (flip, cut, pull out the letter, unfold it) owns its own slice of the range. Scroll up and everything plays backwards.</figcaption>
-</figure>
-  <div class="botones" style="margin-top:14px"><a class="boton lleno" href="juegos.html"><span lang="es">Ver la escena del sobre</span><span lang="en">See the envelope scene</span></a></div>
+  <p class="texto" lang="en">The site is a project too: I designed and built it to feel like opening REZAGO's mail. The most polished part is the envelope scene on the games page, which moves as you scroll.</p>
+  <figure class="captura" style="margin-top:16px"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>bandiohgames.github.io/juegos.html</span></div><video src="img/web/escena_sobre.mp4" poster="img/web/escena_sobre.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+  <figcaption lang="es">La escena completa, grabada bajando con la barra de desplazamiento: el sobre se da vuelta, el abrecartas lo corta, sale la carta y se despliega.</figcaption>
+  <figcaption lang="en">The full scene, recorded while scrolling: the envelope flips, the letter opener cuts it, the letter comes out and unfolds.</figcaption></figure>
+  <div class="botones" style="margin-top:14px"><a class="boton lleno" href="juegos.html"><span lang="es">Ver la escena del sobre</span><span lang="en">See the envelope scene</span></a><a class="boton" href="portafolio.html"><span lang="es">Cómo lo hice</span><span lang="en">How I built it</span></a></div>
 </section>
+
+<nav class="navegar-caso" aria-label="Otras áreas" data-aria-label-en="Other fields">
+  <a class="volver" href="juegos.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Área anterior</small><small lang="en">Previous field</small><b lang="es">Videojuegos</b><b lang="en">Games</b></span></a>
+  <a class="siguiente" href="pixel.html"><span><small lang="es">Siguiente área</small><small lang="en">Next field</small><b>Pixel art</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
 
 <!--comun:sobre-->
 <section id="sobre">
@@ -221,7 +150,7 @@
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>
@@ -256,6 +185,6 @@
 <!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <!--/comun:pie-->
-<div id="visor"><img alt=""></div>
+<div id="visor"><img decoding="async" alt=""></div>
 </body>
 </html>

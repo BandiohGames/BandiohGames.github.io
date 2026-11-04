@@ -10,8 +10,12 @@ PAGINAS = {
     'index.html': ('inicio', None),
     'juegos.html': ('juegos', 'bandioh.games@gmail.com'),
     'rezago.html': ('juegos', 'bandioh.games@gmail.com'),
+    'floor.html': ('juegos', 'bandioh.games@gmail.com'),
+    'envivo.html': ('juegos', 'bandioh.games@gmail.com'),
     'web.html': ('web', 'esteban.flores.dio@gmail.com'),
     'fittracker.html': ('web', 'esteban.flores.dio@gmail.com'),
+    'hublab.html': ('web', 'esteban.flores.dio@gmail.com'),
+    'portafolio.html': ('web', 'esteban.flores.dio@gmail.com'),
     'pixel.html': ('pixel', 'bandioh.pixelart@gmail.com'),
 }
 
@@ -26,8 +30,9 @@ def cabecera(activa):
     enlaces = '\n'.join('    <a href="%s"%s>%s</a>' % (href, ' class="activo" aria-current="page"' if clave == activa else '', txt)
                         for clave, href, txt in MENU)
     return ('<header><div class="ancho">\n'
-            '  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>\n'
+            '  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>\n'
             '  <nav>\n' + enlaces + '\n  </nav>\n'
+            '  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>\n'
             '  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>\n'
             '</div></header>')
 
@@ -37,7 +42,7 @@ SOBRE = '''<section id="sobre">
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>

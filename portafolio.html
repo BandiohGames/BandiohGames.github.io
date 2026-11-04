@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es" data-l="es" data-titulo-en="This portfolio · how I built it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Este portafolio · cómo lo hice</title>
+<meta name="description" content="Cómo hice este portafolio: HTML, CSS y JavaScript sin frameworks, con una escena de sobre dibujada por el propio juego REZAGO." data-en="How I built this portfolio: framework-free HTML, CSS and JavaScript, with an envelope scene drawn by the REZAGO game itself.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/web/escena_sobre.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
+<link rel="apple-touch-icon" href="img/icono_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
+</head>
+<body class="area-web">
+
+<!--comun:cabecera-->
+<header><div class="ancho">
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
+  <nav>
+    <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web.html" class="activo" aria-current="page">Web</a>
+    <a href="pixel.html">Pixel art</a>
+    <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+    <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+<!--/comun:cabecera-->
+
+<main class="ancho caso" style="padding-top:44px">
+
+<h1 class="mono" style="font-size:40px;line-height:1.1"><span lang="es">Este portafolio</span><span lang="en">This portfolio</span></h1>
+<p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
+  <span lang="es">El sitio también es un proyecto: HTML, CSS y JavaScript sin frameworks, con la escena del sobre dibujada por el propio REZAGO.</span>
+  <span lang="en">The site is a project too: framework-free HTML, CSS and JavaScript, with the envelope scene drawn by REZAGO itself.</span>
+</p>
+<dl class="ficha-tecnica">
+  <div><dt><span lang="es">Rol</span><span lang="en">Role</span></dt><dd><span lang="es">Diseño y programación, en solitario</span><span lang="en">Design and programming, solo</span></dd></div>
+  <div><dt><span lang="es">Fecha</span><span lang="en">Date</span></dt><dd><span lang="es">Noviembre de 2026</span><span lang="en">November 2026</span></dd></div>
+  <div><dt><span lang="es">Tecnología</span><span lang="en">Tech</span></dt><dd><span lang="es">HTML, CSS y JavaScript sin frameworks, Python</span><span lang="en">Framework-free HTML, CSS and JavaScript, Python</span></dd></div>
+  <div><dt><span lang="es">Publicación</span><span lang="en">Hosting</span></dt><dd><span lang="es">GitHub Pages, con GitHub Actions para las cifras de itch.io</span><span lang="en">GitHub Pages, with GitHub Actions for the itch.io figures</span></dd></div>
+  <div><dt><span lang="es">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="es">Español e inglés</span><span lang="en">Spanish and English</span></dd></div>
+</dl>
+
+<h2><span lang="es">La idea</span><span lang="en">The idea</span></h2>
+<p lang="es">Quería que el sitio se sintiera como abrir el correo de REZAGO, no como una plantilla. Lo más trabajado es la escena del sobre en la página de juegos, que avanza con la barra de desplazamiento.</p>
+<p lang="en">I wanted the site to feel like opening REZAGO's mail, not like a template. The most polished part is the envelope scene on the games page, which moves as you scroll.</p>
+<figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>bandiohgames.github.io/juegos.html</span></div><video src="img/web/escena_sobre.mp4" poster="img/web/escena_sobre.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+  <figcaption lang="es">La escena completa, grabada bajando con la barra de desplazamiento: el sobre se da vuelta, el abrecartas lo corta, sale la carta y se despliega.</figcaption>
+  <figcaption lang="en">The full scene, recorded while scrolling: the envelope flips, the letter opener cuts it, the letter comes out and unfolds.</figcaption></figure>
+<h2><span lang="es">Cómo funciona</span><span lang="en">How it works</span></h2>
+  <div class="dos-col texto">
+    <ul lang="es">
+      <li>El sobre de REZAGO sigue a la barra de desplazamiento: 127 cuadros dibujados por el propio juego, en un canvas con inercia.</li>
+      <li>La carta se despliega en 3D con tres copias de la hoja real, y calza exacto con ella al terminar.</li>
+      <li>La lupa replica el shader del juego con filtros SVG: aumento central, orilla comprimida y colores separados en el canto.</li>
+    </ul>
+    <ul lang="es">
+      <li>Las cifras de itch.io se actualizan solas cada día con GitHub Actions y la API de itch.</li>
+      <li>Bilingüe, se adapta al celular y respeta a quien pide menos movimiento en su sistema.</li>
+    </ul>
+    <ul lang="en">
+      <li>The REZAGO envelope follows your scroll: 127 frames drawn by the game itself, on a canvas with easing.</li>
+      <li>The letter unfolds in 3D from three copies of the real page, matching it exactly at the end.</li>
+      <li>The magnifier recreates the game's shader with SVG filters: central zoom, compressed rim and split colors at the edge.</li>
+    </ul>
+    <ul lang="en">
+      <li>itch.io figures update daily through GitHub Actions and the itch API.</li>
+      <li>Bilingual, mobile-friendly, and it respects reduced-motion settings.</li>
+    </ul>
+  </div>
+  <figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span lang="es">Cuatro de los 127 cuadros</span><span lang="en">Four of the 127 frames</span></div><img decoding="async" src="img/web/escena_cuadros.webp" alt="Cuatro cuadros de la escena del sobre: de frente, dándose vuelta, con la tira cortada y con la carta asomando" data-alt-en="Four frames of the envelope scene: front, flipping over, with the strip cut, and with the letter peeking out" width="1476" height="333" loading="lazy"></div>
+    <figcaption lang="es"><b>Los cuadros los dibuja el juego.</b> El mismo código de REZAGO que pinta los sobres en la partida exportó cada cuadro del corte; la web solo elige cuál mostrar.</figcaption>
+    <figcaption lang="en"><b>The frames are drawn by the game.</b> The same REZAGO code that paints envelopes in play exported every frame of the cut; the site just picks which one to show.</figcaption></figure>
+<figure class="codigo">
+  <div class="codigo-barra"><b>sitio.js</b><span lang="es">JavaScript · el scroll que mueve el sobre</span><span lang="en">JavaScript · the scroll that drives the envelope</span></div>
+  <pre><code><span class="k">var</span> tramo = <span class="k">function</span> (p, a, b) { <span class="k">return</span> <span class="k">Math</span>.min(<span class="n">1</span>, <span class="k">Math</span>.max(<span class="n">0</span>, (p - a) / (b - a))); };
+
+<span class="k">var</span> leer = <span class="k">function</span> () {
+  <span class="k">var</span> r = escena.getBoundingClientRect();
+  <span class="k">var</span> total = escena.offsetHeight - innerHeight;
+  objetivo = <span class="k">Math</span>.min(<span class="n">1</span>, <span class="k">Math</span>.max(<span class="n">0</span>, -r.top / <span class="k">Math</span>.max(total, <span class="n">1</span>)));
+};
+<span class="k">var</span> paso = <span class="k">function</span> (t) {
+  <span class="k">var</span> dt = <span class="k">Math</span>.min(<span class="n">0.05</span>, (t - ultimo) / <span class="n">1000</span> || <span class="n">0.016</span>); ultimo = t;
+  leer();
+  mostrado += (objetivo - mostrado) * (<span class="n">1</span> - <span class="k">Math</span>.exp(-dt * <span class="n">9</span>));   <span class="c">// inercia: se acerca suave al scroll</span>
+  <span class="k">if</span> (<span class="k">Math</span>.abs(objetivo - mostrado) &lt; <span class="n">0.0003</span>) mostrado = objetivo;
+  <span class="k">if</span> (mostrado !== fijo) { pintar(mostrado); fijo = mostrado; }
+  <span class="k">if</span> (mostrado !== objetivo) requestAnimationFrame(paso); <span class="k">else</span> corriendo = <span class="k">false</span>;
+};
+<span class="c">// dentro de pintar(p): cada etapa ocupa su propio tramo del recorrido</span>
+<span class="k">var</span> gira = tramo(p, <span class="n">0.03</span>, <span class="n">0.17</span>), corte = tramo(p, <span class="n">0.24</span>, <span class="n">0.42</span>);</code></pre>
+  <figcaption lang="es">La escena no es un video: es un <i>canvas</i> que dibuja uno de los 127 cuadros según cuánto has bajado. La posición del scroll se vuelve un número de 0 a 1, ese número se acerca al real con un poco de inercia (así no salta), y cada etapa (darse vuelta, cortar, sacar la carta, desplegarla) ocupa su propio tramo. Si subes, todo vuelve atrás.</figcaption>
+  <figcaption lang="en">The scene isn't a video: it's a <i>canvas</i> that draws one of 127 frames depending on how far you've scrolled. The scroll position becomes a number from 0 to 1, that number eases toward the real one (so it never jumps), and each stage (flip, cut, pull out the letter, unfold it) owns its own slice of the range. Scroll up and everything plays backwards.</figcaption>
+</figure>
+<div class="botones" style="margin-top:14px"><a class="boton lleno" href="juegos.html"><span lang="es">Ver la escena del sobre</span><span lang="en">See the envelope scene</span></a></div>
+
+<nav class="navegar-caso" aria-label="Más proyectos" data-aria-label-en="More projects">
+  <a class="volver" href="web.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
+  <a class="siguiente" href="pixel.html"><span><small lang="es">Siguiente área</small><small lang="en">Next field</small><b lang="es">Pixel art</b><b lang="en">Pixel art</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
+</main>
+<div class="ancho">
+<!--comun:sobre-->
+<section id="sobre">
+  <h2 class="titulo"><span lang="es">Sobre mí</span><span lang="en">About me</span></h2>
+  <div class="sobre">
+    <div>
+      <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
+      <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
+      <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
+    </div>
+    <div class="habilidades">
+      <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
+      <div><b>Web</b><span>React · TypeScript · Node.js · JavaScript · HTML/CSS · Google Apps Script</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL (PostgreSQL) · Git · C#</span></div>
+      <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
+      <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
+    </div>
+  </div>
+</section>
+<!--/comun:sobre-->
+
+<!--comun:contacto-->
+<section id="contacto">
+  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <p class="contacto-intro" lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>
+  <p class="contacto-intro" lang="en">Have a project or a role in mind? Get in touch.</p>
+  <div class="contacto">
+    <div class="correos">
+      <a class="sobre-correo blanco" href="mailto:esteban.flores.dio@gmail.com"><small><span lang="es">Escríbeme a</span><span lang="en">Email me at</span></small><b>esteban.flores.dio@gmail.com</b></a>
+    </div>
+    <div class="redes">
+      <a class="red" href="https://linkedin.com/in/esteban-flores-pizarro"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span><b>LinkedIn</b><small>esteban-flores-pizarro</small></span></a>
+    </div>
+  </div>
+</section>
+<!--/comun:contacto-->
+</div>
+
+<!--comun:pie-->
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<!--/comun:pie-->
+<div id="visor"><img decoding="async" alt=""></div>
+</body>
+</html>

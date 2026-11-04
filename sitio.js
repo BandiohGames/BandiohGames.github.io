@@ -1,6 +1,53 @@
 // Idioma: ES por defecto; EN si el navegador está en otro idioma o si se eligió antes.
 (function () {
   var html = document.documentElement;
+  // Sin animaciones: lo pide el sistema (reducir movimiento) o se apagó con el botón de la cabecera
+  var sinAnim = null;
+  try { sinAnim = localStorage.getItem("animaciones") === "no"; } catch (e) {}
+  if (sinAnim || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) html.classList.add("quieto");
+
+  // Precarga: al pasar el mouse por un enlace del sitio, la página siguiente se prepara antes del clic
+  // (así la transición parte de inmediato). Solo navegadores que lo soportan; los demás lo ignoran.
+  try {
+    if (HTMLScriptElement.supports && HTMLScriptElement.supports("speculationrules")) {
+      var reglas = document.createElement("script"); reglas.type = "speculationrules";
+      reglas.textContent = JSON.stringify({ prerender: [{ where: { and: [{ href_matches: "/*" }, { not: { href_matches: "*.pdf" } }] }, eagerness: "moderate" }] });
+      document.head.appendChild(reglas);
+    }
+  } catch (e) {}
+
+  // Transición al cambiar de página: según el área de llegada (estilo.css, «Transiciones entre páginas»)
+  var AREA = { juegos: "juegos", rezago: "juegos", floor: "juegos", envivo: "juegos",
+               web: "web", fittracker: "web", hublab: "web", portafolio: "web", pixel: "pixel" };
+  var areaDe = function (url) {
+    var m = /([a-z]+)\.html/.exec(url || ""); return (m && AREA[m[1]]) || "inicio";
+  };
+  // La cascada de entrada empieza cuando la página se presenta de verdad (también si llegó precargada)
+  var CASCADA = ".portada.inicio .presenta > *, .portada.inicio .escritorio, .cabeza-seccion > *, .caso > h1, .caso > .bajada, " +
+                ".caso > .bajada + .botones, .caso > .ficha-tecnica, .caso > .ficha-tecnica + .figura, #juegos > .correo";
+  var revelar = function () {
+    var n = 0;
+    document.querySelectorAll(CASCADA).forEach(function (el) {
+      if (el.offsetParent === null && getComputedStyle(el).position !== "fixed") return;   // (el texto del otro idioma no cuenta)
+      el.style.setProperty("--i", n++);
+    });
+    html.classList.add("revelada");
+  };
+  var alRevelar = function () {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", revelar, { once: true }); else revelar();
+  };
+  if ("onpagereveal" in window) window.addEventListener("pagereveal", alRevelar, { once: true });
+  else document.addEventListener("DOMContentLoaded", revelar, { once: true });
+  window.addEventListener("pagereveal", function (e) {
+    if (!e.viewTransition) return;
+    if (html.classList.contains("quieto")) {   // (al saltarla, sus promesas se rechazan: se atrapan para no ensuciar la consola)
+      var vt = e.viewTransition; [vt.ready, vt.finished, vt.updateCallbackDone].forEach(function (pr) { if (pr && pr.catch) pr.catch(function () {}); });
+      vt.skipTransition(); return;
+    }
+    var desde = window.navigation && navigation.activation && navigation.activation.from;
+    var antes = desde ? areaDe(desde.url) : null, ahora = areaDe(location.href);
+    try { e.viewTransition.types.add(antes === ahora || ahora === "inicio" ? "misma" : "a-" + ahora); } catch (err) {}
+  });
   html.classList.add("js");
   var guardado = null;
   try { guardado = localStorage.getItem("idioma"); } catch (e) {}
@@ -16,15 +63,87 @@
   var YT = "wJkrWOI4L6o";
 
   document.addEventListener("DOMContentLoaded", function () {
-    var quieto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var quieto = html.classList.contains("quieto");
+
+    // Aparición al bajar: lo que está bajo el primer pantallazo entra suave al llegar (una sola vez)
+    if (!quieto && "IntersectionObserver" in window) {
+      var CANDIDATOS = "main h2, .proyecto > *, .caso > *, .ficha, .tarjeta-proyecto, .pilar, .cifras, .areas-cortas > a, .cv-fila, " +
+        ".clips > figure, .personaje, .evolucion, .assets > *, .navegar-caso, #sobre .sobre > *, #contacto .contacto, .franja-datos, .galeria, .figura, .captura, .antes-despues, .codigo";
+      var FUERA = ".correo, .escena-sobre, .hoja, header, footer, #visor";
+      var alto = window.innerHeight;
+      var marcados = [];
+      document.querySelectorAll(CANDIDATOS).forEach(function (el) {
+        if (el.closest(FUERA) || el.matches(CASCADA)) return;
+        if (marcados.some(function (m) { return m.contains(el); })) return;   // solo el de más afuera
+        if (el.getBoundingClientRect().top < alto * 0.92) return;          // lo que ya se ve, se queda
+        el.classList.add("revela"); marcados.push(el);
+      });
+      var io = new IntersectionObserver(function (entradas) {
+        var d = 0;
+        entradas.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          en.target.style.setProperty("--d", d++);
+          en.target.classList.add("visto"); io.unobserve(en.target);
+        });
+      }, { rootMargin: "0px 0px -14% 0px", threshold: 0.08 });
+      marcados.forEach(function (el) { io.observe(el); });
+    }
+    var bAnim = document.querySelector(".animaciones");
+    if (bAnim) {
+      var pintarBoton = function () {
+        bAnim.setAttribute("aria-pressed", quieto ? "false" : "true");
+        bAnim.setAttribute("data-title-es", quieto ? "Animaciones: no" : "Animaciones: sí");
+        bAnim.setAttribute("data-title-en", quieto ? "Animations: off" : "Animations: on");
+        bAnim.title = bAnim.getAttribute(html.getAttribute("data-l") === "en" ? "data-title-en" : "data-title-es");
+      };
+      pintarBoton();
+      bAnim.addEventListener("click", function () {
+        try { localStorage.setItem("animaciones", quieto ? "si" : "no"); } catch (e) {}
+        location.reload();   // la escena del sobre y el ascensor se arman al cargar: recargar es lo más simple y seguro
+      });
+    }
     var alCambiar = [];   // lo que hay que repintar cuando algo se mueve (la lupa lo copia)
     var avisar = function () { alCambiar.forEach(function (f) { f(); }); };
+
+    // Atributos que no se pueden duplicar con <span lang>: alt, title, aria-label, el título de la pestaña y la descripción.
+    // En el HTML va el español; la versión en inglés, en data-*-en (data-alt-en, data-title-en, data-aria-label-en, data-en).
+    var ATR = ["alt", "title", "aria-label"];
+    var titulo = { es: document.title, en: html.getAttribute("data-titulo-en") || document.title };
+    var traducirAtributos = function (l) {
+      ATR.forEach(function (a) {
+        document.querySelectorAll("[data-" + a + "-en]").forEach(function (e) {
+          if (!e.hasAttribute("data-" + a + "-es")) e.setAttribute("data-" + a + "-es", e.getAttribute(a) || "");
+          e.setAttribute(a, e.getAttribute("data-" + a + "-" + l));
+        });
+      });
+      document.querySelectorAll("meta[data-en]").forEach(function (m) {
+        if (!m.hasAttribute("data-es")) m.setAttribute("data-es", m.content);
+        m.content = m.getAttribute("data-" + l);
+      });
+      document.title = titulo[l];
+    };
+    traducirAtributos(html.getAttribute("data-l"));
+
+    // Cifras de itch.io con el formato de cada idioma: 1.234 / 1,234 y 3-11-2026 / Nov 3, 2026
+    var MESES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var pintarCifras = function () {
+      var en = html.getAttribute("data-l") === "en";
+      document.querySelectorAll("[data-itch][data-valor]").forEach(function (el) {
+        el.textContent = Number(el.getAttribute("data-valor")).toLocaleString(en ? "en-US" : "es-CL");
+      });
+      document.querySelectorAll("[data-itch-fecha][data-valor]").forEach(function (el) {
+        var p = el.getAttribute("data-valor").split("-");   // dd-mm-aaaa
+        el.textContent = en && p.length === 3 ? MESES[+p[1] - 1] + " " + (+p[0]) + ", " + p[2] : (+p[0]) + "-" + (+p[1]) + "-" + p[2];
+      });
+    };
 
     var b = document.querySelector(".idioma");
     if (b) b.addEventListener("click", function () {
       var nuevo = html.getAttribute("data-l") === "es" ? "en" : "es";
       html.setAttribute("data-l", nuevo); html.lang = nuevo;
       try { localStorage.setItem("idioma", nuevo); } catch (e) {}
+      traducirAtributos(nuevo);
+      pintarCifras();
       if (window.__rearmarPliego) window.__rearmarPliego();
     });
 
@@ -129,13 +248,23 @@
       var pliego = escena.querySelector(".pliego"), pista = escena.querySelector(".pista-scroll"), fija = escena.querySelector(".escena-fija");
       var N = 127, cuadros = new Array(N), dibujado = -1, quiero = 0;
       var nombre = function (q) { return "img/sobre/" + ("00" + q).slice(-3) + ".webp"; };
-      for (var q = 0; q < N; q++) (function (q) {
+      // Los primeros cuadros se piden al tiro; el resto, cuando terminó la entrada de la página o al primer scroll,
+      // para no competir con la animación de llegada.
+      var cargar = function (q) {
         var im = new Image(); im.src = nombre(q);
         // solo se descargan: cada cuadro se decodifica al dibujarlo (decodificar los 127 de una ocupa ~400 MB y el navegador
         // termina botándolos y rehaciéndolos en pleno scroll, que es lo que da tirones)
         var listo = function () { cuadros[q] = im; if (dibujar && q <= quiero && q > dibujado) { dibujar(quiero); avisar(); } };   // (si ya estaba en caché llega antes de que exista dibujar: se dibuja al arrancar)   // (llegó uno que faltaba: se vuelve a dibujar)
         if (im.complete && im.naturalWidth) listo(); else im.addEventListener("load", listo);
-      })(q);
+      };
+      for (var q = 0; q < 4; q++) cargar(q);
+      var restoPedido = false;
+      var pedirResto = function () {
+        if (restoPedido) return; restoPedido = true;
+        for (var q = 4; q < N; q++) cargar(q);
+      };
+      setTimeout(pedirResto, 1400);
+      window.addEventListener("scroll", pedirResto, { once: true, passive: true });
       // el lienzo a la densidad real de la pantalla (si no, el navegador lo estira y los bordes quedan de sierra)
       var medir = function () {
         var d = Math.min(2, window.devicePixelRatio || 1);
@@ -458,10 +587,11 @@
         var j = d.juegos[id];
         document.querySelectorAll('[data-itch="' + id + '"]').forEach(function (el) {
           var campo = el.getAttribute("data-campo");
-          if (j[campo] != null) el.textContent = Number(j[campo]).toLocaleString("es-CL");
+          if (j[campo] != null) el.setAttribute("data-valor", j[campo]);
         });
       });
-      document.querySelectorAll("[data-itch-fecha]").forEach(function (el) { el.textContent = d.actualizado; });
+      document.querySelectorAll("[data-itch-fecha]").forEach(function (el) { el.setAttribute("data-valor", d.actualizado); });
+      pintarCifras();
     }).catch(function () {});
   });
 })();

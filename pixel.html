@@ -1,24 +1,24 @@
 <!doctype html>
-<html lang="es" data-l="es">
+<html lang="es" data-l="es" data-titulo-en="Pixel art · bandioh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pixel art · bandioh</title>
-<meta name="description" content="Pixel art y animación de sprites de Esteban «bandioh» Flores: Chillotüm, encargos freelance y assets para videojuegos.">
+<meta name="description" content="Pixel art y animación de sprites de Esteban «bandioh» Flores: Chillotüm, encargos freelance y assets para videojuegos." data-en="Pixel art and sprite animation by Esteban “bandioh” Flores: Chillotüm, freelance commissions and game assets.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/pixel/trauco.png">
 <link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
 <link rel="apple-touch-icon" href="img/icono_180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Patrick+Hand&family=Pixelify+Sans:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css?v=03e5f947">
-<link rel="stylesheet" href="secciones.css?v=c7f0f5e7">
-<script src="sitio.js?v=9310c887"></script>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Pixelify+Sans:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=93faf98b">
+<link rel="stylesheet" href="secciones.css?v=78769b0a">
+<script src="sitio.js?v=bd47f8ef"></script>
 </head>
-<body class="pagina-pixel">
+<body class="pagina-pixel area-pixel">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" src="img/marca.png" alt="bandioh games · inicio"></a>
+  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
     <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
     <a href="web.html">Web</a>
@@ -26,6 +26,7 @@
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
   <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
 </div></header>
 <!--/comun:cabecera-->
@@ -33,15 +34,9 @@
 <main class="ancho">
 
 <div class="cabeza-seccion">
-  <span class="estampa"><span lang="es">Pixel art y animación</span><span lang="en">Pixel art &amp; animation</span></span>
   <h1><span lang="es">Sprites que se leen en 32 píxeles</span><span lang="en">Sprites that read at 32 pixels</span></h1>
   <p lang="es">Soy pixel artist y animador de sprites, con más de 700 horas en Aseprite. Diseño personajes y assets para videojuegos cuidando la silueta, la paleta y que todo el conjunto se vea del mismo mundo. Desde 2023 hago encargos; hoy no los busco de forma activa, pero sigo dibujando para mis juegos.</p>
-  <p lang="en">I'm a pixel artist and sprite animator with 700+ hours in Aseprite. I design characters and game assets with care for silhouette, palette and making the whole set feel like one world. I have done commissions since 2023; I am not actively seeking them now, but I keep drawing for my games.</p>
-  <div class="franja-datos">
-    <div><b>700+</b><span lang="es">horas en Aseprite</span><span lang="en">hours in Aseprite</span></div>
-    <div><b>32×32</b><span lang="es">px por personaje en Chillotüm</span><span lang="en">px per Chillotüm character</span></div>
-    <div><b>4</b><span lang="es">direcciones corregidas para un cliente</span><span lang="en">directions polished for a client</span></div>
-  </div>
+  <p lang="en">I'm a pixel artist and sprite animator with 700+ hours in Aseprite. I design characters and game assets with care for silhouette, palette and making the whole set feel like one world. I've taken commissions since 2023; I'm not actively looking for new ones, but I keep drawing for my games.</p>
   <div class="botones"><a class="boton lleno" href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a></div>
 </div>
 
@@ -54,41 +49,41 @@
   <p class="pista-hover" lang="es">Pasa el mouse sobre cada personaje para verlo animado.</p>
   <p class="pista-hover" lang="en">Hover over each character to see it animated.</p>
   <div class="reparto">
-    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img class="px quieto" src="img/pixel/rep_chilote.png" width="288" height="288" alt="El Chilote" loading="lazy"><img class="px anim" data-src="img/pixel/rep_chilote_anim.webp" src="img/pixel/rep_chilote_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Chilote</h3><p><span class="tam">32×32</span> · <span lang="es">carrera</span><span lang="en">run</span></p></div>
-    <div class="personaje"><div class="lamina"><img class="px quieto" src="img/pixel/hija.png" width="300" height="300" alt="La hija" loading="lazy"></div><h3><span lang="es">La hija</span><span lang="en">The daughter</span></h3><p><span class="tam">30×30</span></p></div>
-    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img class="px quieto" src="img/pixel/rep_imbunche.png" width="288" height="288" alt="El Imbunche" loading="lazy"><img class="px anim" data-src="img/pixel/rep_imbunche_anim.webp" src="img/pixel/rep_imbunche_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Imbunche</h3><p><span class="tam">32×32</span> · <span lang="es">ataque</span><span lang="en">attack</span></p></div>
-    <div class="personaje"><div class="lamina"><img class="px quieto" src="img/pixel/trauco.png" width="300" height="300" alt="El Trauco" loading="lazy"></div><h3>Trauco</h3><p><span class="tam">30×30</span></p></div>
-    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img class="px quieto" src="img/pixel/rep_tuetue.png" width="300" height="300" alt="El Tue-Tue: cabeza con alas" loading="lazy"><img class="px anim" data-src="img/pixel/rep_tuetue_anim.webp" src="img/pixel/rep_tuetue_anim.webp" width="300" height="300" alt="" loading="lazy"></div><h3>Tue-Tue</h3><p><span class="tam">50×50</span> · <span lang="es">vuelo</span><span lang="en">flight</span></p></div>
-    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img class="px quieto" src="img/pixel/rep_pincoya.png" width="279" height="270" alt="La Pincoya" loading="lazy"><img class="px anim" data-src="img/pixel/rep_pincoya_anim.webp" src="img/pixel/rep_pincoya_anim.webp" width="279" height="270" alt="" loading="lazy"></div><h3>Pincoya</h3><p><span class="tam">31×30</span> · <span lang="es">baile</span><span lang="en">dance</span></p></div>
-    <div class="personaje"><div class="lamina"><img class="px quieto" src="img/pixel/brujo.png" width="288" height="288" alt="El brujo" loading="lazy"></div><h3><span lang="es">Brujo</span><span lang="en">Warlock</span></h3><p><span class="tam">32×32</span></p></div>
-    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img class="px quieto" src="img/pixel/rep_picaro.png" width="288" height="288" alt="El Indio Pícaro" loading="lazy"><img class="px anim" data-src="img/pixel/rep_picaro_anim.webp" src="img/pixel/rep_picaro_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Indio Pícaro</h3><p><span class="tam">32×32</span> · <span lang="es">animación</span><span lang="en">animation</span></p></div>
+    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/rep_chilote.png" width="288" height="288" alt="El Chilote" data-alt-en="The Chilote" loading="lazy"><img decoding="async" class="px anim" data-src="img/pixel/rep_chilote_anim.webp" src="img/pixel/rep_chilote_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Chilote</h3><p><span class="tam">32×32</span> · <span lang="es">carrera</span><span lang="en">run</span></p></div>
+    <div class="personaje"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/hija.png" width="300" height="300" alt="La hija" data-alt-en="The daughter" loading="lazy"></div><h3><span lang="es">La hija</span><span lang="en">The daughter</span></h3><p><span class="tam">32×32</span></p></div>
+    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/rep_imbunche.png" width="288" height="288" alt="El Imbunche" data-alt-en="The Imbunche" loading="lazy"><img decoding="async" class="px anim" data-src="img/pixel/rep_imbunche_anim.webp" src="img/pixel/rep_imbunche_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Imbunche</h3><p><span class="tam">32×32</span> · <span lang="es">ataque</span><span lang="en">attack</span></p></div>
+    <div class="personaje"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/trauco.png" width="300" height="300" alt="El Trauco" data-alt-en="The Trauco" loading="lazy"></div><h3>Trauco</h3><p><span class="tam">32×32</span></p></div>
+    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/rep_tuetue.png" width="300" height="300" alt="El Tue-Tue: cabeza con alas" data-alt-en="The Tue-Tue: a winged head" loading="lazy"><img decoding="async" class="px anim" data-src="img/pixel/rep_tuetue_anim.webp" src="img/pixel/rep_tuetue_anim.webp" width="300" height="300" alt="" loading="lazy"></div><h3>Tue-Tue</h3><p><span class="tam">50×50</span> · <span lang="es">vuelo</span><span lang="en">flight</span></p></div>
+    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/rep_pincoya.png" width="279" height="270" alt="La Pincoya" data-alt-en="La Pincoya" loading="lazy"><img decoding="async" class="px anim" data-src="img/pixel/rep_pincoya_anim.webp" src="img/pixel/rep_pincoya_anim.webp" width="279" height="270" alt="" loading="lazy"></div><h3>Pincoya</h3><p><span class="tam">32×32</span> · <span lang="es">baile</span><span lang="en">dance</span></p></div>
+    <div class="personaje"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/brujo.png" width="288" height="288" alt="El brujo" data-alt-en="The warlock" loading="lazy"></div><h3><span lang="es">Brujo</span><span lang="en">Warlock</span></h3><p><span class="tam">32×32</span></p></div>
+    <div class="personaje con-anim" tabindex="0"><div class="lamina"><img decoding="async" class="px quieto" src="img/pixel/rep_picaro.png" width="288" height="288" alt="El Indio Pícaro" data-alt-en="El Indio Pícaro" loading="lazy"><img decoding="async" class="px anim" data-src="img/pixel/rep_picaro_anim.webp" src="img/pixel/rep_picaro_anim.webp" width="288" height="288" alt="" loading="lazy"></div><h3>Indio Pícaro</h3><p><span class="tam">32×32</span> · <span lang="es">animación</span><span lang="en">animation</span></p></div>
   </div>
 
   <h3 class="mono" style="margin-top:34px;font-size:20px"><span lang="es">Del boceto a la versión final</span><span lang="en">From sketch to final</span></h3>
   <p class="texto" lang="es">Cada personaje pasó por siete versiones o más: primero la forma, después la paleta y al final la luz.</p>
   <p class="texto" lang="en">Each character went through seven versions or more: shape first, then palette, then lighting.</p>
   <div class="evolucion">
-    <figure><div class="lamina"><img class="px" src="img/pixel/imbunche_boceto.png" width="300" height="300" alt="Primer boceto del Imbunche" loading="lazy"></div><figcaption lang="es">Imbunche · primer boceto</figcaption><figcaption lang="en">Imbunche · first sketch</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/imbunche_v1.png" width="300" height="300" alt="Imbunche versión 1" loading="lazy"></div><figcaption lang="es">Imbunche · v1</figcaption><figcaption lang="en">Imbunche · v1</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/imbunche.png" width="300" height="300" alt="Imbunche versión final" loading="lazy"></div><figcaption lang="es">Imbunche · v7 (final)</figcaption><figcaption lang="en">Imbunche · v7 (final)</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/trauco_boceto.png" width="300" height="300" alt="Primer boceto del Trauco" loading="lazy"></div><figcaption lang="es">Trauco · primer boceto</figcaption><figcaption lang="en">Trauco · first sketch</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/trauco_v1.png" width="300" height="300" alt="Trauco versión 1" loading="lazy"></div><figcaption lang="es">Trauco · v1</figcaption><figcaption lang="en">Trauco · v1</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/trauco.png" width="300" height="300" alt="Trauco versión final" loading="lazy"></div><figcaption lang="es">Trauco · v7 (final)</figcaption><figcaption lang="en">Trauco · v7 (final)</figcaption></figure>
-    <figure class="fila-entera"><div class="lamina"><img class="px" src="img/pixel/evolucion.png" width="600" height="240" alt="Evolución del padre y la hija" loading="lazy"></div><figcaption lang="es">El padre y la hija, versión por versión</figcaption><figcaption lang="en">Father and daughter, version by version</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/imbunche_boceto.png" width="300" height="300" alt="Primer boceto del Imbunche" data-alt-en="First sketch of the Imbunche" loading="lazy"></div><figcaption lang="es">Imbunche · primer boceto</figcaption><figcaption lang="en">Imbunche · first sketch</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/imbunche_v1.png" width="300" height="300" alt="Imbunche versión 1" data-alt-en="Imbunche, version 1" loading="lazy"></div><figcaption lang="es">Imbunche · v1</figcaption><figcaption lang="en">Imbunche · v1</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/imbunche.png" width="300" height="300" alt="Imbunche versión final" data-alt-en="Imbunche, final version" loading="lazy"></div><figcaption lang="es">Imbunche · v7 (final)</figcaption><figcaption lang="en">Imbunche · v7 (final)</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/trauco_boceto.png" width="300" height="300" alt="Primer boceto del Trauco" data-alt-en="First sketch of the Trauco" loading="lazy"></div><figcaption lang="es">Trauco · primer boceto</figcaption><figcaption lang="en">Trauco · first sketch</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/trauco_v1.png" width="300" height="300" alt="Trauco versión 1" data-alt-en="Trauco, version 1" loading="lazy"></div><figcaption lang="es">Trauco · v1</figcaption><figcaption lang="en">Trauco · v1</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/trauco.png" width="300" height="300" alt="Trauco versión final" data-alt-en="Trauco, final version" loading="lazy"></div><figcaption lang="es">Trauco · v7 (final)</figcaption><figcaption lang="en">Trauco · v7 (final)</figcaption></figure>
+    <figure class="fila-entera"><div class="lamina"><img decoding="async" class="px" src="img/pixel/evolucion.png" width="600" height="240" alt="Evolución del padre y la hija" data-alt-en="Father and daughter, version by version" loading="lazy"></div><figcaption lang="es">El padre y la hija, versión por versión</figcaption><figcaption lang="en">Father and daughter, version by version</figcaption></figure>
   </div>
 
   <h3 class="mono" style="margin-top:34px;font-size:20px"><span lang="es">Assets del mundo</span><span lang="en">World assets</span></h3>
   <p class="texto" lang="es">Mucho volumen sin perder la coherencia: la misma paleta en árboles, animales, objetos, armas y comida.</p>
-  <p class="texto" lang="en">High volume without losing consistency: one palette across trees, animals, props, weapons and food.</p>
+  <p class="texto" lang="en">A large set of assets that stays consistent: one palette across trees, animals, props, weapons and food.</p>
   <div class="assets">
-    <figure><div class="lamina"><img class="px" src="img/pixel/arbol.png" width="288" height="288" alt="Árbol" loading="lazy"></div><figcaption lang="es">Árbol · 144×144</figcaption><figcaption lang="en">Tree · 144×144</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/items.png" width="230" height="230" alt="Armas e ítems" loading="lazy"></div><figcaption lang="es">Armas e ítems</figcaption><figcaption lang="en">Weapons and items</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/frutas.png" width="300" height="230" alt="Frutas y verduras" loading="lazy"></div><figcaption lang="es">Frutas y verduras</figcaption><figcaption lang="en">Fruit and vegetables</figcaption></figure>
-    <figure class="fila-entera"><div class="lamina"><img class="px" src="img/pixel/caballos.png" width="625" height="170" alt="Caballo en tres iteraciones" loading="lazy"></div><figcaption lang="es">Caballo · tres iteraciones</figcaption><figcaption lang="en">Horse · three iterations</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/arbol.png" width="288" height="288" alt="Árbol" data-alt-en="Tree" loading="lazy"></div><figcaption lang="es">Árbol · 144×144</figcaption><figcaption lang="en">Tree · 144×144</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/items.png" width="230" height="230" alt="Armas e ítems" data-alt-en="Weapons and items" loading="lazy"></div><figcaption lang="es">Armas e ítems</figcaption><figcaption lang="en">Weapons and items</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/frutas.png" width="300" height="230" alt="Frutas y verduras" data-alt-en="Fruit and vegetables" loading="lazy"></div><figcaption lang="es">Frutas y verduras</figcaption><figcaption lang="en">Fruit and vegetables</figcaption></figure>
+    <figure class="fila-entera"><div class="lamina"><img decoding="async" class="px" src="img/pixel/caballos.png" width="625" height="170" alt="Caballo en tres iteraciones" data-alt-en="Horse in three iterations" loading="lazy"></div><figcaption lang="es">Caballo · tres iteraciones</figcaption><figcaption lang="en">Horse · three iterations</figcaption></figure>
   </div>
-  <figure class="mundo"><div class="lamina"><img class="px" src="img/pixel/mundo.png" width="1200" height="500" alt="Lámina del juego con personajes, animales, árboles y objetos de Chillotüm" loading="lazy"></div>
-    <figcaption lang="es">La lámina del juego: personajes, animales, árboles y objetos juntos en la misma paleta.</figcaption>
-    <figcaption lang="en">The game sheet: characters, animals, trees and props together in one palette.</figcaption></figure>
+  <figure class="mundo"><div class="lamina"><img decoding="async" class="px" src="img/pixel/mundo.png" width="1200" height="500" alt="Lámina del juego con personajes, animales, árboles y objetos de Chillotüm" data-alt-en="Game sheet with Chillotüm characters, animals, trees and props" loading="lazy"></div>
+    <figcaption lang="es">La lámina del juego: personajes, animales, árboles y objetos juntos en la misma paleta. Ábrela para verla en grande y recorrerla con zoom.</figcaption>
+    <figcaption lang="en">The game sheet: characters, animals, trees and props together in one palette. Open it to see it large and explore it with zoom.</figcaption></figure>
 </section>
 
 <!-- 2. Encargo freelance -->
@@ -103,10 +98,10 @@
   <p lang="es" class="nota-rev">Son <b>revisiones</b>: arriba va mi versión corregida y abajo la original del cliente. Cada una tomó entre 1 y 2 horas.</p>
   <p lang="en" class="nota-rev">These are <b>revisions</b>: my corrected version on top, the client&#39;s original below. Each took about 1 to 2 hours.</p>
   <div class="revisiones">
-    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img class="px" src="img/pixel/rev1.webp" width="128" height="256" alt="Carrera lateral: corregida arriba, original abajo" loading="lazy"></div><figcaption><b>Lateral</b><span lang="es">16 de agosto de 2025</span><span lang="en">August 16, 2025</span></figcaption></figure>
-    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img class="px" src="img/pixel/rev2.webp" width="128" height="256" alt="Carrera frontal" loading="lazy"></div><figcaption><b><span lang="es">Frontal</span><span lang="en">Front</span></b><span lang="es">23 de agosto de 2025</span><span lang="en">August 23, 2025</span></figcaption></figure>
-    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img class="px" src="img/pixel/rev3.webp" width="128" height="256" alt="Carrera diagonal frontal" loading="lazy"></div><figcaption><b><span lang="es">Diagonal frontal</span><span lang="en">Front diagonal</span></b><span lang="es">1 de septiembre de 2025</span><span lang="en">September 1, 2025</span></figcaption></figure>
-    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img class="px" src="img/pixel/rev4.webp" width="128" height="256" alt="Carrera diagonal trasera" loading="lazy"></div><figcaption><b><span lang="es">Diagonal trasera</span><span lang="en">Back diagonal</span></b><span lang="es">23 de septiembre de 2025</span><span lang="en">September 23, 2025</span></figcaption></figure>
+    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img decoding="async" class="px" src="img/pixel/rev1.webp" width="128" height="256" alt="Carrera lateral: corregida arriba, original abajo" data-alt-en="Side run: corrected on top, original below" loading="lazy"></div><figcaption><b>Lateral</b><span lang="es">16 de agosto de 2025</span><span lang="en">August 16, 2025</span></figcaption></figure>
+    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img decoding="async" class="px" src="img/pixel/rev2.webp" width="128" height="256" alt="Carrera frontal" data-alt-en="Front run" loading="lazy"></div><figcaption><b><span lang="es">Frontal</span><span lang="en">Front</span></b><span lang="es">23 de agosto de 2025</span><span lang="en">August 23, 2025</span></figcaption></figure>
+    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img decoding="async" class="px" src="img/pixel/rev3.webp" width="128" height="256" alt="Carrera diagonal frontal" data-alt-en="Front diagonal run" loading="lazy"></div><figcaption><b><span lang="es">Diagonal frontal</span><span lang="en">Front diagonal</span></b><span lang="es">1 de septiembre de 2025</span><span lang="en">September 1, 2025</span></figcaption></figure>
+    <figure><div class="lamina"><div class="rotulos"><span lang="es">corregido</span><span lang="en">fixed</span><span lang="es">original</span><span lang="en">original</span></div><img decoding="async" class="px" src="img/pixel/rev4.webp" width="128" height="256" alt="Carrera diagonal trasera" data-alt-en="Back diagonal run" loading="lazy"></div><figcaption><b><span lang="es">Diagonal trasera</span><span lang="en">Back diagonal</span></b><span lang="es">23 de septiembre de 2025</span><span lang="en">September 23, 2025</span></figcaption></figure>
   </div>
 </section>
 
@@ -120,9 +115,9 @@
       <p class="texto" lang="es">La mano del ascensorista en pantalla: un estado por cada acción (en reposo, alcanzando la palanca y agarrándola).</p>
       <p class="texto" lang="en">The elevator operator's on-screen hand: one state per action (resting, reaching for the lever and gripping it).</p>
       <div class="manos">
-        <div class="lamina"><img class="px" width="94" height="128" src="img/pixel/mano_reposo.png" alt="Mano en reposo" loading="lazy"></div>
-        <div class="lamina"><img class="px" width="94" height="128" src="img/pixel/mano_extendida.png" alt="Mano extendida" loading="lazy"></div>
-        <div class="lamina"><img class="px" width="94" height="128" src="img/pixel/mano_cerrada.png" alt="Mano cerrada" loading="lazy"></div>
+        <div class="lamina"><img decoding="async" class="px" width="94" height="128" src="img/pixel/mano_reposo.png" alt="Mano en reposo" data-alt-en="Resting hand" loading="lazy"></div>
+        <div class="lamina"><img decoding="async" class="px" width="94" height="128" src="img/pixel/mano_extendida.png" alt="Mano extendida" data-alt-en="Reaching hand" loading="lazy"></div>
+        <div class="lamina"><img decoding="async" class="px" width="94" height="128" src="img/pixel/mano_cerrada.png" alt="Mano cerrada" data-alt-en="Gripping hand" loading="lazy"></div>
       </div>
       <p class="nota">47×64 · <span lang="es">HUD en primera persona</span><span lang="en">first-person HUD</span></p>
     </div>
@@ -131,9 +126,9 @@
       <p class="texto" lang="es">Íconos para un juego de clics de mitología griega: el tridente, la dracma y la balanza.</p>
       <p class="texto" lang="en">Icons for a Greek-mythology clicker game: the trident, the drachma and the scales.</p>
       <div class="manos">
-        <div class="lamina"><img class="px" src="img/pixel/tridente.png" alt="Tridente" loading="lazy" width="128" height="128"></div>
-        <div class="lamina"><img class="px" src="img/pixel/dracma.png" alt="Dracma" loading="lazy" width="128" height="128"></div>
-        <div class="lamina"><img class="px" src="img/pixel/balanza.png" alt="Balanza" loading="lazy" width="128" height="128"></div>
+        <div class="lamina"><img decoding="async" class="px" src="img/pixel/tridente.png" alt="Tridente" data-alt-en="Trident" loading="lazy" width="128" height="128"></div>
+        <div class="lamina"><img decoding="async" class="px" src="img/pixel/dracma.png" alt="Dracma" data-alt-en="Drachma" loading="lazy" width="128" height="128"></div>
+        <div class="lamina"><img decoding="async" class="px" src="img/pixel/balanza.png" alt="Balanza" data-alt-en="Scales" loading="lazy" width="128" height="128"></div>
       </div>
       <p class="nota">32×32 · <span lang="es">íconos de interfaz</span><span lang="en">UI icons</span></p>
     </div>
@@ -145,17 +140,17 @@
   <h2><span lang="es">Emotes para Twitch</span><span lang="en">Twitch emotes</span></h2>
   <div class="sub"><span lang="es">Expresiones en 28×28 píxeles: tienen que leerse en el chat, donde se ven del tamaño de una letra</span><span lang="en">Expressions in 28×28 pixels: they have to read in chat, where they show at the size of a letter</span></div>
   <div class="emotes">
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_1.png" width="112" height="112" alt="Emote de Twitch 1" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_2.png" width="112" height="112" alt="Emote de Twitch 2" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_3.png" width="112" height="112" alt="Emote de Twitch 3" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_4.png" width="112" height="112" alt="Emote de Twitch 4" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_5.png" width="112" height="112" alt="Emote de Twitch 5" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_6.png" width="112" height="112" alt="Emote de Twitch 6" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_7.png" width="112" height="112" alt="Emote de Twitch 7" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_8.png" width="112" height="112" alt="Emote de Twitch 8" loading="lazy"></div></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/emote_9.png" width="112" height="112" alt="Emote de Twitch 9" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_1.png" width="112" height="112" alt="Emote de Twitch 1" data-alt-en="Twitch emote 1" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_2.png" width="112" height="112" alt="Emote de Twitch 2" data-alt-en="Twitch emote 2" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_3.png" width="112" height="112" alt="Emote de Twitch 3" data-alt-en="Twitch emote 3" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_4.png" width="112" height="112" alt="Emote de Twitch 4" data-alt-en="Twitch emote 4" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_5.png" width="112" height="112" alt="Emote de Twitch 5" data-alt-en="Twitch emote 5" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_6.png" width="112" height="112" alt="Emote de Twitch 6" data-alt-en="Twitch emote 6" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_7.png" width="112" height="112" alt="Emote de Twitch 7" data-alt-en="Twitch emote 7" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_8.png" width="112" height="112" alt="Emote de Twitch 8" data-alt-en="Twitch emote 8" loading="lazy"></div></figure>
+    <figure><div class="lamina"><img decoding="async" class="px" src="img/pixel/emote_9.png" width="112" height="112" alt="Emote de Twitch 9" data-alt-en="Twitch emote 9" loading="lazy"></div></figure>
   </div>
-  <p class="nota">28×28 · <span lang="es">a x3; ábrelos para verlos más grandes</span><span lang="en">shown at x3; open them to see them bigger</span></p>
+  <p class="nota">28×28 · <span lang="es">mostrados a x3, cerca del tamaño en que se usan</span><span lang="en">shown at x3, close to the size they are used at</span></p>
 </section>
 
 <!-- 4. Ilustración y fan art -->
@@ -163,16 +158,21 @@
   <h2><span lang="es">Ilustración y fan art</span><span lang="en">Illustration and fan art</span></h2>
   <div class="sub"><span lang="es">Una selección corta: piezas sueltas para practicar estilos distintos</span><span lang="en">A short selection: one-off pieces to practice different styles</span></div>
   <div class="galeria-px">
-    <figure><div class="lamina"><img class="px" src="img/pixel/castillo_lunar.png" alt="Castillo bajo la luna" loading="lazy"></div><figcaption lang="es">Castillo lunar · original</figcaption><figcaption lang="en">Moon castle · original</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/homelander.png" alt="Homelander" loading="lazy" style="width:446px"></div><figcaption>Homelander · fan art</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/tomate.png" alt="Tomate" loading="lazy"></div><figcaption lang="es">Tomate · estudio de volumen</figcaption><figcaption lang="en">Tomato · volume study</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/springtrap.png" alt="Springtrap" loading="lazy"></div><figcaption>Springtrap · fan art</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/turbo_abuela.png" alt="Turbo Abuela" loading="lazy"></div><figcaption>Turbo Abuela (Dandadan) · fan art</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/kira.png" alt="Ícono de Kira" loading="lazy"></div><figcaption lang="es">Íconos para redes · Kira</figcaption><figcaption lang="en">Social icons · Kira</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/alien.png" alt="Alien" loading="lazy"></div><figcaption>Dandadan · fan art</figcaption></figure>
-    <figure><div class="lamina"><img class="px" src="img/pixel/crash_ps1.webp" alt="Crash Bandicoot estilo PS1" loading="lazy"></div><figcaption>Crash Bandicoot · fan art</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="528" height="352" class="px" src="img/pixel/castillo_lunar.png" alt="Castillo bajo la luna" data-alt-en="Castle under the moon" loading="lazy"></div><figcaption lang="es">Castillo lunar · original</figcaption><figcaption lang="en">Moon castle · original</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="223" height="271" class="px" src="img/pixel/homelander.png" alt="Homelander" data-alt-en="Homelander" loading="lazy" style="width:446px"></div><figcaption>Homelander · fan art</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="300" height="300" class="px" src="img/pixel/tomate.png" alt="Tomate" data-alt-en="Tomato" loading="lazy"></div><figcaption lang="es">Tomate · estudio de volumen</figcaption><figcaption lang="en">Tomato · volume study</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="320" height="320" class="px" src="img/pixel/springtrap.png" alt="Springtrap" data-alt-en="Springtrap" loading="lazy"></div><figcaption>Springtrap · fan art</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="540" height="300" class="px" src="img/pixel/turbo_abuela.png" alt="Turbo Abuela" data-alt-en="Turbo Granny" loading="lazy"></div><figcaption>Turbo Abuela (Dandadan) · fan art</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="288" height="288" class="px" src="img/pixel/kira.png" alt="Ícono de Kira" data-alt-en="Kira icon" loading="lazy"></div><figcaption lang="es">Íconos para redes · Kira</figcaption><figcaption lang="en">Social icons · Kira</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="336" height="336" class="px" src="img/pixel/alien.png" alt="Alien" data-alt-en="Alien" loading="lazy"></div><figcaption>Dandadan · fan art</figcaption></figure>
+    <figure><div class="lamina"><img decoding="async" width="480" height="480" class="px" src="img/pixel/crash_ps1.webp" alt="Crash Bandicoot estilo PS1" data-alt-en="PS1-style Crash Bandicoot" loading="lazy"></div><figcaption>Crash Bandicoot · fan art</figcaption></figure>
   </div>
 </section>
+
+<nav class="navegar-caso" aria-label="Otras áreas" data-aria-label-en="Other fields">
+  <a class="volver" href="web.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Área anterior</small><small lang="en">Previous field</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
+  <a class="siguiente" href="index.html"><span><small lang="es">Para terminar</small><small lang="en">To finish</small><b lang="es">Volver al inicio</b><b lang="en">Back to home</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
 
 <!--comun:sobre-->
 <section id="sobre">
@@ -180,7 +180,7 @@
   <div class="sobre">
     <div>
       <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
-      <p lang="en">I'm a programmer analyst (INACAP) based in Santiago, Chile. I make games as <b>bandioh games</b>, web apps people use every day, and pixel art since 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
       <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
       <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
     </div>
@@ -215,6 +215,6 @@
 <!--comun:pie-->
 <footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
 <!--/comun:pie-->
-<div id="visor"><img alt=""></div>
+<div id="visor"><img decoding="async" alt=""></div>
 </body>
 </html>
