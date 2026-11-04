@@ -615,6 +615,24 @@
       hoja.classList.add("lista");
     }
 
+    // ---------- FitTracker: despertar el servidor antes de que hagan clic ----------
+    // La demo vive en Render gratis, que duerme el servidor sin visitas y tarda ~45 s en despertar. Si la página tiene
+    // un enlace a la app, se le avisa al cargar (y otra vez al acercar el puntero o el dedo): para cuando alguien hace
+    // clic, ya está despierto. /api/vivo no toca la base de datos; la respuesta no importa (no-cors).
+    var appFit = document.querySelector('a[href^="https://fittracker-9y5d.onrender.com"]');
+    if (appFit) {
+      var despierto = 0;
+      var despertar = function () {
+        if (Date.now() - despierto < 60000) return;
+        despierto = Date.now();
+        try { fetch("https://fittracker-9y5d.onrender.com/api/vivo", { mode: "no-cors", cache: "no-store", keepalive: true }).catch(function () {}); } catch (e) {}
+      };
+      setTimeout(despertar, 1200);
+      document.querySelectorAll('a[href^="https://fittracker-9y5d.onrender.com"]').forEach(function (a) {
+        a.addEventListener("pointerenter", despertar); a.addEventListener("touchstart", despertar, { passive: true });
+      });
+    }
+
     // ---------- El ascensor de Floor, Sir?: aguja, timbre y puertas al aparecer ----------
     var ascensor = document.getElementById("ascensor-floor");
     if (ascensor) {
