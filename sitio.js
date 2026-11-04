@@ -341,6 +341,18 @@
         var pArriba = div("panel", "top:0;" + alto); pArriba.appendChild(cArriba); pArriba.appendChild(revesFuera);
         P.bArriba.appendChild(pArriba);
         pliego.appendChild(medio); pliego.appendChild(P.bAbajo); pliego.appendChild(P.bArriba);
+        // el resto de la hoja (lo que queda bajo el pliego): ya desdoblada, se despliega hacia abajo mientras se baja,
+        // así el borde inferior baja suave y sale de la pantalla antes de pasarle el lugar a la hoja de verdad
+        var resto = hoja.offsetHeight - 3 * P.h;
+        P.resto = null;
+        if (resto > 1) {
+          P.resto = div("panel", "top:" + (3 * P.h) + "px;height:" + resto + "px;visibility:hidden;box-shadow:none");
+          var cResto = div("cara"), copia = copiaHoja();
+          copia.style.width = P.w + "px"; copia.style.top = (-3 * P.h) + "px";
+          cResto.appendChild(copia); P.resto.appendChild(cResto);
+          pliego.appendChild(P.resto);
+          P.resto.setAttribute("data-anim", "");
+        }
         [P.bAbajo, P.bArriba, P.sMedio, P.sAbajo, P.boca, P.tAbajoC, P.tAbajoR, P.tArribaC, P.tArribaR, P.proyA, P.proyB].forEach(function (e) { e.setAttribute("data-anim", ""); });
       };
       window.__rearmarPliego = function () { medir(); armarPliego(); fijo = -1; pedir(); };
@@ -423,10 +435,15 @@
         P.proyB.style.opacity = (abreAbajo > 0 && abreAbajo < 1 ? 0.9 * sinB : 0).toFixed(3);
         P.sMedio.style.opacity = (0.8 * (1 - abreAbajo)).toFixed(3);
         P.sAbajo.style.opacity = (0.6 * (1 - abreAbajo)).toFixed(3);
+        if (P.resto) {
+          var despliega = abreAbajo >= 1 ? suave(tramo(p, 0.875, 0.985)) : 0;
+          P.resto.style.visibility = despliega > 0 ? "visible" : "hidden";
+          P.resto.style.clipPath = "inset(0 0 " + ((1 - despliega) * 100).toFixed(2) + "% 0)";
+        }
         P.boca.style.opacity = (1 - sube).toFixed(3);
         pista.style.opacity = (1 - tramo(p, 0.01, 0.05)).toFixed(3);
         // al terminar, la copia le pasa el lugar a la hoja de verdad (que ya está exactamente ahí)
-        var lista = p >= 0.995;
+        var lista = p >= 0.9995;   // (justo al final: antes, la hoja real todavía no calza con la copia y se notaba un salto)
         if (saltar) saltar.classList.toggle("fuera", p > 0.85);
         hoja.classList.toggle("lista", lista);
         pliego.style.visibility = lista ? "hidden" : "visible";
