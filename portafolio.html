@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://bandiohgames.github.io/portafolio">
 <title>Este portafolio · cómo lo hice</title>
 <meta name="description" content="Cómo hice este portafolio: HTML, CSS y JavaScript sin frameworks, con una escena de sobre dibujada por el propio juego REZAGO." data-en="How I built this portfolio: framework-free HTML, CSS and JavaScript, with an envelope scene drawn by the REZAGO game itself.">
 <meta property="og:image" content="https://bandiohgames.github.io/img/web/escena_sobre.jpg">
@@ -12,17 +13,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css?v=bdc55fea">
 <link rel="stylesheet" href="secciones.css?v=3b203b29">
-<script src="sitio.js?v=ebf371a7"></script>
+<script src="sitio.js?v=dd0c77a3"></script>
 </head>
 <body class="area-web">
 
 <!--comun:cabecera-->
 <header><div class="ancho">
-  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
+  <a class="marca" href="./"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
   <nav>
-    <a href="juegos.html"><span lang="es">Juegos</span><span lang="en">Games</span></a>
-    <a href="web.html" class="activo" aria-current="page">Web</a>
-    <a href="pixel.html">Pixel art</a>
+    <a href="juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web" class="activo" aria-current="page">Web</a>
+    <a href="pixel">Pixel art</a>
     <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
     <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
   </nav>
@@ -55,7 +56,7 @@
 <h2><span lang="es">La idea</span><span lang="en">The idea</span></h2>
 <p lang="es">Quería que el sitio se sintiera como abrir el correo de REZAGO, no como una plantilla. Lo más trabajado es la escena del sobre en la página de juegos, que avanza con la barra de desplazamiento.</p>
 <p lang="en">I wanted the site to feel like opening REZAGO's mail, not like a template. The most polished part is the envelope scene on the games page, which moves as you scroll.</p>
-<figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>bandiohgames.github.io/juegos.html</span></div><video src="img/web/escena_sobre.mp4" poster="img/web/escena_sobre.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
+<figure class="captura"><div class="navegador"><div class="barra"><i></i><i></i><i></i><span>bandiohgames.github.io/juegos</span></div><video src="img/web/escena_sobre.mp4" poster="img/web/escena_sobre.jpg" muted loop playsinline autoplay preload="metadata"></video></div>
   <figcaption lang="es">La escena completa, grabada bajando con la barra de desplazamiento: el sobre se da vuelta, el abrecartas lo corta, sale la carta y se despliega.</figcaption>
   <figcaption lang="en">The full scene, recorded while scrolling: the envelope flips, the letter opener cuts it, the letter comes out and unfolds.</figcaption></figure>
 <h2><span lang="es">Cómo funciona</span><span lang="en">How it works</span></h2>
@@ -104,11 +105,11 @@
   <figcaption lang="es">La escena no es un video: es un <i>canvas</i> que dibuja uno de los 127 cuadros según cuánto has bajado. La posición del scroll se vuelve un número de 0 a 1, ese número se acerca al real con un poco de inercia (así no salta), y cada etapa (darse vuelta, cortar, sacar la carta, desplegarla) ocupa su propio tramo. Si subes, todo vuelve atrás.</figcaption>
   <figcaption lang="en">The scene isn't a video: it's a <i>canvas</i> that draws one of 127 frames depending on how far you've scrolled. The scroll position becomes a number from 0 to 1, that number eases toward the real one (so it never jumps), and each stage (flip, cut, pull out the letter, unfold it) owns its own slice of the range. Scroll up and everything plays backwards.</figcaption>
 </figure>
-<div class="botones" style="margin-top:14px"><a class="boton lleno" href="juegos.html"><span lang="es">Ver la escena del sobre</span><span lang="en">See the envelope scene</span></a></div>
+<div class="botones" style="margin-top:14px"><a class="boton lleno" href="juegos"><span lang="es">Ver la escena del sobre</span><span lang="en">See the envelope scene</span></a></div>
 
 <nav class="navegar-caso" aria-label="Más proyectos" data-aria-label-en="More projects">
-  <a class="volver" href="web.html"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
-  <a class="siguiente" href="pixel.html"><span><small lang="es">Siguiente área</small><small lang="en">Next field</small><b lang="es">Pixel art</b><b lang="en">Pixel art</b></span><span class="flecha" aria-hidden="true">→</span></a>
+  <a class="volver" href="web"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
+  <a class="siguiente" href="pixel"><span><small lang="es">Siguiente área</small><small lang="en">Next field</small><b lang="es">Pixel art</b><b lang="en">Pixel art</b></span><span class="flecha" aria-hidden="true">→</span></a>
 </nav>
 </main>
 <div class="ancho">

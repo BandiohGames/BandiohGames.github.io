@@ -1,3 +1,12 @@
+// Direcciones limpias: quien llega con «.html» (un enlace viejo) ve la dirección sin él. GitHub Pages sirve las dos.
+(function () {
+  try {
+    if (location.protocol === "https:" && /\.html$/.test(location.pathname)) {
+      history.replaceState(history.state, "", location.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") + location.search + location.hash);
+    }
+  } catch (e) {}
+})();
+
 // Idioma: ES por defecto; EN si el navegador está en otro idioma o si se eligió antes.
 (function () {
   var html = document.documentElement;
@@ -20,7 +29,7 @@
   var AREA = { juegos: "juegos", rezago: "juegos", floor: "juegos", envivo: "juegos",
                web: "web", fittracker: "web", hublab: "web", portafolio: "web", pixel: "pixel" };
   var areaDe = function (url) {
-    var m = /([a-z]+)\.html/.exec(url || ""); return (m && AREA[m[1]]) || "inicio";
+    var m = /\/([a-z]+)(?:\.html)?\/?(?:[?#]|$)/.exec(url || ""); return (m && AREA[m[1]]) || "inicio";   // con o sin «.html»
   };
   // La cascada de entrada empieza cuando la página se presenta de verdad (también si llegó precargada)
   var CASCADA = ".portada.inicio .presenta > *, .portada.inicio .escritorio, .cabeza-seccion > *, .caso > h1, .caso > .bajada, " +

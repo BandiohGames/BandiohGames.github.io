@@ -19,9 +19,9 @@ PAGINAS = {
     'pixel.html': ('pixel', 'bandioh.pixelart@gmail.com'),
 }
 
-MENU = [('juegos', 'juegos.html', '<span lang="es">Juegos</span><span lang="en">Games</span>'),
-        ('web', 'web.html', 'Web'),
-        ('pixel', 'pixel.html', 'Pixel art'),
+MENU = [('juegos', 'juegos', '<span lang="es">Juegos</span><span lang="en">Games</span>'),
+        ('web', 'web', 'Web'),
+        ('pixel', 'pixel', 'Pixel art'),
         ('sobre', '#sobre', '<span lang="es">Sobre mí</span><span lang="en">About</span>'),
         ('contacto', '#contacto', '<span lang="es">Contacto</span><span lang="en">Contact</span>')]
 
@@ -30,7 +30,7 @@ def cabecera(activa):
     enlaces = '\n'.join('    <a href="%s"%s>%s</a>' % (href, ' class="activo" aria-current="page"' if clave == activa else '', txt)
                         for clave, href, txt in MENU)
     return ('<header><div class="ancho">\n'
-            '  <a class="marca" href="index.html"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>\n'
+            '  <a class="marca" href="./"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>\n'
             '  <nav>\n' + enlaces + '\n  </nav>\n'
             '  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>\n'
             '  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>\n'
