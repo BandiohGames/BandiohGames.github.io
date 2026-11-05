@@ -813,13 +813,23 @@
     };
     medir(); window.addEventListener("resize", medir);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(medir); if (cab) ro.observe(cab); ro.observe(nav); }   // el alto cambia al traducir o al cargar las fuentes
+
+    // posición de un título sin el desvío de su animación de entrada (que lo corre 28 px mientras aparece)
+    var arriba = function (el) {
+      var t = el.getBoundingClientRect().top, m = getComputedStyle(el).transform;
+      if (m && m !== "none") { try { t -= new DOMMatrix(m).m42; } catch (e) {} }
+      return t;
+    };
+    var destino = function (el) { return Math.max(0, arriba(el) + window.scrollY - ((cab ? cab.offsetHeight : 0) + nav.offsetHeight + 14)); };
 
     var quieto = function () { return html.classList.contains("quieto"); };
-    var vigente = -1, esperando = false;
+    var vigente = -1, esperando = false, hasta = 0;
     var marcar = function () {
       esperando = false;
+      if (Date.now() < hasta) return;   // un clic está llevando a una sección: ya quedó marcada
       var y = (cab ? cab.offsetHeight : 0) + nav.offsetHeight + 30, actual = -1;
-      items.forEach(function (it, i) { if (it.el.getBoundingClientRect().top <= y) actual = i; });
+      items.forEach(function (it, i) { if (arriba(it.el) <= y) actual = i; });
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) actual = items.length - 1;
       if (actual === vigente) return;
       vigente = actual;
@@ -832,5 +842,28 @@
     };
     window.addEventListener("scroll", function () { if (!esperando) { esperando = true; requestAnimationFrame(marcar); } }, { passive: true });
     marcar();
+
+    // El clic: marca la sección al instante y lleva hasta ella calculando el destino sin el desvío de la animación;
+    // si algo se mueve en el camino (imágenes, fuentes) corrige al final, salvo que la persona ya esté moviendo la página.
+    var tomada = false;
+    ["wheel", "touchstart", "keydown"].forEach(function (e) { window.addEventListener(e, function () { tomada = true; }, { passive: true }); });
+    enlaces.forEach(function (a, i) {
+      a.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        var el = items[i].el;
+        vigente = i; hasta = Date.now() + 1900; tomada = false;
+        enlaces.forEach(function (b, j) { b.classList.toggle("activo", j === i); if (j === i) b.setAttribute("aria-current", "location"); else b.removeAttribute("aria-current"); });
+        window.scrollTo({ top: destino(el), behavior: quieto() ? "instant" : "smooth" });
+        try { history.replaceState(null, "", "#" + el.id); } catch (e) {}
+        [900, 1800].forEach(function (ms) {
+          setTimeout(function () {
+            if (tomada) return;
+            var d = destino(el);
+            if (Math.abs(d - window.scrollY) > 2) window.scrollTo({ top: d, behavior: "instant" });
+          }, ms);
+        });
+        setTimeout(marcar, 1950);
+      });
+    });
   });
 })();
