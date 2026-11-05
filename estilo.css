@@ -343,3 +343,19 @@ body.area-inicio { --madera: #171513; --madera-2: #211e1b; --madera-3: #322e2a; 
 .resumen-caso dd { margin: 0; font-size: 16px; line-height: 1.5; }
 @media (max-width: 640px) { .resumen-caso > div { grid-template-columns: 1fr; gap: 1px; } .resumen-caso { padding: 12px 14px; } }
 .resumen-area { margin: 18px 0 20px; }
+
+/* Índice de cada caso: una barra que se queda arriba mientras se baja, con la sección en la que vas.
+   La arma sitio.js con los títulos de la página; así sirve para todos los casos. */
+/* los títulos entran subiendo 28 px (la aparición al bajar): el navegador calcula el destino con ese desvío, así que se suma */
+.caso .resumen-caso { scroll-margin-top: var(--indice-alto, 130px); }
+.caso h2 { scroll-margin-top: calc(var(--indice-alto, 130px) + 28px); }
+.indice-caso { position: sticky; top: 70px; z-index: 9; display: flex; align-items: center; gap: 8px; margin: 0 0 18px; padding: 9px 0;
+  background: var(--madera); border-bottom: 1px solid var(--madera-3); overflow-x: auto; scrollbar-width: none; }
+.indice-caso::-webkit-scrollbar { display: none; }
+.indice-caso .indice-titulo { flex: none; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-tenue); margin-right: 4px; }
+.indice-caso a { flex: none; padding: 4px 13px; border: 1px solid var(--madera-3); border-radius: 20px; color: var(--texto-tenue);
+  font-size: 15px; line-height: 1.5; text-decoration: none; white-space: nowrap; transition: color .15s, border-color .15s, background .15s; }
+.indice-caso a:hover { color: var(--texto-claro); border-color: var(--laton); }
+.indice-caso a.activo { color: var(--madera); background: var(--laton); border-color: var(--laton); font-weight: 600; }
+@media (max-width: 640px) { .indice-caso .indice-titulo { display: none; } .indice-caso { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
+@media (prefers-reduced-motion: reduce) { .indice-caso a { transition: none; } }

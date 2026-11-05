@@ -298,3 +298,9 @@ nav a.activo { color: var(--texto-claro); border-bottom: 2px solid var(--laton);
 @media (max-width: 820px) { .antes-despues-capturas { grid-template-columns: repeat(2, minmax(0, 1fr)); } .antes-despues-capturas .telefono:nth-child(3) { grid-column: auto; } }
 
 .telefonos.telefonos-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 8px; }
+
+/* galerías de 2 y 3 teléfonos, centradas (el celular las vuelve a poner en tira deslizable) */
+.telefonos.telefonos-3, .telefonos.telefonos-2 { margin-bottom: 8px; margin-left: auto; margin-right: auto; }
+.telefonos.telefonos-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 810px; }
+.telefonos.telefonos-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 540px; }
+@media (max-width: 820px) { .telefonos.telefonos-3, .telefonos.telefonos-2 { max-width: none; margin-left: -20px; margin-right: -20px; } }

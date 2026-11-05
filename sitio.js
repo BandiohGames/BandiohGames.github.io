@@ -758,3 +758,77 @@
     }).catch(function () {});
   });
 })();
+
+// =====================================================================================================
+// ÍNDICE DE CADA CASO: una barra pegada arriba con los títulos de la página (y la sección en la que vas), para que
+// quien tiene poco tiempo salte directo a lo que le interesa. Se arma sola con los <h2> de «main.caso»: el nombre
+// corto sale de data-corto-es / data-corto-en y, si no lo hay, del título hasta los dos puntos.
+// =====================================================================================================
+(function () {
+  document.addEventListener("DOMContentLoaded", function () {
+    var main = document.querySelector("main.caso"), cab = document.querySelector("header");
+    if (!main) return;
+    var titulos = Array.prototype.slice.call(main.querySelectorAll("h2"));
+    if (titulos.length < 3) return;
+    var html = document.documentElement;
+
+    var items = [], resumen = main.querySelector(".resumen-caso");
+    if (resumen) { resumen.id = resumen.id || "resumen"; items.push({ el: resumen, es: "Resumen", en: "Summary" }); }
+    titulos.forEach(function (h, i) {
+      if (!h.id) h.id = "seccion-" + (i + 1);
+      var it = { el: h };
+      ["es", "en"].forEach(function (l) {
+        var sp = h.querySelector('span[lang="' + l + '"]');
+        it[l] = h.getAttribute("data-corto-" + l) || (sp ? sp.textContent : h.textContent).split(":")[0].trim();
+      });
+      items.push(it);
+    });
+
+    var nav = document.createElement("nav");
+    nav.className = "indice-caso";
+    nav.setAttribute("aria-label", html.getAttribute("data-l") === "en" ? "On this page" : "En esta página");
+    nav.setAttribute("data-aria-label-es", "En esta página"); nav.setAttribute("data-aria-label-en", "On this page");
+    var rot = document.createElement("span");
+    rot.className = "indice-titulo"; rot.innerHTML = '<span lang="es">Ir a</span><span lang="en">Jump to</span>';
+    nav.appendChild(rot);
+    var enlaces = items.map(function (it) {
+      var a = document.createElement("a");
+      a.href = "#" + it.el.id;
+      var es = document.createElement("span"), en = document.createElement("span");
+      es.lang = "es"; es.textContent = it.es; en.lang = "en"; en.textContent = it.en;
+      a.appendChild(es); a.appendChild(en); nav.appendChild(a);
+      return a;
+    });
+    var ancla = main.querySelector(".bajada") || main.querySelector("h1");
+    if (!ancla) return;
+    ancla.insertAdjacentElement("afterend", nav);
+
+    // la barra se pega justo debajo de la cabecera (que cambia de alto en el celular), y los títulos dejan ese margen
+    var medir = function () {
+      var c = cab ? cab.offsetHeight : 0;
+      nav.style.top = c + "px";
+      html.style.setProperty("--indice-alto", (c + nav.offsetHeight + 14) + "px");
+    };
+    medir(); window.addEventListener("resize", medir);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+
+    var quieto = function () { return html.classList.contains("quieto"); };
+    var vigente = -1, esperando = false;
+    var marcar = function () {
+      esperando = false;
+      var y = (cab ? cab.offsetHeight : 0) + nav.offsetHeight + 30, actual = -1;
+      items.forEach(function (it, i) { if (it.el.getBoundingClientRect().top <= y) actual = i; });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) actual = items.length - 1;
+      if (actual === vigente) return;
+      vigente = actual;
+      enlaces.forEach(function (a, i) {
+        a.classList.toggle("activo", i === actual);
+        if (i === actual) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
+      });
+      var a = enlaces[actual];   // en el celular la barra se desliza para que la sección actual quede a la vista
+      if (a && nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2, behavior: quieto() ? "auto" : "smooth" });
+    };
+    window.addEventListener("scroll", function () { if (!esperando) { esperando = true; requestAnimationFrame(marcar); } }, { passive: true });
+    marcar();
+  });
+})();
