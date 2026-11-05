@@ -784,19 +784,21 @@
       items.push(it);
     });
 
-    var nav = document.createElement("nav");
-    nav.className = "indice-caso";
+    var nav = document.createElement("div");   // un div con rol de navegación: un <nav> heredaría las reglas de la cabecera
+    nav.className = "indice-caso"; nav.setAttribute("role", "navigation");
     nav.setAttribute("aria-label", html.getAttribute("data-l") === "en" ? "On this page" : "En esta página");
     nav.setAttribute("data-aria-label-es", "En esta página"); nav.setAttribute("data-aria-label-en", "On this page");
     var rot = document.createElement("span");
     rot.className = "indice-titulo"; rot.innerHTML = '<span lang="es">Ir a</span><span lang="en">Jump to</span>';
-    nav.appendChild(rot);
+    var lista = document.createElement("div");   // la lista se desliza de lado en el celular; la barra de fondo ocupa todo el ancho
+    lista.className = "indice-lista"; nav.appendChild(lista);
+    lista.appendChild(rot);
     var enlaces = items.map(function (it) {
       var a = document.createElement("a");
       a.href = "#" + it.el.id;
       var es = document.createElement("span"), en = document.createElement("span");
       es.lang = "es"; es.textContent = it.es; en.lang = "en"; en.textContent = it.en;
-      a.appendChild(es); a.appendChild(en); nav.appendChild(a);
+      a.appendChild(es); a.appendChild(en); lista.appendChild(a);
       return a;
     });
     var ancla = main.querySelector(".bajada") || main.querySelector("h1");
@@ -826,7 +828,7 @@
         if (i === actual) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
       });
       var a = enlaces[actual];   // en el celular la barra se desliza para que la sección actual quede a la vista
-      if (a && nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2, behavior: quieto() ? "auto" : "smooth" });
+      if (a && lista.scrollWidth > lista.clientWidth) lista.scrollTo({ left: a.offsetLeft - (lista.clientWidth - a.offsetWidth) / 2, behavior: quieto() ? "auto" : "smooth" });
     };
     window.addEventListener("scroll", function () { if (!esperando) { esperando = true; requestAnimationFrame(marcar); } }, { passive: true });
     marcar();
