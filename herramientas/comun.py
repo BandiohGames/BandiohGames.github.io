@@ -84,7 +84,7 @@ def icono(k):
 
 
 def redes(activa):
-    return ''.join('      <a class="red" href="%s">%s<span><b>%s</b><small>%s</small></span></a>\n'
+    return ''.join('      <a class="red" href="%s" target="_blank" rel="noopener">%s<span><b>%s</b><small>%s</small></span></a>\n'
                    % (RED[k][0], icono(k), RED[k][1], RED[k][2]) for k in REDES_DE[activa])
 
 
