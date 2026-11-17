@@ -14,6 +14,7 @@ PAGINAS = {
     'envivo.html': ('juegos', 'bandioh.games@gmail.com'),
     'web.html': ('web', 'esteban.flores.dio@gmail.com'),
     'fittracker.html': ('web', 'esteban.flores.dio@gmail.com'),
+    'quila.html': ('web', 'esteban.flores.dio@gmail.com'),
     'hublab.html': ('web', 'esteban.flores.dio@gmail.com'),
     'portafolio.html': ('web', 'esteban.flores.dio@gmail.com'),
     'pixel.html': ('pixel', 'bandioh.pixelart@gmail.com'),

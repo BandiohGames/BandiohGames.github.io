@@ -27,7 +27,7 @@
 
   // Transición al cambiar de página: según el área de llegada (estilo.css, «Transiciones entre páginas»)
   var AREA = { juegos: "juegos", rezago: "juegos", floor: "juegos", envivo: "juegos",
-               web: "web", fittracker: "web", hublab: "web", portafolio: "web", pixel: "pixel" };
+               web: "web", fittracker: "web", quila: "web", hublab: "web", portafolio: "web", pixel: "pixel" };
   var areaDe = function (url) {
     var m = /\/([a-z]+)(?:\.html)?\/?(?:[?#]|$)/.exec(url || ""); return (m && AREA[m[1]]) || "inicio";   // con o sin «.html»
   };

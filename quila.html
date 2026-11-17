@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es" data-l="es" data-titulo-en="Quila Surf Club · how I built it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://bandiohgames.github.io/quila">
+<title>Quila Surf Club · cómo lo hice</title>
+<meta name="description" content="Caso de estudio de Quila Surf Club: arriendo de tablas y escuela de surf en React y TypeScript, con panel del dueño, mostrador con QR y tres idiomas." data-en="Quila Surf Club case study: surfboard rental and surf school in React and TypeScript, with an owner dashboard, a QR counter and three languages.">
+<meta property="og:image" content="https://bandiohgames.github.io/img/web/quila_portada.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono_32.png">
+<link rel="apple-touch-icon" href="img/icono_180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css?v=6171b0f0">
+<link rel="stylesheet" href="secciones.css?v=7babe574">
+<script src="sitio.js?v=e04ee9ea"></script>
+</head>
+<body class="area-web">
+
+<!--comun:cabecera-->
+<header><div class="ancho">
+  <a class="marca" href="./"><img class="logo" decoding="async" src="img/marca.png" alt="bandioh games · inicio" data-alt-en="bandioh games · home"></a>
+  <nav>
+    <a href="juegos"><span lang="es">Juegos</span><span lang="en">Games</span></a>
+    <a href="web" class="activo" aria-current="page">Web</a>
+    <a href="pixel">Pixel art</a>
+    <a href="#sobre"><span lang="es">Sobre mí</span><span lang="en">About</span></a>
+    <a href="#contacto"><span lang="es">Contacto</span><span lang="en">Contact</span></a>
+  </nav>
+  <button class="animaciones" aria-pressed="true" title="Animaciones: sí" data-title-en="Animations: on"><span class="icono-anim" aria-hidden="true"></span><span lang="es">Animaciones</span><span lang="en">Animations</span></button>
+  <button class="idioma" aria-label="Cambiar idioma / Change language"><span lang="es"><b>ES</b> · EN</span><span lang="en">ES · <b>EN</b></span></button>
+</div></header>
+<!--/comun:cabecera-->
+
+<main class="ancho caso" style="padding-top:44px">
+<h1 class="mono" style="font-size:40px;line-height:1.1">Quila Surf Club</h1>
+<p class="bajada" style="color:var(--texto-tenue);font-size:19px;margin:10px 0 20px">
+  <span lang="es">Un sitio de arriendo de tablas y escuela de surf para evaluar un negocio familiar en Brasil: la tienda para el cliente, el panel del dueño y el mostrador del trabajador, en tres idiomas.</span>
+  <span lang="en">A surfboard rental and surf school site to evaluate a family business in Brazil: the shop for customers, the owner's dashboard and the staff counter, in three languages.</span>
+</p>
+
+<dl class="resumen-caso" aria-label="Resumen" data-aria-label-en="Summary">
+  <div><dt><span lang="es">Qué hice</span><span lang="en">What I did</span></dt><dd><span lang="es">Todo, en solitario: diseño, interfaz, lógica de reservas, panel del dueño y mostrador con lector de QR.</span><span lang="en">Everything, solo: design, interface, booking logic, owner dashboard and a counter with a QR reader.</span></dd></div>
+  <div><dt><span lang="es">Qué demuestra</span><span lang="en">What it shows</span></dt><dd><span lang="es">Un frontend grande en React y TypeScript pensado para tres tipos de usuario, con idiomas, monedas y unidades desde el principio, y problemas de rendimiento encontrados y medidos.</span><span lang="en">A large React and TypeScript frontend built for three kinds of users, with languages, currencies and units from the start, and performance problems found and measured.</span></dd></div>
+  <div><dt><span lang="es">Resultado</span><span lang="en">Outcome</span></dt><dd><span lang="es">Demo publicada y revisada en celulares de 360 a 412 px y en cuatro temas de luz. Los datos son simulados hasta que el negocio exista.</span><span lang="en">A live demo, checked on phones from 360 to 412 px and in four light themes. The data is simulated until the business exists.</span></dd></div>
+</dl>
+<dl class="ficha-tecnica">
+  <div><dt><span lang="es">Rol</span><span lang="en">Role</span></dt><dd><span lang="es">Todo, en solitario</span><span lang="en">Everything, solo</span></dd></div>
+  <div><dt><span lang="es">Estado</span><span lang="en">Status</span></dt><dd><span lang="es">Demo publicada, con datos simulados</span><span lang="en">Live demo, with simulated data</span></dd></div>
+  <div><dt><span lang="es">Hecho con</span><span lang="en">Built with</span></dt><dd>React 19, TypeScript, Vite, Tailwind, React Router, Render</dd></div>
+  <div><dt><span lang="es">Idiomas</span><span lang="en">Languages</span></dt><dd><span lang="es">Español, portugués e inglés</span><span lang="en">Spanish, Portuguese and English</span></dd></div>
+  <div><dt><span lang="es">Probar</span><span lang="en">Try it</span></dt><dd><a href="https://quila-surf.onrender.com" target="_blank" rel="noopener">quila-surf.onrender.com</a></dd></div>
+  <div><dt><span lang="es">Acceso demo</span><span lang="en">Demo access</span></dt><dd><span lang="es">Panel: <code>dueno@quilasurf.demo</code> / <code>olas2026</code> · Mostrador: PIN <code>1234</code></span><span lang="en">Dashboard: <code>dueno@quilasurf.demo</code> / <code>olas2026</code> · Counter: PIN <code>1234</code></span></dd></div>
+</dl>
+<div class="franja-datos" style="margin-bottom:26px">
+  <div><b><span lang="es">~15.000</span><span lang="en">~15,000</span></b><span lang="es">líneas de TypeScript</span><span lang="en">lines of TypeScript</span></div>
+  <div><b><span lang="es">~1.080</span><span lang="en">~1,080</span></b><span lang="es">textos traducidos por idioma</span><span lang="en">strings translated per language</span></div>
+  <div><b>4</b><span lang="es">temas de luz</span><span lang="en">light themes</span></div>
+  <div><b>0 $</b><span lang="es">en servidores</span><span lang="en">in hosting</span></div>
+</div>
+
+<figure class="captura">
+  <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>quila-surf.onrender.com</span></div><video src="img/web/quila_portada.mp4" poster="img/web/quila_portada.jpg" width="1600" height="900" muted loop playsinline autoplay preload="metadata" aria-label="Recorrido por la página de inicio de Quila Surf Club" data-aria-label-en="A tour of Quila Surf Club's home page"></video></div>
+  <figcaption lang="es"><b>La página de inicio.</b> El mar y las palmeras se mueven, y después baja por el rack de tablas a escala, la pizarra con el pronóstico, la escuela y el comprobante de reserva.</figcaption>
+  <figcaption lang="en"><b>The home page.</b> The sea and palm trees move, then it scrolls through the rack of boards to scale, the forecast board, the school and the booking receipt.</figcaption>
+</figure>
+
+<h2 id="objetivo" data-corto-es="Objetivo" data-corto-en="Goal"><span lang="es">El objetivo</span><span lang="en">The goal</span></h2>
+<p lang="es">Mi familia evalúa abrir una escuela de surf con arriendo de tablas en Brasil. Antes de invertir, quería que pudieran ver cómo funcionaría el negocio por dentro: qué ve el cliente al reservar, qué controla el dueño y cómo entrega las tablas el trabajador. Por eso tenía que estar en portugués para el público local, en español para nosotros y en inglés para los turistas, con reales, pesos o dólares y medidas en centímetros o en pies.</p>
+<p lang="en">My family is considering opening a surf school with board rentals in Brazil. Before investing, I wanted them to see how the business would work from the inside: what customers see when booking, what the owner keeps track of and how staff hand out the boards. So it had to be in Portuguese for locals, Spanish for us and English for tourists, with reais, pesos or dollars and sizes in centimeters or feet.</p>
+
+<h2 id="rol" data-corto-es="Mi rol" data-corto-en="My role"><span lang="es">Mi rol</span><span lang="en">My role</span></h2>
+<p lang="es">Todo, en solitario: diseño, interfaz, lógica de reservas y disponibilidad, el panel del dueño y el mostrador. Programé con asistencia de IA (Claude Code); las decisiones de diseño y de negocio, y la revisión en celulares y temas, las hice yo.</p>
+<p lang="en">I built it on my own: design, interface, booking and availability logic, the owner's dashboard and the counter. I programmed with AI assistance (Claude Code); I made the design and business decisions and did the review across phones and themes.</p>
+
+<h2 id="decisiones" data-corto-es="Decisiones" data-corto-en="Decisions"><span lang="es">Decisiones técnicas</span><span lang="en">Technical decisions</span></h2>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">1. Tu estatura, una sola vez para todo el sitio</span><span lang="en">1. Your height, once for the whole site</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Elegir tabla depende de tu estatura, y aparece en la portada, el catálogo, cada ficha y la pizarra. Pedirla en cada lugar, o que cada parte guarde su propia copia, terminaría con números distintos en la misma pantalla.</span><span lang="en">Choosing a board depends on your height, and it appears on the home page, the catalog, each board page and the forecast board. Asking for it everywhere, or letting each part keep its own copy, would end up showing different numbers on the same screen.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Un solo dato compartido con <code>useSyncExternalStore</code>: al moverlo en cualquier parte, todas las tablas se vuelven a comparar contigo («+28 cm, más alta que tú»). Por dentro todo se guarda en centímetros y kilos; cm o pies es solo cómo se muestra.</span><span lang="en">A single shared value with <code>useSyncExternalStore</code>: change it anywhere and every board is compared with you again (“+28 cm, taller than you”). Internally everything is stored in centimeters and kilos; cm or feet is only how it's displayed.</span></div>
+</div>
+<figure class="codigo">
+  <div class="codigo-barra"><b>estatura.ts</b><span lang="es">TypeScript · un dato compartido por todo el sitio</span><span lang="en">TypeScript · one value shared across the site</span></div>
+  <pre><code><span class="k">let</span> actual = leer();                 <span class="c">// lo guardado en el navegador, o 170 cm</span>
+<span class="k">const</span> oyentes = <span class="k">new</span> Set&lt;() =&gt; <span class="k">void</span>&gt;();
+
+<span class="k">export function</span> fijarEstatura(cm: <span class="k">number</span>) {
+  actual = Math.min(ESTATURA_MAX, Math.max(ESTATURA_MIN, Math.round(cm)));
+  <span class="k">try</span> { localStorage.setItem(CLAVE, String(actual)); } <span class="k">catch</span> { <span class="c">/* sin almacenamiento: dura la visita */</span> }
+  oyentes.forEach((f) =&gt; f());       <span class="c">// avisa a todos los componentes que la usan</span>
+}
+
+<span class="k">export function</span> useEstatura(): <span class="k">number</span> {
+  <span class="k">return</span> useSyncExternalStore(suscribir, () =&gt; actual, () =&gt; POR_DEFECTO);
+}</code></pre>
+  <figcaption lang="es">Cualquier componente lee la estatura con <code>useEstatura()</code> y la cambia con <code>fijarEstatura()</code>. No hace falta pasarla de padre a hijo ni un contexto: el rack, el catálogo y el afiche de la pizarra se actualizan juntos.</figcaption>
+  <figcaption lang="en">Any component reads the height with <code>useEstatura()</code> and changes it with <code>fijarEstatura()</code>. No prop drilling and no context needed: the rack, the catalog and the forecast board poster update together.</figcaption>
+</figure>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">2. Tres idiomas y tres monedas desde el primer día</span><span lang="en">2. Three languages and three currencies from day one</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Traducir al final obliga a revisar cada pantalla, y los textos en portugués o inglés suelen ser más largos: botones que se cortan y tarjetas que cambian de alto.</span><span lang="en">Translating at the end means going back over every screen, and Portuguese or English texts are often longer: buttons get cut off and cards change height.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Cada texto pasa por <code>t()</code> con el español como clave y diccionarios de portugués e inglés (unos 1.080 textos cada uno). Los precios viven en reales y se convierten al mostrarlos, con montos cortos según el país («R$ 78,3 mil», «US$ 14.7K»). Donde un texto cambia de largo, el espacio se reserva para su versión más larga y nada salta al cambiar de idioma o de nivel.</span><span lang="en">Every string goes through <code>t()</code> with Spanish as the key and Portuguese and English dictionaries (about 1,080 strings each). Prices live in reais and are converted for display, with short amounts by country (“R$ 78,3 mil”, “US$ 14.7K”). Where a text changes length, space is reserved for its longest version, so nothing jumps when switching language or level.</span></div>
+</div>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">3. Un mostrador que funciona con lo que haya</span><span lang="en">3. A counter that works with whatever is at hand</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">El trabajador entrega y recibe tablas en la playa, con un celular cualquiera. La cámara puede no tener permiso, la etiqueta puede estar mojada o rayada, y el lector de QR pesa.</span><span lang="en">Staff hand out and take back boards on the beach, with any phone. The camera may not have permission, the label may be wet or scratched, and the QR reader is heavy.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Tres caminos para la misma tabla: escanear con la cámara, sacarle una foto a la etiqueta o escribir el código. El lector se descarga solo al abrir el mostrador (importación dinámica), así no pesa para los clientes. Y el código escrito se normaliza: «sb 244 a» y «SB-244-A» llevan a la misma tabla.</span><span lang="en">Three ways to the same board: scan with the camera, take a photo of the label or type the code. The reader is only downloaded when the counter opens (dynamic import), so it adds no weight for customers. And typed codes are normalized: “sb 244 a” and “SB-244-A” lead to the same board.</span></div>
+</div>
+<div class="capturas-dos">
+  <figure class="captura">
+    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>quila-surf.onrender.com/admin</span></div><img decoding="async" src="img/web/quila_d_etiquetas.webp" alt="Etiquetas QR imprimibles, una por tabla, con su código de inventario" data-alt-en="Printable QR labels, one per board, with its inventory code" width="1920" height="1080" loading="lazy"></div>
+    <figcaption lang="es"><b>Etiquetas QR.</b> El dueño las imprime desde el panel, una por tabla física.</figcaption>
+    <figcaption lang="en"><b>QR labels.</b> The owner prints them from the dashboard, one per physical board.</figcaption>
+  </figure>
+  <figure class="captura">
+    <div class="navegador"><div class="barra"><i></i><i></i><i></i><span>quila-surf.onrender.com/admin</span></div><img decoding="async" src="img/web/quila_d_arriendos.webp" alt="Carta Gantt de arriendos: cada fila es una tabla física y cada barra una reserva" data-alt-en="Rental Gantt chart: each row is a physical board and each bar a booking" width="1920" height="1080" loading="lazy"></div>
+    <figcaption lang="es"><b>Arriendos.</b> Cada fila es una de esas tablas y cada barra una reserva, según su estado.</figcaption>
+    <figcaption lang="en"><b>Rentals.</b> Each row is one of those boards and each bar a booking, by status.</figcaption>
+  </figure>
+</div>
+<figure class="codigo">
+  <div class="codigo-barra"><b>mostrador.ts</b><span lang="es">TypeScript · el mismo código, escrito de cualquier forma</span><span lang="en">TypeScript · the same code, however it's typed</span></div>
+  <pre><code><span class="k">export function</span> normalizarCodigo(texto: <span class="k">string</span>): <span class="k">string</span> {
+  <span class="k">const</span> limpio = texto.trim().toUpperCase().replace(<span class="s">/[\s_]+/g</span>, <span class="s">'-'</span>).replace(<span class="s">/-+/g</span>, <span class="s">'-'</span>);
+  <span class="k">const</span> m = limpio.match(<span class="s">/^([A-Z]+)-?(\d{3})-?([A-Z])$/</span>);
+  <span class="k">return</span> m ? <span class="s">`${m[1]}-${m[2]}-${m[3]}`</span> : limpio;   <span class="c">// «sb 244 a» → «SB-244-A»</span>
+}</code></pre>
+  <figcaption lang="es">El código de cada etiqueta es tipo, largo y letra de la unidad (SB-244-A: softboard de 244 cm, la primera). El escáner, la foto y el campo escrito pasan por esta función antes de buscar la tabla.</figcaption>
+  <figcaption lang="en">Each label's code is type, length and unit letter (SB-244-A: a 244 cm softboard, the first one). The scanner, the photo and the typed field all go through this function before looking up the board.</figcaption>
+</figure>
+
+<h2 id="rendimiento" data-corto-es="Rendimiento" data-corto-en="Performance"><span lang="es">Rendimiento: animado, pero sin trabar</span><span lang="en">Performance: animated, without stuttering</span></h2>
+<p lang="es">La portada tiene mar, palmeras y sombras que se mueven. Lo probé con un stream de Twitch abierto en otra ventana, como lo usaría cualquiera, y así aparecieron tres problemas.</p>
+<p lang="en">The home page has a moving sea, palm trees and shadows. I tested it with a Twitch stream open in another window, the way anyone would use it, and that's how three problems showed up.</p>
+
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">4. Las animaciones trababan otro video</span><span lang="en">4. The animations made another video stutter</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Las capas de la portada animadas con CSS seguían dibujándose aunque estuvieras mirando otra ventana, y el stream se cortaba.</span><span lang="en">The home page layers animated with CSS kept drawing even while you were looking at another window, and the stream stuttered.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Un solo ciclo en JavaScript que se congela si la ventana pierde el foco, si la pestaña se oculta o si la portada sale de vista. Medido: de unos 300 cuadros dibujados en 5 segundos mirando otra ventana a 0.</span><span lang="en">A single JavaScript loop that freezes when the window loses focus, the tab is hidden or the home page scrolls out of view. Measured: from about 300 frames drawn in 5 seconds while looking at another window down to 0.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">5. La pizarra perdía fluidez al bajar</span><span lang="en">5. The forecast board lost smoothness when scrolling</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">Al pasar por la pizarra el scroll se ponía pesado, pero el código iba a 60 cuadros por segundo. La causa eran dos sombras de palmera que se mecen encima con <code>mix-blend-mode: multiply</code>: la tarjeta gráfica tenía que volver a mezclarlas con todo lo de abajo en cada cuadro.</span><span lang="en">Scrolling past the forecast board felt heavy, yet the code ran at 60 frames per second. The cause was two swaying palm shadows on top with <code>mix-blend-mode: multiply</code>: the graphics card had to re-blend them with everything underneath on every frame.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">Multiplicar por un gris da lo mismo que pintar negro semitransparente encima, así que convertí las sombras a negro con la transparencia equivalente y quité la fusión. Comparadas con las de antes, cambian 1 o 2 niveles de color de 255: a la vista son iguales, y la tarjeta gráfica ya no tiene que remezclar nada.</span><span lang="en">Multiplying by a gray gives the same result as painting semi-transparent black on top, so I converted the shadows to black with the equivalent transparency and removed the blending. Compared with the old ones they differ by 1 or 2 color levels out of 255: they look the same, and the graphics card no longer has to re-blend anything.</span></div>
+</div>
+<div class="antes-despues">
+  <div class="titulo-cambio"><span lang="es">6. La ola se veía pixelada en el celular</span><span lang="en">6. The wave looked pixelated on phones</span></div>
+  <div><h4><span lang="es">El problema</span><span lang="en">The problem</span></h4><span lang="es">La ola del surfista se dibuja en un lienzo a menor resolución para que la animación sea liviana, pero el cálculo usaba los puntos de la pantalla y no sus píxeles reales. En un celular, con 2 a 3 píxeles por punto, el lienzo quedaba de 332 px y se estiraba casi tres veces.</span><span lang="en">The surfer's wave is drawn on a reduced-resolution canvas to keep the animation light, but the calculation used screen points instead of real pixels. On a phone, with 2 to 3 pixels per point, the canvas ended up 332 px wide and was stretched almost three times.</span></div>
+  <div><h4><span lang="es">La solución</span><span lang="en">The solution</span></h4><span lang="es">El lienzo usa el 85 % de los píxeles reales (<code>devicePixelRatio</code>), con el mismo tope de 1400 px de ancho que ya tenía. En el celular pasó de 332 a 912 px y se ve nítido; en el computador no cambió nada.</span><span lang="en">The canvas now uses 85% of the real pixels (<code>devicePixelRatio</code>), with the same 1400 px width cap it already had. On phones it went from 332 to 912 px and looks sharp; on desktop nothing changed.</span></div>
+</div>
+
+<h2 id="revision" data-corto-es="Revisión" data-corto-en="Review"><span lang="es">Cómo lo revisé</span><span lang="en">How I checked it</span></h2>
+<ul lang="es">
+  <li><b>Capturas automáticas</b> con Playwright en Edge, en celulares de 360, 390 y 412 px y en escritorio: nada se sale de la pantalla y ningún botón queda bajo 24 px.</li>
+  <li><b>Los cuatro temas de luz</b> (día, atardecer, noche y neón), con el contraste del texto medido. Así encontré un control que en neón quedaba claro sobre papel crema.</li>
+  <li><b>Los tres idiomas</b>, midiendo que los textos más largos no rompan tarjetas ni botones.</li>
+  <li><b>El video de esta página</b> se grabó con un reloj controlado: cada cuadro avanza justo 1/60 de segundo en las animaciones, aunque la captura tarde más, para que se vea fluido.</li>
+</ul>
+<ul lang="en">
+  <li><b>Automated screenshots</b> with Playwright on Edge, on phones of 360, 390 and 412 px and on desktop: nothing overflows the screen and no button is under 24 px.</li>
+  <li><b>All four light themes</b> (day, sunset, night and neon), with text contrast measured. That's how I found a control that was light-on-cream in neon.</li>
+  <li><b>All three languages</b>, checking that the longest texts don't break cards or buttons.</li>
+  <li><b>The video on this page</b> was recorded with a controlled clock: each frame advances the animations exactly 1/60 of a second, even if the capture takes longer, so it plays smoothly.</li>
+</ul>
+
+<h2 id="aprendi" data-corto-es="Aprendizajes" data-corto-en="Lessons"><span lang="es">Qué aprendí</span><span lang="en">What I learned</span></h2>
+<ul lang="es">
+  <li>Diseñar para tres usuarios distintos (cliente, dueño y trabajador) obliga a pensar el mismo dato de tres formas: una tabla es una foto para el cliente, una fila en la carta Gantt para el dueño y un código QR para el trabajador.</li>
+  <li>Los idiomas y las monedas cuestan poco al principio y mucho al final.</li>
+  <li>Que el código vaya a 60 cuadros por segundo no significa que la página sea fluida: parte del trabajo lo hace la tarjeta gráfica, y hay que medirlo por separado.</li>
+  <li>Probar como lo usaría la gente, con otras cosas abiertas y en un celular real, mostró problemas que no aparecían en el computador de desarrollo.</li>
+</ul>
+<ul lang="en">
+  <li>Designing for three different users (customer, owner and staff) means thinking about the same data three ways: a board is a photo for the customer, a row in the Gantt chart for the owner and a QR code for staff.</li>
+  <li>Languages and currencies are cheap at the start and expensive at the end.</li>
+  <li>Code running at 60 frames per second doesn't mean the page is smooth: part of the work is done by the graphics card, and that needs to be measured separately.</li>
+  <li>Testing the way people would use it, with other things open and on a real phone, revealed problems that didn't show up on the development computer.</li>
+</ul>
+<div class="etiquetas"><span>React</span><span>TypeScript</span><span>Vite</span><span>Tailwind</span><span>React Router</span><span>Canvas</span><span lang="es">Códigos QR</span><span lang="en">QR codes</span><span>i18n</span><span>Playwright</span><span lang="es">Rendimiento</span><span lang="en">Performance</span><span lang="es">Diseño de interfaz</span><span lang="en">UI design</span></div>
+<p class="nota" lang="es">Capturas y video del sitio publicado. Las reservas, los clientes y las cifras del panel son simulados: el negocio todavía no existe. El código es privado.</p>
+<p class="nota" lang="en">Screenshots and video from the live site. Bookings, customers and dashboard figures are simulated: the business doesn't exist yet. The code is private.</p>
+
+<nav class="navegar-caso" aria-label="Más proyectos" data-aria-label-en="More projects">
+  <a class="volver" href="web"><span class="flecha" aria-hidden="true">←</span><span><small lang="es">Volver a</small><small lang="en">Back to</small><b lang="es">Desarrollo web</b><b lang="en">Web development</b></span></a>
+  <a class="siguiente" href="hublab"><span><small lang="es">Siguiente proyecto</small><small lang="en">Next project</small><b lang="es">Minutas de HubLab</b><b lang="en">HubLab meeting minutes</b></span><span class="flecha" aria-hidden="true">→</span></a>
+</nav>
+</main>
+<div class="ancho">
+<!--comun:sobre-->
+<section id="sobre">
+  <h2 class="titulo"><span lang="es">Sobre mí</span><span lang="en">About me</span></h2>
+  <div class="sobre">
+    <div>
+      <p lang="es">Soy Analista Programador titulado de INACAP y vivo en Santiago de Chile. Hago videojuegos como <b>bandioh games</b>, aplicaciones web que la gente usa a diario y pixel art desde 2023.</p>
+      <p lang="en">I'm a software developer with a Programmer Analyst degree from INACAP, based in Santiago, Chile. Since 2023 I've been making games as <b>bandioh games</b>, web apps people use every day, and pixel art.</p>
+      <p lang="es">Trabajo en ciclos cortos: construir, ponerlo en manos de alguien, mirar dónde se traba y corregir. Uso IA como herramienta de programación; el diseño, la escritura, el arte y las pruebas los dirijo yo.</p>
+      <p lang="en">I work in short cycles: build it, put it in someone's hands, watch where they get stuck and fix it. I use AI as a programming tool; I direct the design, writing, art and testing.</p>
+    </div>
+    <div class="habilidades">
+      <div><b lang="es">Motores</b><b lang="en">Engines</b><span>Godot 4 (GDScript, 2D y 3D) · Unity (C#)</span></div>
+      <div><b>Web</b><span>React · TypeScript · Node.js · JavaScript · HTML/CSS · Google Apps Script</span></div>
+      <div><b lang="es">Programación</b><b lang="en">Programming</b><span>Python · SQL (PostgreSQL) · Git · C#</span></div>
+      <div><b lang="es">Arte</b><b lang="en">Art</b><span>Aseprite · Blender · Photopea</span></div>
+      <div><b lang="es">Idiomas</b><b lang="en">Languages</b><span lang="es">Español nativo · inglés y portugués intermedio</span><span lang="en">Native Spanish · intermediate English and Portuguese</span></div>
+    </div>
+  </div>
+</section>
+<!--/comun:sobre-->
+
+<!--comun:contacto-->
+<section id="contacto">
+  <h2 class="titulo"><span lang="es">Contacto</span><span lang="en">Contact</span></h2>
+  <p class="contacto-intro" lang="es">¿Tienes un proyecto o un puesto en mente? Escríbeme.</p>
+  <p class="contacto-intro" lang="en">Have a project or a role in mind? Get in touch.</p>
+  <div class="contacto">
+    <div class="correos">
+      <a class="sobre-correo blanco" href="mailto:esteban.flores.dio@gmail.com"><small><span lang="es">Escríbeme a</span><span lang="en">Email me at</span></small><b>esteban.flores.dio@gmail.com</b></a>
+    </div>
+    <div class="redes">
+      <a class="red" href="https://linkedin.com/in/esteban-flores-pizarro" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span><b>LinkedIn</b><small>esteban-flores-pizarro</small></span></a>
+    </div>
+  </div>
+</section>
+<!--/comun:contacto-->
+</div>
+<!--comun:pie-->
+<footer><div class="ancho">© 2026 Esteban Flores Pizarro · bandioh games</div></footer>
+<!--/comun:pie-->
+<div id="visor"><img decoding="async" alt=""></div>
+</body>
+</html>
