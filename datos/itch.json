@@ -1,5 +1,5 @@
 {
-  "actualizado": "18-11-2026",
+  "actualizado": "20-11-2026",
   "juegos": {
     "ascensorista": {
       "titulo": "Ascensorista",
@@ -7,7 +7,7 @@
       "portada": null,
       "publicado": true,
       "vistas": 0,
-      "descargas": 0
+      "descargas": 1
     },
     "en-vivo": {
       "titulo": "en-vivo",
@@ -22,7 +22,7 @@
       "url": "https://bandioh.itch.io/rezago",
       "portada": "https://img.itch.zone/aW1nLzMxMzgwNTk3LnBuZw==/315x250%23c/A0lmDD.png",
       "publicado": true,
-      "vistas": 153,
+      "vistas": 154,
       "descargas": 39
     }
   }
